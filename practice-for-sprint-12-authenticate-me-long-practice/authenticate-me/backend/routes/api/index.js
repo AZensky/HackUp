@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+// Add a XSRF-TOKEN cookie
 router.get("/csrf/restore", (req, res) => {
   const csrfToken = req.csrfToken();
   res.cookie("XSRF-TOKEN", csrfToken);
