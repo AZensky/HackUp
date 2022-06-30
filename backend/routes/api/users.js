@@ -11,18 +11,30 @@ const validateSignup = [
   check("email")
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage("Please provide a valid email."),
-  check("firstName").exists({ checkFalsy: true }),
-  // .isLength({ min: 4 })
-  // .withMessage("Please provide a username with at least 4 characters."),
-  check("lastName").exists({ checkFalsy: true }),
-  // check("username").not().isEmail().withMessage("Username cannot be an email."),
+    .withMessage("Invalid email.")
+    .custom((email) => {
+      return User.findOne({ where: { email } }).then((user) => {
+        if (user) {
+          return Promise.reject("User already exists");
+        }
+      });
+    }),
+  check("firstName")
+    .exists({ checkFalsy: true })
+    .withMessage("First Name is required"),
+  check("lastName")
+    .exists({ checkFalsy: true })
+    .withMessage("Last Name is required"),
   check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage("Password must be 6 characters or more."),
   handleValidationErrors,
 ];
+
+router.get("/current-user", async (req, res) => {
+  // const currentUser = User.find
+});
 
 // Sign up
 // If the user is successfully created, call the setTokenCookie method and return JSON response with user info. If creation is unsuccessful, a Sequelize Validation error will be passed onto the next error-handling middleware.

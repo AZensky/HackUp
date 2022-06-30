@@ -8,6 +8,18 @@ const handleValidationErrors = (req, _res, next) => {
   if (!validationErrors.isEmpty()) {
     const errors = validationErrors.array().map((error) => `${error.msg}`);
 
+    // console.log(errors);
+
+    if (errors.includes("User already exists")) {
+      const err = Error("User already exists");
+      err.errors = {
+        email: "User with that email already exists",
+      };
+      err.status = 403;
+      err.title = "Bad request";
+      next(err);
+    }
+
     const err = Error("Bad request.");
     err.errors = errors;
     err.status = 400;
