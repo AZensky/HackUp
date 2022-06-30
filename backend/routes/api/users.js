@@ -40,10 +40,10 @@ router.get("/current-user", async (req, res) => {
 // If the user is successfully created, call the setTokenCookie method and return JSON response with user info. If creation is unsuccessful, a Sequelize Validation error will be passed onto the next error-handling middleware.
 router.post("/", validateSignup, async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
-  let { token } = req.cookies;
+  // let { token } = req.cookies;
   const user = await User.signup({ firstName, lastName, email, password });
 
-  await setTokenCookie(res, user);
+  let token = await setTokenCookie(res, user);
 
   user.dataValues.token = token;
 

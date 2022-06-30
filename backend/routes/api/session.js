@@ -22,7 +22,7 @@ const validateLogin = [
 router.post("/", validateLogin, async (req, res, next) => {
   const { email, password } = req.body;
 
-  let { token } = req.cookies;
+  // let { token } = req.cookies;
 
   const user = await User.login({ email, password });
 
@@ -34,7 +34,7 @@ router.post("/", validateLogin, async (req, res, next) => {
     return next(err);
   }
 
-  await setTokenCookie(res, user);
+  let token = await setTokenCookie(res, user);
 
   user.dataValues.token = token;
 
