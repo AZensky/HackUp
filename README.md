@@ -1,6 +1,6 @@
 # Meetup Clone
 
-## Database Schema Design
+## Database Schema Design: https://dbdiagram.io/d/62bdc4c669be0b672c765535
 
 `<insert database schema design here>`
 
