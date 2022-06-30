@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     // toSafeObject will return an object with only the user instance information that is safe to save to a JWT
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, firstName, lastName, email } = this; // context will be the User instance
+      return { id, firstName, lastName, email };
     }
     //validatePassword accepts a password, returns true if there is a match with the User's hashedPassword
     validatePassword(password) {
@@ -18,13 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       return User.scope("currentUser").findByPk(id);
     }
     // login method searches for one user with specified crediential (username/email), and if found, validates the password. If the password is valid, returns the user by using currentUser scope.
-    static async login({ credential, password }) {
+    static async login({ email, password }) {
       const { Op } = require("sequelize");
       const user = await User.scope("loginUser").findOne({
         where: {
           [Op.or]: {
-            username: credential,
-            email: credential,
+            email: email,
           },
         },
       });
@@ -33,10 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
     // signup accepts an object with a username, email, and password. It hashes and salts the password using bcrypt hashSync. It then creates a user, and returns the created user.
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        username,
+        firstName,
+        lastName,
         email,
         hashedPassword,
       });
@@ -49,23 +49,20 @@ module.exports = (sequelize, DataTypes) => {
 
   User.init(
     {
-      username: {
+      firstName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [4, 30],
-          isNotEmail(value) {
-            if (Validator.isEmail(value)) {
-              throw new Error("Cannot be an email.");
-            }
-          },
-        },
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [3, 256],
+          isEmail: true,
         },
       },
       hashedPassword: {
