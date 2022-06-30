@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             email: email,
           },
         },
+        attributes: ["id", "firstName", "lastName", "email", "hashedPassword"],
       });
       if (user && user.validatePassword(password)) {
         return await User.scope("currentUser").findByPk(user.id);
@@ -40,7 +41,9 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword,
       });
-      return await User.scope("currentUser").findByPk(user.id);
+      return await User.scope("currentUser").findByPk(user.id, {
+        attributes: ["id", "firstName", "lastName", "email"],
+      });
     }
     static associate(models) {
       // define association here
@@ -84,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       scopes: {
         currentUser: {
-          attributes: { exclude: ["hashedPassword"] },
+          attributes: { exclude: ["hashedPassword", "createdAt", "updatedAt"] },
         },
         loginUser: {
           attributes: {},

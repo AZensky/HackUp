@@ -8,7 +8,7 @@ const handleValidationErrors = (req, _res, next) => {
   if (!validationErrors.isEmpty()) {
     const errors = validationErrors.array().map((error) => `${error.msg}`);
 
-    // console.log(errors);
+    console.log(errors);
 
     if (errors.includes("User already exists")) {
       const err = Error("User already exists");
@@ -16,6 +16,34 @@ const handleValidationErrors = (req, _res, next) => {
         email: "User with that email already exists",
       };
       err.status = 403;
+      err.title = "Bad request";
+      next(err);
+    } else if (
+      errors.includes("Email is required") &&
+      errors.includes("Password is required")
+    ) {
+      const err = Error("Validation Error");
+      err.errors = {
+        email: "Email is required",
+        password: "Password is required",
+      };
+      err.status = 400;
+      err.title = "Bad request";
+      next(err);
+    } else if (errors.includes("Email is required")) {
+      const err = Error("Validation Error");
+      err.errors = {
+        email: "Email is required",
+      };
+      err.status = 400;
+      err.title = "Bad request";
+      next(err);
+    } else if (errors.includes("Password is required")) {
+      const err = Error("Validation Error");
+      err.errors = {
+        password: "Password is required",
+      };
+      err.status = 400;
       err.title = "Bad request";
       next(err);
     }
