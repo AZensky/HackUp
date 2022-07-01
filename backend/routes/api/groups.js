@@ -1,12 +1,13 @@
 const express = require("express");
 
-const { Group } = require("../../db/models");
+const { Group, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
+// Validates create group data
 const validateCreateGroup = [
   check("name")
     .isLength({ max: 60 })
@@ -30,12 +31,29 @@ const validateCreateGroup = [
 ];
 
 //Get all groups joined or organized by the current user
-// router.get('/:userId')
+router.get("/:userId/groups", async (req, res) => {});
 
-// const validateCreateGroup = [
-//   check("name")
+//Get group details of a specific group by groupId
+router.get("/:groupId", async (req, res) => {
+  // Need to add images array association
+  let group = await Group.findByPk(req.params.groupId, {
+    attributes: { exclude: ["previewImage"] },
+    include: {
+      model: User,
+      as: "Organizer",
+    },
+  });
 
-// ];
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  res.json(group);
+});
 
 //Get all groups
 router.get("/", async (req, res) => {
