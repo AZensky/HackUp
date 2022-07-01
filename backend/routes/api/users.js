@@ -32,8 +32,9 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-router.get("/current-user", async (req, res) => {
-  // const currentUser = User.find
+router.get("/current-user", requireAuth, async (req, res) => {
+  const currentUser = req.user;
+  res.json(currentUser);
 });
 
 // Sign up

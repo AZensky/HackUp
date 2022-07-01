@@ -9,4 +9,9 @@ router.get("/", async (req, res) => {
   res.json({ Groups: groups });
 });
 
+router.post("/", async (req, res) => {
+  let { name, about, type, private, city, state } = req.body;
+  // let group = await Group.create
+});
+
 module.exports = router;
