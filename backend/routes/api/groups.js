@@ -30,6 +30,48 @@ const validateCreateGroup = [
   handleValidationErrors,
 ];
 
+// Find a groups members
+router.get("/:groupId/members", async (req, res) => {
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  // const group = await Group.findByPk(req.params.groupId, {
+  //   include: { model: User, as: "Members" },
+  //   attributes: [],
+  // });
+
+  const group = await Group.findByPk(req.params.groupId);
+
+  const ownerId = group.dataValues.organizerId;
+
+  let members;
+
+  if (ownerId === currUserId) {
+    members = await Group.findByPk(req.params.groupId, {
+      include: { model: User, as: "Members" },
+      attributes: [],
+    });
+  }
+
+  let result = [];
+
+  for (let member in members) {
+    // const newMember = {
+    //   id: member.id,
+    //   firstName: member.firstName,
+    //   lastName: member.lastName,
+    //   status: member.GroupMember.status,
+    // };
+    // res.push(newMember);
+    console.log(member.GroupMember);
+  }
+
+  console.log(result);
+
+  // res.send({ Members: group.Users });
+  res.json(members);
+});
+
 //Get group details of a specific group by groupId
 router.get("/:groupId", async (req, res) => {
   // Need to add images array association
