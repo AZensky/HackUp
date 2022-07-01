@@ -52,6 +52,75 @@ router.get("/:groupId", async (req, res) => {
   res.json(group);
 });
 
+//Edit a group, validate the req body, check that the user owns the group
+router.put("/:groupId", requireAuth, validateCreateGroup, async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  if (group.dataValues.organizerId !== currUserId) {
+    res.status(403);
+    res.json({
+      message: "Group does not belong to you",
+      statusCode: 403,
+    });
+  }
+
+  let { name, about, type, private, city, state } = req.body;
+
+  await group.update({
+    name,
+    about,
+    type,
+    private,
+    city,
+    state,
+  });
+
+  const { numMembers, previewImage, ...groupToSend } = group.dataValues;
+
+  res.send(groupToSend);
+});
+
+router.delete("/:groupId", requireAuth, async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  if (group.dataValues.organizerId !== currUserId) {
+    res.status(403);
+    res.json({
+      message: "Group does not belong to you",
+      statusCode: 403,
+    });
+  }
+
+  await group.destroy();
+
+  res.send({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
+});
+
 //Get all groups
 router.get("/", async (req, res) => {
   let groups = await Group.findAll();
@@ -80,11 +149,6 @@ router.post("/", requireAuth, validateCreateGroup, async (req, res, next) => {
     city,
     state,
   });
-
-  // const createdGroup = Group.findOne({
-  //   where: { name },
-  //   attributes: { exclude: ["numMembers"] },
-  // });
 
   res.send(group);
 });
