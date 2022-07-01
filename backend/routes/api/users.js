@@ -6,7 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-// validateSignup middleware checks that the body of the request has keys of username, email, and password, and validates them
+// validateSignup middleware checks that the body of the request has keys of firstName, lastName, email, and password, and validates them
 const validateSignup = [
   check("email")
     .exists({ checkFalsy: true })
@@ -15,7 +15,7 @@ const validateSignup = [
     .custom((email) => {
       return User.findOne({ where: { email } }).then((user) => {
         if (user) {
-          return Promise.reject("User already exists");
+          return Promise.reject("User with that email already exists");
         }
       });
     }),
@@ -32,8 +32,12 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
+//Get the current user
 router.get("/current-user", requireAuth, async (req, res) => {
   const currentUser = req.user;
+  const { token } = req.cookies;
+  console.log(token);
+  currentUser.dataValues.token = token;
   res.json(currentUser);
 });
 
@@ -48,9 +52,7 @@ router.post("/", validateSignup, async (req, res) => {
 
   user.dataValues.token = token;
 
-  return res.json({
-    user,
-  });
+  return res.json(user);
 });
 
 module.exports = router;

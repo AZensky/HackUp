@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
-    // login method searches for one user with specified crediential (username/email), and if found, validates the password. If the password is valid, returns the user by using currentUser scope.
+    // login method searches for one user with email, and if found, validates the password. If the password is valid, returns the user by using currentUser scope.
     static async login({ email, password }) {
       const { Op } = require("sequelize");
       const user = await User.scope("loginUser").findOne({
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope("currentUser").findByPk(user.id);
       }
     }
-    // signup accepts an object with a username, email, and password. It hashes and salts the password using bcrypt hashSync. It then creates a user, and returns the created user.
+    // signup accepts an object with a firstName, lastName, email, and password. It hashes and salts the password using bcrypt hashSync. It then creates a user, and returns the created user.
     static async signup({ firstName, lastName, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({

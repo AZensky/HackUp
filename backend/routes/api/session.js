@@ -38,9 +38,7 @@ router.post("/", validateLogin, async (req, res, next) => {
 
   user.dataValues.token = token;
 
-  return res.json({
-    user,
-  });
+  return res.json(user);
 });
 
 // Log out
