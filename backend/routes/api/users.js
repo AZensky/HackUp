@@ -1,6 +1,6 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Group } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
@@ -31,6 +31,17 @@ const validateSignup = [
     .withMessage("Password must be 6 characters or more."),
   handleValidationErrors,
 ];
+
+//Get the groups joined or organized by the current user
+router.get("/current-user/groups", requireAuth, async (req, res) => {
+  let currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+  const groups = await Group.findAll({
+    where: { organizerId: currUserId },
+  });
+
+  res.json(groups);
+});
 
 //Get the current user
 router.get("/current-user", requireAuth, async (req, res) => {

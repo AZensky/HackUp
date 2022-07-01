@@ -30,9 +30,6 @@ const validateCreateGroup = [
   handleValidationErrors,
 ];
 
-//Get all groups joined or organized by the current user
-router.get("/:userId/groups", async (req, res) => {});
-
 //Get group details of a specific group by groupId
 router.get("/:groupId", async (req, res) => {
   // Need to add images array association
