@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Group, User, Venue } = require("../../db/models");
+const { Group, User, Venue, Event } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -30,6 +30,7 @@ const validateCreateGroup = [
   handleValidationErrors,
 ];
 
+//Validation checks for creating a venue
 const validateCreateVenue = [
   check("address")
     .exists({ checkFalsy: true })
@@ -54,6 +55,97 @@ const validateCreateVenue = [
   }),
   handleValidationErrors,
 ];
+
+//Validation checks for creating an event
+const validateCreateEvent = [
+  check("name")
+    .isLength({ min: 5 })
+    .withMessage("Name must be at least 5 characters"),
+  check("type").custom((type) => {
+    if (type !== "Online" && type !== "In person") {
+      return Promise.reject("Type must be Online or In person");
+    } else return true;
+  }),
+  // prettier-ignore
+  check("capacity")
+  .isInt()
+  .withMessage("Capacity must be an integer"),
+  // prettier-ignore
+  check("price")
+  .isDecimal({ min: 0 })
+  .withMessage("Price is invalid"),
+  check("description")
+    .exists({ checkFalsy: true })
+    .withMessage("Description is required"),
+  check("startDate")
+    .isAfter(new Date().toString())
+    .withMessage("Start date must be in the future"),
+  //need to add validation for end date
+  // check("endDate").isAfter(req.params.startDate),
+  handleValidationErrors,
+];
+
+//Create a new event for a group
+//prettier-ignore
+router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, res, next) => {
+    const group = await Group.findByPk(req.params.groupId);
+
+    if (!group) {
+      res.status(404);
+      res.json({
+        message: "Group couldn't be found",
+        statusCode: 404,
+      });
+    }
+
+    const currUser = req.user;
+    let currUserId = currUser.dataValues.id;
+
+    //need to add cohost logic
+    if (group.dataValues.organizerId !== currUserId) {
+      res.status(403);
+      res.json({
+        message:
+          "You are not an owner of this group, you do are not authorized to create an event",
+        statusCode: 403,
+      });
+    }
+
+    const {
+      venueId,
+      name,
+      type,
+      capacity,
+      price,
+      description,
+      startDate,
+      endDate,
+    } = req.body;
+
+    const venue = await Venue.findByPk(venueId);
+
+    if (!venue) {
+      const err = new Error("Validation Error");
+      err.status = 400;
+      err.errors = { venueId: "Venue does not exist" };
+      return next(err);
+    }
+
+    const event = await Event.create({
+      groupId: req.params.groupId,
+      venueId,
+      name,
+      type,
+      capacity,
+      price,
+      description,
+      startDate,
+      endDate,
+    });
+
+    res.json(event);
+  }
+);
 
 //Create a new venue for a group specified by its id
 // prettier-ignore
