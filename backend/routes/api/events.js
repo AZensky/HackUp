@@ -120,6 +120,25 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
   res.json(event);
 });
 
+//route handler to delete an event
+router.delete("/:eventId", async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  if (!event) {
+    res.status(404);
+    res.json({
+      message: "Event couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  await event.destroy();
+
+  res.json({
+    message: "Successfully deleted",
+  });
+});
+
 //route handler for getting all events, need to add venues association later
 router.get("/", async (req, res) => {
   const events = await Event.findAll({
