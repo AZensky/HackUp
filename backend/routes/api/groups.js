@@ -71,8 +71,6 @@ router.post("/:groupId/venues", validateCreateVenue, requireAuth, async (req, re
     const currUser = req.user;
     let currUserId = currUser.dataValues.id;
 
-    console.log(currUser);
-
     if (group.dataValues.organizerId !== currUserId) {
       res.status(403);
       res.json({
