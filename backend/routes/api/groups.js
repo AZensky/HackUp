@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Group, User, Venue, Event } = require("../../db/models");
+const { Group, User, Venue, Event, GroupMember } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -135,6 +135,29 @@ router.get("/:groupId/members", async (req, res) => {
   }
 
   res.json(members);
+});
+
+//Request membership for a group based on group
+router.post("/:groupId/members", requireAuth, async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const groupId = group.dataValues.id;
+  const currentUserId = req.user.dataValues.id;
+
+  const member = await GroupMember.create({
+    groupId,
+    userId: currentUserId,
+  });
+
+  res.json(member);
 });
 
 //Create a new event for a group
