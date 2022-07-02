@@ -138,6 +138,7 @@ router.get("/:groupId/members", async (req, res) => {
 });
 
 //Create a new event for a group
+//end date validator needs to be fixed
 //prettier-ignore
 router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, res, next) => {
     const group = await Group.findByPk(req.params.groupId);
