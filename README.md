@@ -644,7 +644,7 @@ Request a new membership for a group specified by id.
 - Request
 
   - Method: POST
-  - URL: /api/users/group-requests ?????
+  - URL: /api/groups/:groupId/members
   - Headers:
     - Content-Type: application/json
   - Body: none
