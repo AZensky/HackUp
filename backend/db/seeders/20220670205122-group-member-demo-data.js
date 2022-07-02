@@ -1,5 +1,7 @@
 "use strict";
 
+const { GroupMember } = require("../models");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -12,7 +14,7 @@ module.exports = {
      * }], {});
      */
 
-    await queryInterface.bulkInsert("GroupMembers", [
+    await GroupMember.bulkCreate([
       {
         groupId: 1,
         userId: 1,
