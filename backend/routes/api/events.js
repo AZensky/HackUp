@@ -1,5 +1,5 @@
 const express = require("express");
-const { Event, Group } = require("../../db/models");
+const { Event, Group, Venue } = require("../../db/models");
 
 const router = express.Router();
 
@@ -29,6 +29,10 @@ router.get("/", async (req, res) => {
     include: {
       model: Group,
       attributes: ["id", "name", "city", "state"],
+      include: {
+        model: Venue,
+        attributes: ["id", "city", "state"],
+      },
     },
   });
 
