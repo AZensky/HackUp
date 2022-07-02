@@ -1,9 +1,10 @@
 const express = require("express");
-const { Event, Group, Venue } = require("../../db/models");
+const { Event, Group, Venue, User } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -35,6 +36,61 @@ const validateCreateEvent = [
   // check("endDate").isAfter(req.params.startDate),
   handleValidationErrors,
 ];
+
+//Get all attendees of an event specified by id
+//need to default value to pending for status
+router.get("/:eventId/attendees", async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  if (!event) {
+    res.status(404);
+    res.json({
+      message: "Event couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const groupId = event.dataValues.groupId;
+
+  const group = await Group.findByPk(groupId);
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  //need to add cohost logic
+  if (group.dataValues.organizerId === currUserId) {
+    const attendees = await Event.findByPk(req.params.eventId, {
+      include: {
+        model: User,
+        attributes: ["id", "firstName", "lastName"],
+        through: {
+          attributes: ["status"],
+          as: "Attendance",
+        },
+      },
+    });
+
+    const users = attendees.Users;
+
+    res.json({ Attendees: users });
+  } else {
+    const attendees = await Event.findByPk(req.params.eventId, {
+      include: {
+        model: User,
+        attributes: ["id", "firstName", "lastName"],
+        through: {
+          attributes: ["status"],
+          where: { status: { [Op.not]: "pending" } },
+          as: "Attendance",
+        },
+      },
+    });
+
+    const users = attendees.Users;
+
+    res.json({ Attendees: users });
+  }
+});
 
 //Get an event by Id
 router.get("/:eventId", async (req, res) => {
