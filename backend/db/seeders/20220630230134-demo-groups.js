@@ -25,6 +25,16 @@ module.exports = {
         city: "New York",
         state: "NY",
       },
+      {
+        organizerId: 1,
+        name: "Evening Time on the Lake",
+        about:
+          "Relax with rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+        type: "In person",
+        private: true,
+        city: "Sacramento",
+        state: "CA",
+      },
     ]);
   },
 
@@ -37,7 +47,7 @@ module.exports = {
      */
 
     await queryInterface.bulkDelete("Groups", {
-      where: { name: "Evening Tennis on the Water" },
+      name: "Evening Tennis on the Water",
     });
   },
 };

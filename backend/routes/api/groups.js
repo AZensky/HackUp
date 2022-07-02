@@ -4,6 +4,7 @@ const { Group, User, Venue, Event } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -84,6 +85,57 @@ const validateCreateEvent = [
   // check("endDate").isAfter(req.params.startDate),
   handleValidationErrors,
 ];
+
+// Find a groups members
+//need to add default status to pending
+router.get("/:groupId/members", async (req, res) => {
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const ownerId = group.dataValues.organizerId;
+
+  let members;
+
+  //need to add cohost logic
+  if (ownerId === currUserId) {
+    members = await Group.findByPk(req.params.groupId, {
+      include: {
+        model: User,
+        as: "Members",
+        through: {
+          attributes: ["status"],
+          as: "Membership",
+        },
+      },
+      attributes: [],
+    });
+  } else {
+    members = await Group.findByPk(req.params.groupId, {
+      include: {
+        model: User,
+        as: "Members",
+        through: {
+          attributes: ["status"],
+          where: { status: { [Op.not]: "pending" } },
+          as: "Membership",
+        },
+      },
+      attributes: [],
+    });
+  }
+
+  res.json(members);
+});
 
 //Create a new event for a group
 //prettier-ignore
