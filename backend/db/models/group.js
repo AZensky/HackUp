@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "Organizer",
       });
       Group.hasMany(models.Event, { foreignKey: "groupId" });
+      Group.hasMany(models.Venue, { foreignKey: "groupId" });
     }
   }
   Group.init(

@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Group, User } = require("../../db/models");
+const { Group, User, Venue } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -29,6 +29,71 @@ const validateCreateGroup = [
   check("state").exists({ checkFalsy: true }).withMessage("State is required"),
   handleValidationErrors,
 ];
+
+const validateCreateVenue = [
+  check("address")
+    .exists({ checkFalsy: true })
+    .withMessage("Street address is required"),
+  // prettier-ignore
+  check("city")
+  .exists({ checkFalsy: true })
+  .withMessage("City is required"),
+  // prettier-ignore
+  check("state")
+  .exists({ checkFalsy: true })
+  .withMessage("State is required"),
+  check("lat").custom((lat) => {
+    if (lat < -90 || lat > 90) {
+      throw new Error("Latitude is not valid");
+    } else return true;
+  }),
+  check("lng").custom((lng) => {
+    if (lng < -180 || lng > 180) {
+      throw new Error("Longitude is not valid");
+    } else return true;
+  }),
+  handleValidationErrors,
+];
+
+//Create a new venue for a group specified by its id
+// prettier-ignore
+router.post("/:groupId/venues", validateCreateVenue, requireAuth, async (req, res) => {
+    const group = await Group.findByPk(req.params.groupId);
+
+    if (!group) {
+      res.status(404)
+      res.json({
+        message: "Group couldn't be found",
+        statusCode: 404,
+      });
+    }
+
+    const currUser = req.user;
+    let currUserId = currUser.dataValues.id;
+
+    if (group.dataValues.organizerId !== currUserId) {
+      res.status(403);
+      res.json({
+        message:
+          "You are not an owner of this group, you do are not authorized to create a venue",
+        statusCode: 403,
+      });
+    }
+
+    const { address, city, state, lat, lng } = req.body;
+
+    const venue = await Venue.create({
+      groupId: req.params.groupId,
+      address,
+      city,
+      state,
+      lat,
+      lng,
+    });
+
+    res.json(venue);
+  }
+);
 
 //Get group details of a specific group by groupId
 router.get("/:groupId", async (req, res) => {
