@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Group, User, Venue, Event } = require("../../db/models");
+const { Group, User, Venue, Event, GroupMember } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -135,6 +135,61 @@ router.get("/:groupId/members", async (req, res) => {
   }
 
   res.json(members);
+});
+
+//Request membership for a group based on group
+//Not finished, random GroupId and Userid popping up
+router.post("/:groupId/members", requireAuth, async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const { groupId, memberId } = req.body;
+
+  let requestedMember = await GroupMember.findOne({
+    where: {
+      groupId,
+      userId: memberId,
+      status: "pending",
+    },
+  });
+
+  if (requestedMember) {
+    res.status(400);
+    res.json({
+      message: "Membership has already been requested",
+      statusCode: 400,
+    });
+  }
+
+  let alreadyMember = await GroupMember.findOne({
+    where: {
+      groupId,
+      userId: memberId,
+      status: "member",
+    },
+  });
+
+  if (alreadyMember) {
+    res.status(400);
+    res.json({
+      message: "User is already a member of the group",
+      statusCode: 400,
+    });
+  }
+
+  let newMember = await GroupMember.create({
+    groupId,
+    userId: memberId,
+  });
+
+  res.json(newMember);
 });
 
 //Create a new event for a group
