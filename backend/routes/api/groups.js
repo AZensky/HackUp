@@ -147,6 +147,54 @@ const validateCreateEvent = [
 //   res.json(groupMember);
 // });
 
+//Delete membership to a group
+//NEED TO FIX
+// router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
+//   const currUser = req.user;
+//   let currUserId = currUser.dataValues.id;
+
+//   const group = await Group.findByPk(req.params.groupId);
+
+//   if (!group) {
+//     res.status(404);
+//     res.json({
+//       message: "Group couldn't be found",
+//       statusCode: 404,
+//     });
+//   }
+
+//   const ownerId = group.dataValues.organizerId;
+
+//   if (currUserId !== req.params.memberId && currUserId !== ownerId) {
+//     res.status(403);
+//     res.json({
+//       message: "Only the User or organizer may delete a Membership",
+//       statusCode: 403,
+//     });
+//   }
+
+//   const groupMember = await GroupMember.findOne({
+//     where: {
+//       groupId: req.params.groupId,
+//       userId: req.params.memberId,
+//     },
+//   });
+
+//   if (!groupMember) {
+//     res.status(404);
+//     res.json({
+//       message: "Membership does not exist for this User",
+//       statusCode: 404,
+//     });
+//   }
+
+//   await groupMember.destroy();
+
+//   res.json({
+//     message: "Successfully deleted membership from group",
+//   });
+// });
+
 // Find a groups members
 //need to add default status to pending
 router.get("/:groupId/members", async (req, res) => {
