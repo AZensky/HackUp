@@ -138,6 +138,59 @@ router.get("/:eventId/attendees", async (req, res) => {
   }
 });
 
+//Request to attend an event based on the event's id
+router.post("/:eventId/attendees", requireAuth, async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  if (!event) {
+    res.status(404);
+    res.json({
+      message: "Event couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  const eventAttendee = await EventAttendee.findOne({
+    where: {
+      userId: currUserId,
+      eventId: req.params.eventId,
+    },
+  });
+
+  console.log(eventAttendee);
+
+  if (eventAttendee && eventAttendee.dataValues.status === "pending") {
+    res.status(400);
+    res.json({
+      message: "Attendance has already been requested",
+      statusCode: 400,
+    });
+  }
+
+  if (
+    eventAttendee &&
+    (eventAttendee.dataValues.status === "member" ||
+      eventAttendee.dataValues.status === "co-host")
+  ) {
+    res.status(400);
+    res.json({
+      message: "User is already an attendee of the event",
+      statusCode: 400,
+    });
+  }
+
+  const eventIdNumerical = Number(req.params.eventId);
+
+  const newEventAttendee = await EventAttendee.create({
+    userId: currUserId,
+    eventId: eventIdNumerical,
+  });
+  res.json(newEventAttendee);
+});
+
 //Get an event by Id
 router.get("/:eventId", async (req, res) => {
   const event = await Event.findByPk(req.params.eventId, {
@@ -159,6 +212,7 @@ router.get("/:eventId", async (req, res) => {
   res.json(event);
 });
 
+// Edit an event specified by its id
 router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 
