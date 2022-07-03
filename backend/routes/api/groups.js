@@ -498,6 +498,15 @@ router.delete("/:groupId", requireAuth, async (req, res) => {
 //Get all groups
 router.get("/", async (req, res) => {
   let groups = await Group.findAll();
+
+  for (let group of groups) {
+    let { id } = group;
+    const numMembers = await GroupMember.count({
+      where: { groupId: id },
+    });
+    group.dataValues.numMembers = numMembers;
+  }
+
   res.json({ Groups: groups });
 });
 

@@ -37,10 +37,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      numMembers: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
+      // numMembers: {
+      //   type: Sequelize.INTEGER,
+      //   defaultValue: 0,
+      // },
       previewImage: {
         type: Sequelize.STRING,
       },
@@ -49,9 +49,11 @@ module.exports = {
       // },
       createdAt: {
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },

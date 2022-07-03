@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
 
       Group.hasMany(models.Event, { foreignKey: "groupId" });
       Group.hasMany(models.Venue, { foreignKey: "groupId" });
-
     }
   }
   Group.init(
@@ -79,10 +78,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      numMembers: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
+      // numMembers: {
+      //   type: DataTypes.INTEGER,
+      //   defaultValue: 0,
+      // },
       previewImage: {
         type: DataTypes.STRING,
       },
