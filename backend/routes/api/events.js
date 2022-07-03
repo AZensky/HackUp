@@ -188,7 +188,13 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
     userId: currUserId,
     eventId: eventIdNumerical,
   });
-  res.json(newEventAttendee);
+
+  let result = newEventAttendee.toJSON();
+  delete result.EventId;
+  delete result.UserId;
+  delete result.createdAt;
+  delete result.updatedAt;
+  res.json(result);
 });
 
 //Get an event by Id
