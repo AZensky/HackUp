@@ -46,9 +46,8 @@ router.get("/current-user/groups", requireAuth, async (req, res) => {
 //Get the current user
 router.get("/current-user", requireAuth, async (req, res) => {
   const currentUser = req.user;
-  const { token } = req.cookies;
-  console.log(token);
-  currentUser.dataValues.token = token;
+  // const { token } = req.cookies;
+  // currentUser.dataValues.token = token;
   res.json(currentUser);
 });
 
