@@ -85,7 +85,6 @@ const validateCreateEvent = [
 // );
 
 //Get all attendees of an event specified by id
-//need to default value to pending for status
 router.get("/:eventId/attendees", async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 

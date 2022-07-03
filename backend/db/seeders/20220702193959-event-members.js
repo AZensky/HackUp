@@ -1,5 +1,7 @@
 "use strict";
 
+const { EventAttendee } = require("../models");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**
@@ -12,11 +14,10 @@ module.exports = {
      * }], {});
      */
 
-    await queryInterface.bulkInsert("EventAttendees", [
+    await EventAttendee.bulkCreate([
       {
         userId: 1,
         eventId: 1,
-        // status: "pending",
       },
       {
         userId: 2,
