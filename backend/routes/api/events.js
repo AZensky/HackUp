@@ -197,6 +197,70 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
   res.json(result);
 });
 
+//Change the status of an attendance for an event specified by id
+//NEED TO FIX, NOT SAVING THE UPDATE IN THE TABLE
+router.put("/:eventId/attendees", requireAuth, async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  if (!event) {
+    res.status(404);
+    res.json({
+      message: "Event couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  const groupId = event.dataValues.groupId;
+
+  const group = await Group.findByPk(groupId);
+
+  // need to add co-host logic
+  if (group.dataValues.organizerId !== currUserId) {
+    res.status(403);
+    res.json({
+      message:
+        "You are not an owner of this group, you do are not authorized to change the status",
+    });
+  }
+
+  let { userId, status } = req.body;
+
+  const eventAttendee = await EventAttendee.findOne({
+    where: {
+      userId: userId,
+      eventId: req.params.eventId,
+    },
+  });
+
+  if (!eventAttendee) {
+    res.status(404);
+    res.json({
+      message: "Attendance between the user and the event does not exist",
+      statusCode: 404,
+    });
+  }
+
+  if (status === "pending") {
+    res.status(400);
+    res.json({
+      message: "Cannot change an attendance status to pending",
+      statusCode: 400,
+    });
+  }
+
+  // console.log(eventAttendee);
+
+  // console.log(eventAttendee.dataValues.status);
+
+  eventAttendee.dataValues.status = status;
+  await eventAttendee.save;
+
+  res.json(eventAttendee);
+});
+
 //Get an event by Id
 router.get("/:eventId", async (req, res) => {
   const event = await Event.findByPk(req.params.eventId, {
