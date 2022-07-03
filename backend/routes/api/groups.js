@@ -86,6 +86,67 @@ const validateCreateEvent = [
   handleValidationErrors,
 ];
 
+//Change the status of a membership for a group specified by id
+//NEED TO FIX
+// router.put("/:groupId/members", requireAuth, async (req, res) => {
+//   const currUser = req.user;
+//   let currUserId = currUser.dataValues.id;
+
+//   const group = await Group.findByPk(req.params.groupId);
+
+//   if (!group) {
+//     res.status(404);
+//     res.json({
+//       message: "Group couldn't be found",
+//       statusCode: 404,
+//     });
+//   }
+
+//   let { memberId, status } = req.body;
+
+//   const groupMember = await GroupMember.findOne({
+//     where: {
+//       groupId: req.params.groupId,
+//       userId: memberId,
+//     },
+//   });
+
+//   const ownerId = group.dataValues.organizerId;
+
+//   if (currUserId !== ownerId && status === "co-host") {
+//     res.status(403);
+//     res.json({
+//       message: "Current User must be the organizer to add a co-host",
+//       statusCode: 403,
+//     });
+//   }
+
+//   //need to add co-host logic
+//   if (currUserId !== ownerId && status === "member") {
+//     res.status(400);
+//     res.json({
+//       message:
+//         "Current User must be the organizer or a co-host to make someone a member",
+//       statusCode: 400,
+//     });
+//   }
+
+//   if (status === "pending") {
+//     res.status(400);
+//     res.json({
+//       message: "Cannot change a membership status to pending",
+//       statusCode: 400,
+//     });
+//   }
+
+//   console.log(groupMember);
+
+//   groupMember.dataValues.status = status;
+//   await groupMember.save;
+
+//   res.json(groupMember);
+// });
+
 // Find a groups members
 //need to add default status to pending
 router.get("/:groupId/members", async (req, res) => {
