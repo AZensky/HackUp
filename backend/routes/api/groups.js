@@ -138,6 +138,7 @@ router.get("/:groupId/members", async (req, res) => {
 });
 
 //Request membership for a group based on group
+//Not finished, random GroupId and Userid popping up
 router.post("/:groupId/members", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
@@ -149,15 +150,46 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
     });
   }
 
-  const groupId = group.dataValues.id;
-  const currentUserId = req.user.dataValues.id;
+  const { groupId, memberId } = req.body;
 
-  const member = await GroupMember.create({
-    groupId,
-    userId: currentUserId,
+  let requestedMember = await GroupMember.findOne({
+    where: {
+      groupId,
+      userId: memberId,
+      status: "pending",
+    },
   });
 
-  res.json(member);
+  if (requestedMember) {
+    res.status(400);
+    res.json({
+      message: "Membership has already been requested",
+      statusCode: 400,
+    });
+  }
+
+  let alreadyMember = await GroupMember.findOne({
+    where: {
+      groupId,
+      userId: memberId,
+      status: "member",
+    },
+  });
+
+  if (alreadyMember) {
+    res.status(400);
+    res.json({
+      message: "User is already a member of the group",
+      statusCode: 400,
+    });
+  }
+
+  let newMember = await GroupMember.create({
+    groupId,
+    userId: memberId,
+  });
+
+  res.json(newMember);
 });
 
 //Create a new event for a group
