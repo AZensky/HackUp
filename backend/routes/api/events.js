@@ -1,5 +1,5 @@
 const express = require("express");
-const { Event, Group, Venue, User } = require("../../db/models");
+const { Event, Group, Venue, User, EventAttendee } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
@@ -36,6 +36,53 @@ const validateCreateEvent = [
   // check("endDate").isAfter(req.params.startDate),
   handleValidationErrors,
 ];
+
+//Delete attendance to an event specified by id
+//NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
+// router.delete(
+//   "/:eventId/attendees/:attendeeId",
+//   requireAuth,
+//   async (req, res) => {
+//     const eventAttendee = EventAttendee.findOne({
+//       where: {
+//         eventId: req.params.eventId,
+//         userId: req.params.attendeeId,
+//       },
+//     });
+
+//     const event = await Event.findByPk(req.params.eventId);
+
+//     if (!event) {
+//       res.status(404);
+//       res.json({
+//         message: "Event couldn't be found",
+//         statusCode: 404,
+//       });
+//     }
+
+//     const groupId = event.dataValues.groupId;
+
+//     const group = await Group.findByPk(groupId);
+
+//     const currUser = req.user;
+//     let currUserId = currUser.dataValues.id;
+
+//     if (
+//       group.dataValues.organizerId === currUserId ||
+//       currUserId === req.params.attendeeId
+//     ) {
+//       console.log(eventAttendee);
+//       await eventAttendee.destroy();
+//       res.json({
+//         message: "Successfully deleted attendance from event",
+//       });
+//     } else {
+//       res.json({
+//         message: "You do not have the valid permissions",
+//       });
+//     }
+//   }
+// );
 
 //Get all attendees of an event specified by id
 //need to default value to pending for status
