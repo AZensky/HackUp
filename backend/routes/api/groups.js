@@ -109,6 +109,10 @@ const validateCreateEvent = [
 //     },
 //   });
 
+//   groupMemberStatus = groupMember.dataValues.status;
+
+//   console.log(groupMemberStatus);
+
 //   const ownerId = group.dataValues.organizerId;
 
 //   if (currUserId !== ownerId && status === "co-host") {
@@ -120,7 +124,11 @@ const validateCreateEvent = [
 //   }
 
 //   //need to add co-host logic
-//   if (currUserId !== ownerId && status === "member") {
+//   if (
+//     currUserId !== ownerId &&
+//     groupMemberStatus !== "co-host" &&
+//     status === "member"
+//   ) {
 //     res.status(400);
 //     res.json({
 //       message:
@@ -137,10 +145,12 @@ const validateCreateEvent = [
 //     });
 //   }
 
-//   console.log(groupMember);
+//   // groupMember.dataValues.status = status;
+//   // await groupMember.save;
 
-//   groupMember.dataValues.status = status;
-//   await groupMember.save;
+//   await groupMember.update({
+//     status,
+//   });
 
 //   res.json(groupMember);
 // });
