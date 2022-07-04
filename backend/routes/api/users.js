@@ -1,6 +1,6 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Group } = require("../../db/models");
+const { User, Group, GroupMember } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
@@ -40,7 +40,15 @@ router.get("/current-user/groups", requireAuth, async (req, res) => {
     where: { organizerId: currUserId },
   });
 
-  res.json(groups);
+  for (let group of groups) {
+    let { id } = group;
+    const numMembers = await GroupMember.count({
+      where: { groupId: id },
+    });
+    group.dataValues.numMembers = numMembers;
+  }
+
+  res.json({ Groups: groups });
 });
 
 //Get the current user
