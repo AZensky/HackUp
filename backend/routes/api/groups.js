@@ -194,7 +194,6 @@ const validateCreateEvent = [
 // });
 
 // Find a groups members
-//need to add default status to pending
 router.get("/:groupId/members", async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
@@ -213,7 +212,6 @@ router.get("/:groupId/members", async (req, res) => {
 
   let members;
 
-  //need to add cohost logic
   if (ownerId === currUserId) {
     members = await Group.findByPk(req.params.groupId, {
       include: {
@@ -257,12 +255,13 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
     });
   }
 
-  const { groupId, memberId } = req.body;
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
 
   let requestedMember = await GroupMember.findOne({
     where: {
-      groupId,
-      userId: memberId,
+      groupId: req.params.groupId,
+      userId: currUserId,
       status: "pending",
     },
   });
@@ -277,8 +276,8 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
 
   let alreadyMember = await GroupMember.findOne({
     where: {
-      groupId,
-      userId: memberId,
+      groupId: req.params.groupId,
+      userId: currUserId,
       status: "member",
     },
   });
@@ -291,12 +290,20 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
     });
   }
 
+  let groupIdNumerical = Number(req.params.groupId);
+
   let newMember = await GroupMember.create({
-    groupId,
-    userId: memberId,
+    groupId: groupIdNumerical,
+    userId: currUserId,
   });
 
-  res.json(newMember);
+  let result = newMember.toJSON();
+  delete result.GroupId;
+  delete result.UserId;
+  delete result.createdAt;
+  delete result.updatedAt;
+
+  res.json(result);
 });
 
 //Create a new event for a group
@@ -469,6 +476,7 @@ router.put("/:groupId", requireAuth, validateCreateGroup, async (req, res) => {
   res.send(groupToSend);
 });
 
+//Delete a group
 router.delete("/:groupId", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
