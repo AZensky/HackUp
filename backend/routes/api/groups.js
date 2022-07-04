@@ -86,122 +86,125 @@ const validateCreateEvent = [
 
 //Change the status of a membership for a group specified by id
 //NEED TO FIX
-// router.put("/:groupId/members", requireAuth, async (req, res) => {
-//   const currUser = req.user;
-//   let currUserId = currUser.dataValues.id;
+router.put("/:groupId/members", requireAuth, async (req, res) => {
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
 
-//   const group = await Group.findByPk(req.params.groupId);
+  const group = await Group.findByPk(req.params.groupId);
 
-//   if (!group) {
-//     res.status(404);
-//     res.json({
-//       message: "Group couldn't be found",
-//       statusCode: 404,
-//     });
-//   }
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
 
-//   let { memberId, status } = req.body;
+  let { memberId, status } = req.body;
 
-//   const groupMember = await GroupMember.findOne({
-//     where: {
-//       groupId: req.params.groupId,
-//       userId: memberId,
-//     },
-//   });
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: req.params.groupId,
+      UserId: memberId,
+    },
+  });
 
-//   groupMemberStatus = groupMember.dataValues.status;
+  console.log(groupMember);
 
-//   console.log(groupMemberStatus);
+  groupMemberStatus = groupMember.dataValues.status;
 
-//   const ownerId = group.dataValues.organizerId;
+  // console.log(groupMemberStatus);
 
-//   if (currUserId !== ownerId && status === "co-host") {
-//     res.status(403);
-//     res.json({
-//       message: "Current User must be the organizer to add a co-host",
-//       statusCode: 403,
-//     });
-//   }
+  const ownerId = group.dataValues.organizerId;
 
-//   //need to add co-host logic
-//   if (
-//     currUserId !== ownerId &&
-//     groupMemberStatus !== "co-host" &&
-//     status === "member"
-//   ) {
-//     res.status(400);
-//     res.json({
-//       message:
-//         "Current User must be the organizer or a co-host to make someone a member",
-//       statusCode: 400,
-//     });
-//   }
+  if (currUserId !== ownerId && status === "co-host") {
+    res.status(403);
+    res.json({
+      message: "Current User must be the organizer to add a co-host",
+      statusCode: 403,
+    });
+  }
 
-//   if (status === "pending") {
-//     res.status(400);
-//     res.json({
-//       message: "Cannot change a membership status to pending",
-//       statusCode: 400,
-//     });
-//   }
+  //need to add co-host logic
+  if (
+    currUserId !== ownerId &&
+    groupMemberStatus !== "co-host" &&
+    status === "member"
+  ) {
+    res.status(400);
+    res.json({
+      message:
+        "Current User must be the organizer or a co-host to make someone a member",
+      statusCode: 400,
+    });
+  }
 
-//   // groupMember.dataValues.status = status;
-//   // await groupMember.save;
+  if (status === "pending") {
+    res.status(400);
+    res.json({
+      message: "Cannot change a membership status to pending",
+      statusCode: 400,
+    });
+  }
 
-//   await groupMember.update({
-//     status,
-//   });
+  // groupMember.dataValues.status = status;
+  // await groupMember.save;
 
-//   res.json(groupMember);
-// });
+  await groupMember.update({
+    status,
+  });
 
-//Delete membership to a group
-//NEED TO FIX
-// router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
-//   const currUser = req.user;
-//   let currUserId = currUser.dataValues.id;
+  res.json(groupMember);
+});
 
-//   const group = await Group.findByPk(req.params.groupId);
+// Delete membership to a group
+// NEED TO FIX
+router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
 
-//   if (!group) {
-//     res.status(404);
-//     res.json({
-//       message: "Group couldn't be found",
-//       statusCode: 404,
-//     });
-//   }
+  const group = await Group.findByPk(req.params.groupId);
 
-//   const ownerId = group.dataValues.organizerId;
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
 
-//   if (currUserId !== req.params.memberId && currUserId !== ownerId) {
-//     res.status(403);
-//     res.json({
-//       message: "Only the User or organizer may delete a Membership",
-//       statusCode: 403,
-//     });
-//   }
+  const ownerId = group.dataValues.organizerId;
 
-//   const groupMember = await GroupMember.findOne({
-//     where: {
-//       groupId: req.params.groupId,
-//       userId: req.params.memberId,
-//     },
-//   });
+  if (currUserId !== req.params.memberId && currUserId !== ownerId) {
+    res.status(403);
+    res.json({
+      message: "Only the User or organizer may delete a Membership",
+      statusCode: 403,
+    });
+  }
 
-//   if (!groupMember) {
-//     res.status(404);
-//     res.json({
-//       message: "Membership does not exist for this User",
-//       statusCode: 404,
-//     });
-//   }
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: req.params.groupId,
+      UserId: req.params.memberId,
+    },
+  });
 
-//   await groupMember.destroy();
+  if (!groupMember) {
+    res.status(404);
+    res.json({
+      message: "Membership does not exist for this User",
+      statusCode: 404,
+    });
+  }
 
-//   res.json({
-//     message: "Successfully deleted membership from group",
-//   });
-// });
+  console.log(groupMember);
+  await groupMember.destroy();
+
+  res.json({
+    message: "Successfully deleted membership from group",
+  });
+});
 
 // Find a groups members
 router.get("/:groupId/members", async (req, res) => {

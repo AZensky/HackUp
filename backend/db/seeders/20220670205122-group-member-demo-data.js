@@ -16,17 +16,17 @@ module.exports = {
 
     await GroupMember.bulkCreate([
       {
-        groupId: 1,
-        userId: 1,
+        GroupId: 1,
+        UserId: 1,
       },
       {
-        groupId: 1,
-        userId: 2,
+        GroupId: 1,
+        UserId: 2,
         status: "member",
       },
       {
-        groupId: 2,
-        userId: 1,
+        GroupId: 2,
+        UserId: 1,
       },
     ]);
   },
