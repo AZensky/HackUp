@@ -423,6 +423,12 @@ router.get("/:groupId", async (req, res) => {
     });
   }
 
+  let { id } = group;
+  const numMembers = await GroupMember.count({
+    where: { groupId: id },
+  });
+  group.dataValues.numMembers = numMembers;
+
   res.json(group);
 });
 
