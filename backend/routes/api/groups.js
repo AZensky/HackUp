@@ -16,15 +16,13 @@ const validateCreateGroup = [
   check("about")
     .isLength({ min: 50 })
     .withMessage("About must be 50 characters or more"),
-  // console.log("****"),
-  // check("type").custom((type) => {
-  //   console.log(type === "In person");
-  //   if (type !== "Online" && type !== "In person") {
-  //     console.log("in here");
-  //     return Promise.reject("Type must be Online or In person");
-  //   }
-  //   console.log("here");
-  // }),
+  check("type").custom((type) => {
+    console.log(type === "In person");
+    if (type !== "Online" && type !== "In person") {
+      console.log("in here");
+      return Promise.reject("Type must be Online or In person");
+    } else return true;
+  }),
   check("private").isBoolean().withMessage("Private must be a boolean"),
   check("city").exists({ checkFalsy: true }).withMessage("City is required"),
   check("state").exists({ checkFalsy: true }).withMessage("State is required"),
@@ -519,13 +517,6 @@ router.get("/", async (req, res) => {
 //Create a group
 router.post("/", requireAuth, validateCreateGroup, async (req, res, next) => {
   let { name, about, type, private, city, state } = req.body;
-
-  if (type !== "Online" && type !== "In person") {
-    const err = new Error("Validation Error");
-    err.status = 400;
-    err.errors = { type: "Type must be Online or In person" };
-    return next(err);
-  }
 
   let currentUserId = req.user.dataValues.id;
 
