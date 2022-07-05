@@ -107,9 +107,16 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
       GroupId: req.params.groupId,
       UserId: memberId,
     },
+    attributes: ["id", "GroupId", "UserId", "status"],
   });
 
-  console.log(groupMember);
+  if (!groupMember) {
+    res.status(404);
+    res.json({
+      message: "Membership between the user and the group does not exits",
+      statusCode: 404,
+    });
+  }
 
   groupMemberStatus = groupMember.dataValues.status;
 
@@ -125,7 +132,6 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
     });
   }
 
-  //need to add co-host logic
   if (
     currUserId !== ownerId &&
     groupMemberStatus !== "co-host" &&
@@ -154,7 +160,9 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
     status,
   });
 
-  res.json(groupMember);
+  let result = groupMember;
+
+  res.json(result);
 });
 
 // Delete membership to a group
@@ -273,8 +281,8 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
 
   let requestedMember = await GroupMember.findOne({
     where: {
-      groupId: req.params.groupId,
-      userId: currUserId,
+      GroupId: req.params.groupId,
+      UserId: currUserId,
       status: "pending",
     },
   });
@@ -289,8 +297,8 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
 
   let alreadyMember = await GroupMember.findOne({
     where: {
-      groupId: req.params.groupId,
-      userId: currUserId,
+      GroupId: req.params.groupId,
+      UserId: currUserId,
       status: "member",
     },
   });
@@ -306,13 +314,13 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
   let groupIdNumerical = Number(req.params.groupId);
 
   let newMember = await GroupMember.create({
-    groupId: groupIdNumerical,
-    userId: currUserId,
+    GroupId: groupIdNumerical,
+    UserId: currUserId,
   });
 
   let result = newMember.toJSON();
-  delete result.GroupId;
-  delete result.UserId;
+  // delete result.GroupId;
+  // delete result.UserId;
   delete result.createdAt;
   delete result.updatedAt;
 
@@ -378,7 +386,11 @@ router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, r
       endDate,
     });
 
-    res.json(event);
+    let result = event.toJSON();
+    delete result.updatedAt;
+    delete result.createdAt;
+
+    res.json(result);
   }
 );
 
@@ -418,7 +430,12 @@ router.post("/:groupId/venues", validateCreateVenue, requireAuth, async (req, re
       lng,
     });
 
-    res.json(venue);
+    let result = venue;
+
+    delete result.dataValues.createdAt;
+    delete result.dataValues.updatedAt;
+
+    res.json(result);
   }
 );
 
@@ -490,6 +507,7 @@ router.put("/:groupId", requireAuth, validateCreateGroup, async (req, res) => {
 });
 
 //Delete a group
+//NEED TO FIX
 router.delete("/:groupId", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
@@ -511,6 +529,8 @@ router.delete("/:groupId", requireAuth, async (req, res) => {
       statusCode: 403,
     });
   }
+
+  console.log(group);
 
   await group.destroy();
 
