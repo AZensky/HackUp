@@ -300,13 +300,15 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
     where: {
       GroupId: req.params.groupId,
       UserId: currUserId,
-      status: "member",
+      status: {
+        [Op.or]: ["member", "co-host"],
+      },
     },
   });
 
   if (alreadyMember) {
     res.status(400);
-    res.json({
+    return res.json({
       message: "User is already a member of the group",
       statusCode: 400,
     });

@@ -717,7 +717,7 @@ Change the status of a membership for a group specified by id.
 - Request
 
   - Method: PUT
-  - URL: /api/events/:eventId/attendees
+  - URL: /api/groups/:groupId/members
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -827,7 +827,7 @@ Delete a membership to a group specified by id.
 - Request
 
   - Method: DELETE
-  - URL: /api/:groupId/members/:memberId
+  - URL: /api/groups/:groupId/members/:memberId
   - Headers:
     - Content-Type: application/json
   - Body: none
