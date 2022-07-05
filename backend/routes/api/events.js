@@ -81,6 +81,13 @@ const validateEventsQuery = [
   handleValidationErrors,
 ];
 
+// router.get("/get-startdate", async (req, res) => {
+//   const startDate = await Event.findByPk(1, {
+//     attributes: ["startDate"],
+//   });
+//   res.json(startDate);
+// });
+
 //Delete attendance to an event specified by id
 //NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
 // router.delete(
@@ -479,6 +486,7 @@ router.delete("/:eventId", requireAuth, async (req, res) => {
 router.get("/", validateEventsQuery, async (req, res) => {
   let { page, size, name, type, startDate } = req.query;
 
+  //use page and size to determine how many and which events are displayed
   let pagination = {};
 
   page = page === undefined ? 0 : parseInt(page);
@@ -494,6 +502,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
   pagination.limit = size;
   pagination.offset = size * (page - 1);
 
+  //Implement search filters
   const where = {};
 
   if (name && name !== "") {
@@ -506,7 +515,9 @@ router.get("/", validateEventsQuery, async (req, res) => {
 
   if (startDate) {
     console.log(startDate);
-    where.startDate = startDate;
+    where.startDate = {
+      [Op.gte]: new Date("2021-11-19T20:00:00.000Z"),
+    };
   }
 
   const events = await Event.findAll({
