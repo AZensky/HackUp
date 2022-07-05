@@ -84,8 +84,9 @@ const validateCreateEvent = [
   handleValidationErrors,
 ];
 
-//Change the status of a membership for a group specified by id
-//NEED TO FIX
+// Change the status of a membership for a group specified by id
+// NEED TO FIX
+
 router.put("/:groupId/members", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
@@ -165,8 +166,8 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
   res.json(result);
 });
 
-// Delete membership to a group
-// NEED TO FIX
+//Delete membership to a group
+//NEED TO FIX
 router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;

@@ -372,7 +372,7 @@ router.delete("/:eventId", async (req, res) => {
   });
 });
 
-//route handler for getting all events, need to add venues association later
+//route handler for getting all events, need to add venues association to not be nested later
 router.get("/", async (req, res) => {
   const events = await Event.findAll({
     include: {

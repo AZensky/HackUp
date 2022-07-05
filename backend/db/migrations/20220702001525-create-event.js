@@ -15,6 +15,7 @@ module.exports = {
       },
       venueId: {
         type: Sequelize.INTEGER,
+        references: { model: "Venues" },
       },
       name: {
         type: Sequelize.STRING,
