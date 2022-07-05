@@ -81,13 +81,6 @@ const validateEventsQuery = [
   handleValidationErrors,
 ];
 
-// router.get("/get-startdate", async (req, res) => {
-//   const startDate = await Event.findByPk(1, {
-//     attributes: ["startDate"],
-//   });
-//   res.json(startDate);
-// });
-
 //Delete attendance to an event specified by id
 //NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
 // router.delete(
