@@ -1,5 +1,12 @@
 const express = require("express");
-const { Event, Group, Venue, User, EventAttendee } = require("../../db/models");
+const {
+  Event,
+  Group,
+  Venue,
+  User,
+  EventAttendee,
+  GroupMember,
+} = require("../../db/models");
 
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
@@ -366,7 +373,7 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
 });
 
 //route handler to delete an event
-router.delete("/:eventId", async (req, res) => {
+router.delete("/:eventId", requireAuth, async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 
   if (!event) {
@@ -374,6 +381,29 @@ router.delete("/:eventId", async (req, res) => {
     res.json({
       message: "Event couldn't be found",
       statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  const currUserId = currUser.dataValues.id;
+
+  const groupId = event.dataValues.groupId;
+
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const group = await Group.findByPk(groupId);
+
+  const ownerId = group.dataValues.organizerId;
+
+  if (currUserId !== ownerId && groupMember.dataValues.status !== "co-host") {
+    res.status(403);
+    res.json({
+      message: "You are not the organizer or the co-host of the group",
     });
   }
 

@@ -125,7 +125,7 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
     });
   }
 
-  groupMemberStatus = groupMember.dataValues.status;
+  const groupMemberStatus = groupMember.dataValues.status;
 
   // console.log(groupMemberStatus);
 
@@ -461,11 +461,17 @@ router.post("/:groupId/venues", validateCreateVenue, requireAuth, async (req, re
     const currUser = req.user;
     let currUserId = currUser.dataValues.id;
 
-    if (group.dataValues.organizerId !== currUserId) {
+    const groupMember = await GroupMember.findOne({
+      where: {UserId: currUserId}
+    })
+
+    const groupMemberStatus = groupMember.dataValues.status
+
+    if (group.dataValues.organizerId !== currUserId && groupMemberStatus !== 'co-host') {
       res.status(403);
       res.json({
         message:
-          "You are not an owner of this group, you do are not authorized to create a venue",
+          "You are not an owner or co-host of this group, you do are not authorized to create a venue",
         statusCode: 403,
       });
     }
