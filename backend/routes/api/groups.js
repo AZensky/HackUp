@@ -95,6 +95,7 @@ const validateCreateEvent = [
   handleValidationErrors,
 ];
 
+//Add an image to a group based on the group's id
 router.post("/:groupId/images", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
