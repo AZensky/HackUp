@@ -395,11 +395,22 @@ router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, r
       });
     }
 
+    const groupId = group.dataValues.id;
+
     const currUser = req.user;
     let currUserId = currUser.dataValues.id;
 
-    //need to add cohost logic
-    if (group.dataValues.organizerId !== currUserId) {
+    const groupMember = await GroupMember.findOne({
+      where: {
+        GroupId: groupId,
+        UserId: currUserId,
+      },
+    });
+
+    const groupMemberStatus = groupMember.dataValues.status;
+    console.log(groupMemberStatus);
+
+    if (group.dataValues.organizerId !== currUserId && groupMemberStatus !== "co-host") {
       res.status(403);
       res.json({
         message:
