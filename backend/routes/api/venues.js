@@ -1,5 +1,5 @@
 const express = require("express");
-const { Event, Group, Venue } = require("../../db/models");
+const { Event, Group, Venue, GroupMember } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -49,9 +49,23 @@ router.put("/:venueId", requireAuth, validateCreateVenue, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
 
-  const group = await Group.findByPk(venue.dataValues.groupId);
+  const groupId = venue.dataValues.groupId;
 
-  if (group.dataValues.organizerId !== currUserId) {
+  const group = await Group.findByPk(groupId);
+
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const groupMemberStatus = groupMember.dataValues.status;
+
+  if (
+    group.dataValues.organizerId !== currUserId &&
+    groupMemberStatus !== "co-host"
+  ) {
     res.status(403);
     res.json({
       message:
