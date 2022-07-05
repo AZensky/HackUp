@@ -7,6 +7,7 @@ const {
   Event,
   GroupMember,
   EventAttendee,
+  Image,
 } = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
@@ -94,8 +95,50 @@ const validateCreateEvent = [
   handleValidationErrors,
 ];
 
+router.post("/:groupId/images", requireAuth, async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  const ownerId = group.dataValues.organizerId;
+
+  if (ownerId !== currUserId) {
+    res.status(403);
+    res.json({
+      message: "You are not the owner of this group, you can not add an image",
+    });
+  }
+
+  let imageableType = "Group";
+
+  let { url } = req.body;
+
+  const image = await Image.create({
+    url,
+    groupId: req.params.groupId,
+  });
+
+  const result = image.toJSON();
+  result.imageableId = Number(req.params.groupId);
+  result.imageableType = imageableType;
+
+  delete result.groupId;
+  delete result.updatedAt;
+  delete result.createdAt;
+
+  res.json(result);
+});
+
 // Change the status of a membership for a group specified by id
-// NEED TO FIX
 router.put("/:groupId/members", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
