@@ -1,6 +1,13 @@
 const express = require("express");
 
-const { Group, User, Venue, Event, GroupMember } = require("../../db/models");
+const {
+  Group,
+  User,
+  Venue,
+  Event,
+  GroupMember,
+  EventAttendee,
+} = require("../../db/models");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -86,7 +93,6 @@ const validateCreateEvent = [
 
 // Change the status of a membership for a group specified by id
 // NEED TO FIX
-
 router.put("/:groupId/members", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
@@ -328,6 +334,48 @@ router.post("/:groupId/members", requireAuth, async (req, res) => {
   delete result.updatedAt;
 
   res.json(result);
+});
+
+//Get all events of a group
+router.get("/:groupId/events", async (req, res) => {
+  const group = await Group.findByPk(req.params.groupId);
+
+  if (!group) {
+    res.status(404);
+    res.json({
+      message: "Group couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const events = await Event.findAll({
+    where: {
+      groupId: req.params.groupId,
+    },
+    include: [
+      {
+        model: Group,
+        attributes: ["id", "name", "city", "state"],
+      },
+      {
+        model: Venue,
+        attributes: ["id", "city", "state"],
+      },
+    ],
+    attributes: {
+      exclude: ["updatedAt", "createdAt", "endDate"],
+    },
+  });
+
+  for (let event of events) {
+    let { id } = event;
+    const numAttending = await EventAttendee.count({
+      where: { eventId: id },
+    });
+    event.dataValues.numAttending = numAttending;
+  }
+
+  res.json({ Events: events });
 });
 
 //Create a new event for a group
