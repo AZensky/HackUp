@@ -323,12 +323,25 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
 
-  //need to add cohost logic
-  if (group.dataValues.organizerId !== currUserId) {
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const groupMemberStatus = groupMember.dataValues.status;
+
+  console.log(groupMemberStatus);
+
+  if (
+    group.dataValues.organizerId !== currUserId &&
+    groupMemberStatus !== "co-host"
+  ) {
     res.status(403);
     res.json({
       message:
-        "You are not an owner of this group, you do are not authorized to create an event",
+        "You are not an organizer or a co-host of this group, you do are not authorized to edit an event",
       statusCode: 403,
     });
   }
