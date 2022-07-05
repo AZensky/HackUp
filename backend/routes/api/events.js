@@ -113,8 +113,19 @@ router.get("/:eventId/attendees", async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
 
-  //need to add cohost logic
-  if (group.dataValues.organizerId === currUserId) {
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const groupMemberStatus = groupMember.dataValues.status;
+
+  if (
+    group.dataValues.organizerId === currUserId ||
+    groupMemberStatus === "co-host"
+  ) {
     const attendees = await Event.findByPk(req.params.eventId, {
       include: {
         model: User,

@@ -408,7 +408,6 @@ router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, r
     });
 
     const groupMemberStatus = groupMember.dataValues.status;
-    console.log(groupMemberStatus);
 
     if (group.dataValues.organizerId !== currUserId && groupMemberStatus !== "co-host") {
       res.status(403);
