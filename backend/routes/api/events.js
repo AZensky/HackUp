@@ -444,15 +444,25 @@ router.delete("/:eventId", requireAuth, async (req, res) => {
 //route handler for getting all events, need to add venues association to not be nested later
 router.get("/", async (req, res) => {
   const events = await Event.findAll({
-    include: {
-      model: Group,
-      attributes: ["id", "name", "city", "state"],
-      include: {
+    include: [
+      {
+        model: Group,
+        attributes: ["id", "name", "city", "state"],
+      },
+      {
         model: Venue,
         attributes: ["id", "city", "state"],
       },
-    },
+    ],
   });
+
+  for (let event of events) {
+    let { id } = event;
+    const numAttending = await EventAttendee.count({
+      where: { eventId: id },
+    });
+    event.dataValues.numAttending = numAttending;
+  }
 
   res.json({ Events: events });
 });
