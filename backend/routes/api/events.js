@@ -164,7 +164,7 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
 
   if (eventAttendee && eventAttendee.dataValues.status === "pending") {
     res.status(400);
-    res.json({
+    return res.json({
       message: "Attendance has already been requested",
       statusCode: 400,
     });
@@ -343,7 +343,14 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
     endDate,
   });
 
-  res.json(event);
+  let result = event.toJSON();
+
+  delete result.numAttending;
+  delete result.previewImage;
+  delete result.createdAt;
+  delete result.updatedAt;
+
+  res.json(result);
 });
 
 //route handler to delete an event

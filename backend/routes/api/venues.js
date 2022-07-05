@@ -1,10 +1,39 @@
 const express = require("express");
 const { Event, Group, Venue } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-router.put("/:venueId", requireAuth, async (req, res) => {
+//Validation checks for creating a venue
+const validateCreateVenue = [
+  check("address")
+    .exists({ checkFalsy: true })
+    .withMessage("Street address is required"),
+  // prettier-ignore
+  check("city")
+  .exists({ checkFalsy: true })
+  .withMessage("City is required"),
+  // prettier-ignore
+  check("state")
+  .exists({ checkFalsy: true })
+  .withMessage("State is required"),
+  check("lat").custom((lat) => {
+    if (lat < -90 || lat > 90) {
+      throw new Error("Latitude is not valid");
+    } else return true;
+  }),
+  check("lng").custom((lng) => {
+    if (lng < -180 || lng > 180) {
+      throw new Error("Longitude is not valid");
+    } else return true;
+  }),
+  handleValidationErrors,
+];
+
+//Edit a venue specified by its id
+router.put("/:venueId", requireAuth, validateCreateVenue, async (req, res) => {
   let venue = await Venue.findByPk(req.params.venueId, {
     attributes: { exclude: ["createdAt", "updatedAt"] },
   });
@@ -41,7 +70,11 @@ router.put("/:venueId", requireAuth, async (req, res) => {
     lng,
   });
 
-  res.json(venue);
+  let result = venue.toJSON();
+  console.log(result);
+  delete result.updatedAt;
+
+  res.json(result);
 });
 
 module.exports = router;

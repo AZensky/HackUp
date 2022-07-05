@@ -8,15 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      groupId: {
+      GroupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Groups" },
+        onDelete: "CASCADE",
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" },
+        onDelete: "CASCADE",
       },
       status: {
         type: Sequelize.STRING,
