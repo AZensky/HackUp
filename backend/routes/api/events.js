@@ -9,6 +9,7 @@ const {
 } = require("../../db/models");
 
 const { check } = require("express-validator");
+const { query } = require("express-validator/check");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Op } = require("sequelize");
@@ -44,6 +45,39 @@ const validateCreateEvent = [
       return Promise.reject("End date must be after start date");
     } else return true;
   }),
+  handleValidationErrors,
+];
+
+const validateEventsQuery = [
+  query("page").custom((val) => {
+    if (val < 0) {
+      return Promise.reject("Page must be greater than or equal to 0");
+    } else return true;
+  }),
+  query("size").custom((val) => {
+    if (val < 0) {
+      return Promise.reject("Size must be greater than or equal to 0");
+    } else return true;
+  }),
+  query("name").custom((name) => {
+    if (name === undefined) return true;
+    let testForNum = Number(name);
+    if (!isNaN(testForNum)) {
+      return Promise.reject("Name must be a string");
+    } else return true;
+  }),
+  query("type").custom((type) => {
+    if (type === undefined) return true;
+    if (type !== "Online" && type !== "In person") {
+      console.log(type);
+      return Promise.reject("Type must be Online or In person");
+    } else return true;
+  }),
+  //checks for valid date time
+  query("startDate")
+    .optional()
+    .isISO8601()
+    .withMessage("startDate must be a valid datetime"),
   handleValidationErrors,
 ];
 
@@ -441,8 +475,40 @@ router.delete("/:eventId", requireAuth, async (req, res) => {
   });
 });
 
-//route handler for getting all events, need to add venues association to not be nested later
-router.get("/", async (req, res) => {
+//route handler for getting all events
+router.get("/", validateEventsQuery, async (req, res) => {
+  let { page, size, name, type, startDate } = req.query;
+
+  let pagination = {};
+
+  page = page === undefined ? 0 : parseInt(page);
+  size = size === undefined ? 20 : parseInt(size);
+
+  if (isNaN(page)) page = 0;
+  if (isNaN(size)) size = 2;
+
+  if (page > 10) page = 10;
+
+  if (size > 20) size = 20;
+
+  pagination.limit = size;
+  pagination.offset = size * (page - 1);
+
+  const where = {};
+
+  if (name && name !== "") {
+    where.name = name;
+  }
+
+  if (type) {
+    where.type = type;
+  }
+
+  if (startDate) {
+    console.log(startDate);
+    where.startDate = startDate;
+  }
+
   const events = await Event.findAll({
     include: [
       {
@@ -454,6 +520,8 @@ router.get("/", async (req, res) => {
         attributes: ["id", "city", "state"],
       },
     ],
+    where,
+    ...pagination,
   });
 
   for (let event of events) {

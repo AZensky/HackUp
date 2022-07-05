@@ -24,6 +24,28 @@ module.exports = {
         startDate: "2021-11-19 20:00:00",
         endDate: "2021-11-19 21:00:00",
       },
+      {
+        groupId: 1,
+        venueId: 1,
+        name: "Yoga Group First Meet and Greet",
+        type: "Online",
+        capacity: 10,
+        price: 18.5,
+        description: "The first meet and greet for our group! Come say hello!",
+        startDate: "2021-11-19 20:00:00",
+        endDate: "2021-11-19 21:00:00",
+      },
+      {
+        groupId: 2,
+        venueId: 1,
+        name: "Basketball Group First Meet and Greet",
+        type: "Online",
+        capacity: 10,
+        price: 18.5,
+        description: "The first meet and greet for our group! Come say hello!",
+        startDate: "2021-11-19 20:00:00",
+        endDate: "2021-11-19 21:00:00",
+      },
     ]);
   },
 
