@@ -39,8 +39,11 @@ const validateCreateEvent = [
   check("startDate")
     .isAfter(new Date().toString())
     .withMessage("Start date must be in the future"),
-  //need to add validation for end date
-  // check("endDate").isAfter(req.params.startDate),
+  check("endDate").custom((value, { req }) => {
+    if (value <= req.body.startDate) {
+      return Promise.reject("End date must be after start date");
+    } else return true;
+  }),
   handleValidationErrors,
 ];
 
