@@ -265,10 +265,16 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
 router.get("/:eventId", async (req, res) => {
   const event = await Event.findByPk(req.params.eventId, {
     attributes: { exclude: ["previewImage", "createdAt", "updatedAt"] },
-    include: {
-      model: Group,
-      attributes: ["id", "name", "private", "city", "state"],
-    },
+    include: [
+      {
+        model: Group,
+        attributes: ["id", "name", "private", "city", "state"],
+      },
+      {
+        model: Venue,
+        attributes: ["id", "address", "city", "state", "lat", "lng"],
+      },
+    ],
   });
 
   if (!event) {
@@ -278,6 +284,12 @@ router.get("/:eventId", async (req, res) => {
       statusCode: 404,
     });
   }
+
+  let { id } = event;
+  const numAttending = await EventAttendee.count({
+    where: { eventId: id },
+  });
+  event.dataValues.numAttending = numAttending;
 
   res.json(event);
 });
