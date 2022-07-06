@@ -95,6 +95,13 @@ router.delete(
       },
     });
 
+    if (!eventAttendee) {
+      res.status(404);
+      res.json({
+        message: "Event Attendee does not exist",
+      });
+    }
+
     const event = await Event.findByPk(req.params.eventId);
 
     if (!event) {
@@ -112,9 +119,19 @@ router.delete(
     const currUser = req.user;
     let currUserId = currUser.dataValues.id;
 
+    const groupMember = await GroupMember.findOne({
+      where: {
+        GroupId: groupId,
+        UserId: currUserId,
+      },
+    });
+
+    const groupMemberStatus = groupMember.dataValues.status;
+
     if (
       group.dataValues.organizerId === currUserId ||
-      currUserId === req.params.attendeeId
+      currUserId === req.params.attendeeId ||
+      groupMemberStatus === "co-host"
     ) {
       await eventAttendee.destroy();
       res.json({

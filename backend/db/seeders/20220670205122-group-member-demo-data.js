@@ -1,6 +1,7 @@
 "use strict";
 
 const { GroupMember } = require("../models");
+const { Op } = require("sequelize");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -22,6 +23,11 @@ module.exports = {
       {
         GroupId: 1,
         UserId: 2,
+        status: "co-host",
+      },
+      {
+        GroupId: 1,
+        UserId: 3,
         status: "member",
       },
       {
@@ -40,7 +46,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete("GroupMembers", {
-      groupId: {
+      GroupId: {
         [Op.in]: [1, 2],
       },
     });
