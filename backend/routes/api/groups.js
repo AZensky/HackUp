@@ -558,10 +558,16 @@ router.get("/:groupId", async (req, res) => {
   // Need to add images array association
   let group = await Group.findByPk(req.params.groupId, {
     attributes: { exclude: ["previewImage"] },
-    include: {
-      model: User,
-      as: "Organizer",
-    },
+    include: [
+      {
+        model: User,
+        as: "Organizer",
+      },
+      {
+        model: Image,
+        attributes: ["url"],
+      },
+    ],
   });
 
   if (!group) {
