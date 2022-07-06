@@ -659,7 +659,7 @@ router.get("/", async (req, res) => {
   for (let group of groups) {
     let { id } = group;
     const numMembers = await GroupMember.count({
-      where: { groupId: id },
+      where: { GroupId: id },
     });
     group.dataValues.numMembers = numMembers;
   }
