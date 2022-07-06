@@ -10,11 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Image.belongsTo(models.Event, { foreignKey: "eventId" });
       Image.belongsTo(models.Group, { foreignKey: "groupId" });
+      Image.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
   Image.init(
     {
       url: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
       eventId: DataTypes.INTEGER,
       groupId: DataTypes.INTEGER,
     },

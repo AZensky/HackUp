@@ -1880,7 +1880,7 @@ Delete an existing image.
 - Request
 
   - Method: DELETE
-  - URL: /api/users/:userId/images/:imageId
+  - URL: /api/images/:imageId
   - Body: none
 
 - Successful Response
