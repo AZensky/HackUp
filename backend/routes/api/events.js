@@ -6,6 +6,7 @@ const {
   User,
   EventAttendee,
   GroupMember,
+  Image,
 } = require("../../db/models");
 
 const { check } = require("express-validator");
@@ -127,6 +128,53 @@ const validateEventsQuery = [
 //     }
 //   }
 // );
+
+//Add an Image to an Event based on the Event's id
+router.post("/:eventId/images", requireAuth, async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  if (!event) {
+    res.status(404);
+    res.json({
+      message: "Event couldn't be found",
+    });
+  }
+
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
+
+  const eventAttendee = await EventAttendee.findOne({
+    where: {
+      eventId: req.params.eventId,
+      userId: currUserId,
+    },
+  });
+
+  if (!eventAttendee) {
+    res.status(403);
+    res.json({
+      message: "You are not an attendee of this event",
+    });
+  }
+  let imageableType = "Event";
+
+  let { url } = req.body;
+
+  const image = await Image.create({
+    url,
+    eventId: req.params.eventId,
+  });
+
+  const result = image.toJSON();
+  result.imageableId = Number(req.params.eventId);
+  result.imageableType = imageableType;
+
+  delete result.eventId;
+  delete result.updatedAt;
+  delete result.createdAt;
+
+  res.json(result);
+});
 
 //Get all attendees of an event specified by id
 router.get("/:eventId/attendees", async (req, res) => {
