@@ -176,6 +176,7 @@ router.post("/:eventId/images", requireAuth, async (req, res) => {
 
   const image = await Image.create({
     url,
+    userId: currUserId,
     eventId: req.params.eventId,
   });
 

@@ -123,6 +123,7 @@ router.post("/:groupId/images", requireAuth, async (req, res) => {
 
   const image = await Image.create({
     url,
+    userId: currUserId,
     groupId: req.params.groupId,
   });
 
