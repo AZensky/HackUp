@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "UserId",
         as: "Membership",
       });
-      GroupMember.belongsTo(models.Group, {
-        foreignKey: "GroupId",
-      });
+      // GroupMember.belongsTo(models.Group, {
+      //   foreignKey: "GroupId",
+      // });
     }
   }
   GroupMember.init(
