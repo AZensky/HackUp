@@ -547,11 +547,13 @@ router.get("/", validateEventsQuery, async (req, res) => {
   //use page and size to determine how many and which events are displayed
   let pagination = {};
 
-  page = page === undefined ? 0 : parseInt(page);
+  page = page === undefined ? 1 : parseInt(page);
   size = size === undefined ? 20 : parseInt(size);
 
-  if (isNaN(page)) page = 0;
+  if (isNaN(page)) page = 1;
   if (isNaN(size)) size = 2;
+
+  if (page === 0) page = 1;
 
   if (page > 10) page = 10;
 
