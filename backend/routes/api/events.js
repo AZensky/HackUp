@@ -145,8 +145,8 @@ router.post("/:eventId/images", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      eventId: req.params.eventId,
-      userId: currUserId,
+      EventId: req.params.eventId,
+      UserId: currUserId,
     },
   });
 
@@ -301,7 +301,6 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
 });
 
 //Change the status of an attendance for an event specified by id
-//NEED TO FIX, NOT SAVING THE UPDATE IN THE TABLE
 router.put("/:eventId/attendees", requireAuth, async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 
@@ -320,12 +319,23 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const group = await Group.findByPk(groupId);
 
-  // need to add co-host logic
-  if (group.dataValues.organizerId !== currUserId) {
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const groupMemberStatus = groupMember.dataValues.status;
+
+  if (
+    group.dataValues.organizerId !== currUserId &&
+    groupMemberStatus !== "co-host"
+  ) {
     res.status(403);
     res.json({
       message:
-        "You are not an owner of this group, you do are not authorized to change the status",
+        "You are not an owner or co-host of this group, you do are not authorized to change the status",
     });
   }
 
@@ -333,9 +343,10 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      userId: userId,
-      eventId: req.params.eventId,
+      UserId: userId,
+      EventId: req.params.eventId,
     },
+    attributes: { exclude: ["updatedAt", "createdAt"] },
   });
 
   if (!eventAttendee) {
@@ -354,12 +365,9 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
     });
   }
 
-  // console.log(eventAttendee);
-
-  // console.log(eventAttendee.dataValues.status);
-
-  eventAttendee.dataValues.status = status;
-  await eventAttendee.save;
+  await eventAttendee.update({
+    status,
+  });
 
   res.json(eventAttendee);
 });

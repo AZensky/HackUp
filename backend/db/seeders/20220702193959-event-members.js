@@ -16,12 +16,12 @@ module.exports = {
 
     await EventAttendee.bulkCreate([
       {
-        userId: 1,
-        eventId: 1,
+        UserId: 1,
+        EventId: 1,
       },
       {
-        userId: 2,
-        eventId: 1,
+        UserId: 2,
+        EventId: 1,
         status: "member",
       },
     ]);
