@@ -274,7 +274,7 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
     },
   });
 
-  if (eventAttendee && eventAttendee.dataValues.status === "pending") {
+  if (eventAttendee && eventAttendee.status === "pending") {
     res.status(400);
     return res.json({
       message: "Attendance has already been requested",
@@ -284,8 +284,7 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
 
   if (
     eventAttendee &&
-    (eventAttendee.dataValues.status === "member" ||
-      eventAttendee.dataValues.status === "co-host")
+    (eventAttendee.status === "member" || eventAttendee.status === "co-host")
   ) {
     res.status(400);
     res.json({
