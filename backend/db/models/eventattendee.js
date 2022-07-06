@@ -10,9 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       EventAttendee.belongsTo(models.User, {
         foreignKey: "UserId",
+        onDelete: "CASCADE",
+        hooks: true,
       });
       EventAttendee.belongsTo(models.Event, {
         foreignKey: "EventId",
+        onDelete: "CASCADE",
+        hooks: true,
         as: "Attendance",
       });
     }
