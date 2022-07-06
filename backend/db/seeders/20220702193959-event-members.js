@@ -48,7 +48,7 @@ module.exports = {
      */
 
     await queryInterface.bulkDelete("EventAttendees", {
-      eventId: { [Op.in]: [1, 2] },
+      EventId: { [Op.in]: [1, 2] },
     });
   },
 };
