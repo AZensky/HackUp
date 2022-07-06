@@ -264,7 +264,7 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
 });
 
 // Find a groups members
-router.get("/:groupId/members", async (req, res) => {
+router.get("/:groupId/members", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
 
