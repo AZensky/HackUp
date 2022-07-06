@@ -267,7 +267,7 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
   }
 
   const currUser = req.user;
-  let currUserId = currUser.dataValues.id;
+  let currUserId = currUser.id;
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
