@@ -1272,8 +1272,8 @@ Creates and returns a new event for a group specified by its id
       "capacity": 10,
       "price": 18.5,
       "description": "The first meet and greet for our group! Come say hello!",
-      "startDate": "2021-11-19 20:00:00",
-      "endDate": "2021-11-19 21:00:00"
+      "startDate": "2022-11-19 20:00:00",
+      "endDate": "2022-11-19 21:00:00"
     }
     ```
 
