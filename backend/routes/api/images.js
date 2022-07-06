@@ -1,4 +1,5 @@
 const express = require("express");
+const { requireAuth } = require("../../utils/auth");
 
 const {
   User,
@@ -11,42 +12,31 @@ const {
 
 const router = express.Router();
 
-// router.delete("/:imageId", requireAuth, async (req, res) => {
-//   const image = await Image.findByPk(req.params.imageId);
+router.delete("/:imageId", requireAuth, async (req, res) => {
+  const image = await Image.findByPk(req.params.imageId);
 
-//   const currUser = req.user;
-//   let currUserId = currUser.dataValues.id;
+  if (!image) {
+    res.status(404);
+    res.json({
+      message: "Image couldn't be found",
+    });
+  }
 
-//   let imageableType;
+  const currUser = req.user;
+  let currUserId = currUser.dataValues.id;
 
-//   if (image.eventId) imageableType = "Event";
-//   else imageableType = "Group";
+  if (currUserId !== image.id) {
+    res.status(403);
+    return res.json({
+      message: "Image does not belong to you",
+    });
+  }
 
-//   let group;
-//   let event;
+  await image.destroy();
 
-//   if (imageableType === "Event") {
-//     event = await Event.findByPk(image.eventId);
-//   } else {
-//     group = await Group.findByPk(image.groupId);
-//   }
-
-//   if (group) {
-//     const ownerId = group.dataValues.organizerId;
-//     if (ownerId !== currUserId) {
-//       res.status(403);
-//       res.json({
-//         message: "You do not have permission to delete this image",
-//       });
-//     }
-//     await image.destroy();
-
-//   }
-
-//   if (event) {
-//   }
-
-//   res.json(image);
-// });
+  res.json({
+    message: "Successfully deleted",
+  });
+});
 
 module.exports = router;

@@ -4,18 +4,22 @@ const { Op } = require("sequelize");
 const demoImages = [
   {
     url: "www.image1.com",
+    userId: 1,
     eventId: 1,
   },
   {
     url: "www.image2.com",
+    userId: 1,
     eventId: 2,
   },
   {
     url: "www.image3.com",
+    userId: 2,
     groupId: 1,
   },
   {
     url: "www.image4.com",
+    userId: 2,
     groupId: 2,
   },
 ];
