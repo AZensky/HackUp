@@ -191,7 +191,7 @@ router.post("/:eventId/images", requireAuth, async (req, res) => {
 });
 
 //Get all attendees of an event specified by id
-router.get("/:eventId/attendees", async (req, res) => {
+router.get("/:eventId/attendees", requireAuth, async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 
   if (!event) {
