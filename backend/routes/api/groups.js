@@ -217,7 +217,6 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
 });
 
 //Delete membership to a group
-//NEED TO FIX
 router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
   const currUser = req.user;
   let currUserId = currUser.dataValues.id;
@@ -313,7 +312,6 @@ router.get("/:groupId/members", requireAuth, async (req, res) => {
 });
 
 //Request membership for a group based on group
-//Not finished, random GroupId and Userid popping up
 router.post("/:groupId/members", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
@@ -421,7 +419,6 @@ router.get("/:groupId/events", async (req, res) => {
 });
 
 //Create a new event for a group
-//end date validator needs to be fixed
 //prettier-ignore
 router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, res, next) => {
     const group = await Group.findByPk(req.params.groupId);
