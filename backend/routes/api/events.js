@@ -409,7 +409,7 @@ router.get("/:eventId", async (req, res) => {
 
   let { id } = event;
   const numAttending = await EventAttendee.count({
-    where: { eventId: id },
+    where: { EventId: id },
   });
   event.dataValues.numAttending = numAttending;
 
