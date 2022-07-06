@@ -17,44 +17,6 @@ const handleValidationErrors = (req, _res, next) => {
       }
     });
 
-    // if (errors.includes("User already exists")) {
-    //   const err = Error("User already exists");
-    //   err.errors = {
-    //     email: "User with that email already exists",
-    //   };
-    //   err.status = 403;
-    //   err.title = "Bad request";
-    //   next(err);
-    // } else if (
-    //   errors.includes("Email is required") &&
-    //   errors.includes("Password is required")
-    // ) {
-    //   const err = Error("Validation Error");
-    //   err.errors = {
-    //     email: "Email is required",
-    //     password: "Password is required",
-    //   };
-    //   err.status = 400;
-    //   err.title = "Bad request";
-    //   next(err);
-    // } else if (errors.includes("Email is required")) {
-    //   const err = Error("Validation Error");
-    //   err.errors = {
-    //     email: "Email is required",
-    //   };
-    //   err.status = 400;
-    //   err.title = "Bad request";
-    //   next(err);
-    // } else if (errors.includes("Password is required")) {
-    //   const err = Error("Validation Error");
-    //   err.errors = {
-    //     password: "Password is required",
-    //   };
-    //   err.status = 400;
-    //   err.title = "Bad request";
-    //   next(err);
-    // }
-
     const err = Error("Bad request.");
     err.errors = errors;
     err.status = 400;
