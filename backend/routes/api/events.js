@@ -556,8 +556,8 @@ router.get("/", validateEventsQuery, async (req, res) => {
 
   if (startDate) {
     let paramStartDate = new Date(startDate);
-    console.log(paramStartDate.getTime());
-    where.startDate = paramStartDate;
+    let milliseconds = paramStartDate.getTime();
+    where.startDate = milliseconds;
   }
 
   const events = await Event.findAll({
@@ -573,6 +573,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
     ],
     where,
     ...pagination,
+    attributes: { exclude: ["updatedAt", "createdAt"] },
   });
 
   for (let event of events) {
