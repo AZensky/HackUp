@@ -1,6 +1,38 @@
 "use strict";
 
-const groups = [];
+const { Op } = require("sequelize");
+const groups = [
+  {
+    organizerId: 1,
+    name: "Evening Tennis on the Water",
+    about:
+      "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+    type: "In person",
+    private: true,
+    city: "New York",
+    state: "NY",
+  },
+  {
+    organizerId: 1,
+    name: "Morning Mimosas on the Lake",
+    about:
+      "Relax with rounds of drinks with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+    type: "In person",
+    private: true,
+    city: "New York",
+    state: "NY",
+  },
+  {
+    organizerId: 2,
+    name: "Afternoon Music on the Lake",
+    about:
+      "Relax with jazz music and drinks with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+    type: "In person",
+    private: true,
+    city: "New York",
+    state: "NY",
+  },
+];
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -14,28 +46,7 @@ module.exports = {
      * }], {});
      */
 
-    await queryInterface.bulkInsert("Groups", [
-      {
-        organizerId: 1,
-        name: "Evening Tennis on the Water",
-        about:
-          "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
-        type: "In person",
-        private: true,
-        city: "New York",
-        state: "NY",
-      },
-      {
-        organizerId: 1,
-        name: "Evening Time on the Lake",
-        about:
-          "Relax with rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
-        type: "In person",
-        private: true,
-        city: "Sacramento",
-        state: "CA",
-      },
-    ]);
+    await queryInterface.bulkInsert("Groups", groups);
   },
 
   async down(queryInterface, Sequelize) {
@@ -47,7 +58,13 @@ module.exports = {
      */
 
     await queryInterface.bulkDelete("Groups", {
-      name: "Evening Tennis on the Water",
+      name: {
+        [Op.in]: [
+          "Evening Tennis on the Water",
+          "Morning Mimosas on the Lake",
+          "Afternoon Music on the Lake",
+        ],
+      },
     });
   },
 };

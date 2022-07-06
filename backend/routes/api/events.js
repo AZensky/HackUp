@@ -83,51 +83,66 @@ const validateEventsQuery = [
 ];
 
 //Delete attendance to an event specified by id
-//NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
-// router.delete(
-//   "/:eventId/attendees/:attendeeId",
-//   requireAuth,
-//   async (req, res) => {
-//     const eventAttendee = EventAttendee.findOne({
-//       where: {
-//         eventId: req.params.eventId,
-//         userId: req.params.attendeeId,
-//       },
-//     });
+router.delete(
+  "/:eventId/attendees/:attendeeId",
+  requireAuth,
+  async (req, res) => {
+    const eventAttendee = await EventAttendee.findOne({
+      where: {
+        EventId: req.params.eventId,
+        UserId: req.params.attendeeId,
+      },
+    });
 
-//     const event = await Event.findByPk(req.params.eventId);
+    const event = await Event.findByPk(req.params.eventId);
 
-//     if (!event) {
-//       res.status(404);
-//       res.json({
-//         message: "Event couldn't be found",
-//         statusCode: 404,
-//       });
-//     }
+    if (!event) {
+      res.status(404);
+      res.json({
+        message: "Event couldn't be found",
+        statusCode: 404,
+      });
+    }
 
-//     const groupId = event.dataValues.groupId;
+    if (!eventAttendee) {
+      res.status(404);
+      res.json({
+        message: "Event Attendee does not exist",
+      });
+    }
 
-//     const group = await Group.findByPk(groupId);
+    const groupId = event.dataValues.groupId;
 
-//     const currUser = req.user;
-//     let currUserId = currUser.dataValues.id;
+    const group = await Group.findByPk(groupId);
 
-//     if (
-//       group.dataValues.organizerId === currUserId ||
-//       currUserId === req.params.attendeeId
-//     ) {
-//       console.log(eventAttendee);
-//       await eventAttendee.destroy();
-//       res.json({
-//         message: "Successfully deleted attendance from event",
-//       });
-//     } else {
-//       res.json({
-//         message: "You do not have the valid permissions",
-//       });
-//     }
-//   }
-// );
+    const currUser = req.user;
+    let currUserId = currUser.dataValues.id;
+
+    const groupMember = await GroupMember.findOne({
+      where: {
+        GroupId: groupId,
+        UserId: currUserId,
+      },
+    });
+
+    const groupMemberStatus = groupMember.dataValues.status;
+
+    if (
+      group.dataValues.organizerId === currUserId ||
+      currUserId === req.params.attendeeId ||
+      groupMemberStatus === "co-host"
+    ) {
+      await eventAttendee.destroy();
+      res.json({
+        message: "Successfully deleted attendance from event",
+      });
+    } else {
+      res.json({
+        message: "You do not have the valid permissions",
+      });
+    }
+  }
+);
 
 //Add an Image to an Event based on the Event's id
 router.post("/:eventId/images", requireAuth, async (req, res) => {
@@ -145,8 +160,8 @@ router.post("/:eventId/images", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      eventId: req.params.eventId,
-      userId: currUserId,
+      EventId: req.params.eventId,
+      UserId: currUserId,
     },
   });
 
@@ -258,8 +273,8 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      userId: currUserId,
-      eventId: req.params.eventId,
+      UserId: currUserId,
+      EventId: req.params.eventId,
     },
   });
 
@@ -288,20 +303,17 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
   const eventIdNumerical = Number(req.params.eventId);
 
   const newEventAttendee = await EventAttendee.create({
-    userId: currUserId,
-    eventId: eventIdNumerical,
+    UserId: currUserId,
+    EventId: eventIdNumerical,
   });
 
   let result = newEventAttendee.toJSON();
-  delete result.EventId;
-  delete result.UserId;
   delete result.createdAt;
   delete result.updatedAt;
   res.json(result);
 });
 
 //Change the status of an attendance for an event specified by id
-//NEED TO FIX, NOT SAVING THE UPDATE IN THE TABLE
 router.put("/:eventId/attendees", requireAuth, async (req, res) => {
   const event = await Event.findByPk(req.params.eventId);
 
@@ -320,12 +332,23 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const group = await Group.findByPk(groupId);
 
-  // need to add co-host logic
-  if (group.dataValues.organizerId !== currUserId) {
+  const groupMember = await GroupMember.findOne({
+    where: {
+      GroupId: groupId,
+      UserId: currUserId,
+    },
+  });
+
+  const groupMemberStatus = groupMember.dataValues.status;
+
+  if (
+    group.dataValues.organizerId !== currUserId &&
+    groupMemberStatus !== "co-host"
+  ) {
     res.status(403);
     res.json({
       message:
-        "You are not an owner of this group, you do are not authorized to change the status",
+        "You are not an owner or co-host of this group, you do are not authorized to change the status",
     });
   }
 
@@ -333,9 +356,10 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      userId: userId,
-      eventId: req.params.eventId,
+      UserId: userId,
+      EventId: req.params.eventId,
     },
+    attributes: { exclude: ["updatedAt", "createdAt"] },
   });
 
   if (!eventAttendee) {
@@ -354,12 +378,9 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
     });
   }
 
-  // console.log(eventAttendee);
-
-  // console.log(eventAttendee.dataValues.status);
-
-  eventAttendee.dataValues.status = status;
-  await eventAttendee.save;
+  await eventAttendee.update({
+    status,
+  });
 
   res.json(eventAttendee);
 });

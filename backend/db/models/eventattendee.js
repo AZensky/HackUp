@@ -9,18 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       EventAttendee.belongsTo(models.User, {
-        foreignKey: "userId",
+        foreignKey: "UserId",
       });
       EventAttendee.belongsTo(models.Event, {
-        foreignKey: "eventId",
+        foreignKey: "EventId",
         as: "Attendance",
       });
     }
   }
   EventAttendee.init(
     {
-      userId: DataTypes.INTEGER,
-      eventId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      EventId: DataTypes.INTEGER,
       status: {
         type: DataTypes.STRING,
         defaultValue: "pending",

@@ -1,6 +1,7 @@
 "use strict";
 
 const { EventAttendee } = require("../models");
+const { Op } = require("sequelize");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -16,12 +17,23 @@ module.exports = {
 
     await EventAttendee.bulkCreate([
       {
-        userId: 1,
-        eventId: 1,
+        UserId: 1,
+        EventId: 1,
+        status: "member",
       },
       {
-        userId: 2,
-        eventId: 1,
+        UserId: 2,
+        EventId: 1,
+        status: "co-host",
+      },
+      {
+        UserId: 3,
+        EventId: 1,
+        status: "pending",
+      },
+      {
+        UserId: 2,
+        EventId: 2,
         status: "member",
       },
     ]);
@@ -36,7 +48,7 @@ module.exports = {
      */
 
     await queryInterface.bulkDelete("EventAttendees", {
-      eventId: 1,
+      eventId: { [Op.in]: [1, 2] },
     });
   },
 };
