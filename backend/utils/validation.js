@@ -6,9 +6,6 @@ const handleValidationErrors = (req, _res, next) => {
 
   // if there are any validation errors, create an error with all the validation error messages and invoke the next error-handling middleware
   if (!validationErrors.isEmpty()) {
-    // console.log(validationErrors);
-    // const errors = validationErrors.array().map((error) => `${error.msg}`);
-    // console.log(validationErrors.errors);
     const errors = {};
     validationErrors.errors.forEach((error) => {
       if (error.param) {

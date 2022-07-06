@@ -70,7 +70,6 @@ const validateEventsQuery = [
   query("type").custom((type) => {
     if (type === undefined) return true;
     if (type !== "Online" && type !== "In person") {
-      console.log(type);
       return Promise.reject("Type must be Online or In person");
     } else return true;
   }),
@@ -277,8 +276,6 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
       EventId: req.params.eventId,
     },
   });
-
-  console.log(eventAttendee);
 
   if (eventAttendee && eventAttendee.dataValues.status === "pending") {
     res.status(400);

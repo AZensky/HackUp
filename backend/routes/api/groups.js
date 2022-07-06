@@ -25,9 +25,7 @@ const validateCreateGroup = [
     .isLength({ min: 50 })
     .withMessage("About must be 50 characters or more"),
   check("type").custom((type) => {
-    console.log(type === "In person");
     if (type !== "Online" && type !== "In person") {
-      console.log("in here");
       return Promise.reject("Type must be Online or In person");
     } else return true;
   }),
@@ -174,8 +172,6 @@ router.put("/:groupId/members", requireAuth, async (req, res) => {
 
   const groupMemberStatus = groupMember.dataValues.status;
 
-  // console.log(groupMemberStatus);
-
   const ownerId = group.dataValues.organizerId;
 
   if (currUserId !== ownerId && status === "co-host") {
@@ -259,8 +255,6 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-
-  console.log(groupMember);
   await groupMember.destroy();
 
   res.json({
@@ -649,8 +643,6 @@ router.delete("/:groupId", requireAuth, async (req, res) => {
       statusCode: 403,
     });
   }
-
-  console.log(group);
 
   await group.destroy();
 

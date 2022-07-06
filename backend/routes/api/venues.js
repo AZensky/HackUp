@@ -85,7 +85,6 @@ router.put("/:venueId", requireAuth, validateCreateVenue, async (req, res) => {
   });
 
   let result = venue.toJSON();
-  console.log(result);
   delete result.updatedAt;
 
   res.json(result);
