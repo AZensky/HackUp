@@ -83,7 +83,6 @@ const validateEventsQuery = [
 ];
 
 //Delete attendance to an event specified by id
-//NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
 router.delete(
   "/:eventId/attendees/:attendeeId",
   requireAuth,
@@ -95,13 +94,6 @@ router.delete(
       },
     });
 
-    if (!eventAttendee) {
-      res.status(404);
-      res.json({
-        message: "Event Attendee does not exist",
-      });
-    }
-
     const event = await Event.findByPk(req.params.eventId);
 
     if (!event) {
@@ -109,6 +101,13 @@ router.delete(
       res.json({
         message: "Event couldn't be found",
         statusCode: 404,
+      });
+    }
+
+    if (!eventAttendee) {
+      res.status(404);
+      res.json({
+        message: "Event Attendee does not exist",
       });
     }
 
@@ -274,8 +273,8 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
-      userId: currUserId,
-      eventId: req.params.eventId,
+      UserId: currUserId,
+      EventId: req.params.eventId,
     },
   });
 
@@ -304,13 +303,11 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
   const eventIdNumerical = Number(req.params.eventId);
 
   const newEventAttendee = await EventAttendee.create({
-    userId: currUserId,
-    eventId: eventIdNumerical,
+    UserId: currUserId,
+    EventId: eventIdNumerical,
   });
 
   let result = newEventAttendee.toJSON();
-  delete result.EventId;
-  delete result.UserId;
   delete result.createdAt;
   delete result.updatedAt;
   res.json(result);
