@@ -555,10 +555,9 @@ router.get("/", validateEventsQuery, async (req, res) => {
   }
 
   if (startDate) {
-    console.log(startDate);
-    where.startDate = {
-      [Op.gte]: new Date("2021-11-19T20:00:00.000Z"),
-    };
+    let paramStartDate = new Date(startDate);
+    console.log(paramStartDate.getTime());
+    where.startDate = paramStartDate;
   }
 
   const events = await Event.findAll({
