@@ -377,6 +377,10 @@ router.get("/:eventId", async (req, res) => {
         model: Venue,
         attributes: ["id", "address", "city", "state", "lat", "lng"],
       },
+      {
+        model: Image,
+        attributes: ["url"],
+      },
     ],
   });
 
@@ -424,8 +428,6 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
   });
 
   const groupMemberStatus = groupMember.dataValues.status;
-
-  console.log(groupMemberStatus);
 
   if (
     group.dataValues.organizerId !== currUserId &&
