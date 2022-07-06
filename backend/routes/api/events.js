@@ -84,50 +84,49 @@ const validateEventsQuery = [
 
 //Delete attendance to an event specified by id
 //NEED TO WORK ON IT, GETTING DESTROY IS NOT A FUNCTION??
-// router.delete(
-//   "/:eventId/attendees/:attendeeId",
-//   requireAuth,
-//   async (req, res) => {
-//     const eventAttendee = EventAttendee.findOne({
-//       where: {
-//         eventId: req.params.eventId,
-//         userId: req.params.attendeeId,
-//       },
-//     });
+router.delete(
+  "/:eventId/attendees/:attendeeId",
+  requireAuth,
+  async (req, res) => {
+    const eventAttendee = await EventAttendee.findOne({
+      where: {
+        EventId: req.params.eventId,
+        UserId: req.params.attendeeId,
+      },
+    });
 
-//     const event = await Event.findByPk(req.params.eventId);
+    const event = await Event.findByPk(req.params.eventId);
 
-//     if (!event) {
-//       res.status(404);
-//       res.json({
-//         message: "Event couldn't be found",
-//         statusCode: 404,
-//       });
-//     }
+    if (!event) {
+      res.status(404);
+      res.json({
+        message: "Event couldn't be found",
+        statusCode: 404,
+      });
+    }
 
-//     const groupId = event.dataValues.groupId;
+    const groupId = event.dataValues.groupId;
 
-//     const group = await Group.findByPk(groupId);
+    const group = await Group.findByPk(groupId);
 
-//     const currUser = req.user;
-//     let currUserId = currUser.dataValues.id;
+    const currUser = req.user;
+    let currUserId = currUser.dataValues.id;
 
-//     if (
-//       group.dataValues.organizerId === currUserId ||
-//       currUserId === req.params.attendeeId
-//     ) {
-//       console.log(eventAttendee);
-//       await eventAttendee.destroy();
-//       res.json({
-//         message: "Successfully deleted attendance from event",
-//       });
-//     } else {
-//       res.json({
-//         message: "You do not have the valid permissions",
-//       });
-//     }
-//   }
-// );
+    if (
+      group.dataValues.organizerId === currUserId ||
+      currUserId === req.params.attendeeId
+    ) {
+      await eventAttendee.destroy();
+      res.json({
+        message: "Successfully deleted attendance from event",
+      });
+    } else {
+      res.json({
+        message: "You do not have the valid permissions",
+      });
+    }
+  }
+);
 
 //Add an Image to an Event based on the Event's id
 router.post("/:eventId/images", requireAuth, async (req, res) => {
