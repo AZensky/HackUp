@@ -217,7 +217,8 @@ router.get("/:eventId/attendees", requireAuth, async (req, res) => {
     },
   });
 
-  const groupMemberStatus = groupMember.status;
+  let groupMemberStatus;
+  if (groupMember) groupMemberStatus = groupMember.status;
 
   if (group.organizerId === currUserId || groupMemberStatus === "co-host") {
     const attendees = await Event.findByPk(req.params.eventId, {
