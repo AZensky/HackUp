@@ -60,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
 
       User.belongsToMany(models.Event, {
         through: models.EventAttendee,
-        onDelete: "CASCADE",
-        hooks: true,
+        // onDelete: "CASCADE",
+        // hooks: true,
       });
     }
   }

@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       Event.belongsTo(models.Group, { foreignKey: "groupId" });
       Event.belongsToMany(models.User, {
         through: models.EventAttendee,
-        onDelete: "CASCADE",
-        hooks: true,
+        // onDelete: "CASCADE",
+        // hooks: true,
         // as: "Attendance",
       });
       Event.belongsTo(models.Venue, { foreignKey: "venueId" });

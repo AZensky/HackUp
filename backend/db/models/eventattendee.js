@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       EventAttendee.belongsTo(models.Event, {
         foreignKey: "EventId",
         as: "Attendance",
-        onDelete: "CASCADE",
-        hooks: true,
+        // onDelete: "CASCADE",
+        // hooks: true,
       });
     }
   }
