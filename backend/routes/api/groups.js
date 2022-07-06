@@ -574,7 +574,7 @@ router.get("/:groupId", async (req, res) => {
 
   let { id } = group;
   const numMembers = await GroupMember.count({
-    where: { groupId: id },
+    where: { GroupId: id },
   });
   group.dataValues.numMembers = numMembers;
 
