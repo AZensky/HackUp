@@ -56,11 +56,13 @@ module.exports = (sequelize, DataTypes) => {
 
       User.belongsToMany(models.Group, {
         through: models.GroupMember,
+      });
+
+      User.belongsToMany(models.Event, {
+        through: models.EventAttendee,
         onDelete: "CASCADE",
         hooks: true,
       });
-
-      User.belongsToMany(models.Event, { through: models.EventAttendee });
     }
   }
 
