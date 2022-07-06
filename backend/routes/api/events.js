@@ -225,7 +225,7 @@ router.get("/:eventId/attendees", requireAuth, async (req, res) => {
         attributes: ["id", "firstName", "lastName"],
         through: {
           attributes: ["status"],
-          // as: "Attendance",
+          as: "Attendance",
         },
       },
     });
