@@ -14,14 +14,17 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: { model: "Users" },
+        onDelete: "CASCADE",
       },
       eventId: {
         type: Sequelize.INTEGER,
         references: { model: "Events" },
+        onDelete: "CASCADE",
       },
       groupId: {
         type: Sequelize.INTEGER,
         references: { model: "Groups" },
+        onDelete: "CASCADE",
       },
       createdAt: {
         // allowNull: false,

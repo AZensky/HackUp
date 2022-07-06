@@ -9,7 +9,7 @@ module.exports = {
       "Users",
       [
         {
-          email: "demo@user.io",
+          email: "c",
           firstName: "Demo",
           lastName: "User1",
           //bcrypt.hashSync generates a salted and hashed password
