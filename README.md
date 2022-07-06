@@ -103,9 +103,9 @@ information.
     ```json
     {
       "id": 1,
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john.smith@gmail.com",
+      "firstName": "Demo",
+      "lastName": "User1",
+      "email": "demo@user.io",
       "token": ""
     }
     ```
