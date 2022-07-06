@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       EventAttendee.belongsTo(models.Event, {
         foreignKey: "EventId",
-        as: "Attendance",
+        // as: "Attendance",
       });
     }
   }

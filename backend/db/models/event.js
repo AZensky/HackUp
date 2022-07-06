@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Event.belongsTo(models.Group, { foreignKey: "groupId" });
-      Event.belongsToMany(models.User, { through: models.EventAttendee });
+      Event.belongsToMany(models.User, {
+        through: models.EventAttendee,
+        // as: "Attendance",
+      });
       Event.belongsTo(models.Venue, { foreignKey: "venueId" });
       Event.hasMany(models.Image, { foreignKey: "eventId" });
     }

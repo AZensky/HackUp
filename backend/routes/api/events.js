@@ -202,12 +202,12 @@ router.get("/:eventId/attendees", async (req, res) => {
     });
   }
 
-  const groupId = event.dataValues.groupId;
+  const groupId = event.groupId;
 
   const group = await Group.findByPk(groupId);
 
   const currUser = req.user;
-  let currUserId = currUser.dataValues.id;
+  let currUserId = currUser.id;
 
   const groupMember = await GroupMember.findOne({
     where: {
@@ -216,19 +216,16 @@ router.get("/:eventId/attendees", async (req, res) => {
     },
   });
 
-  const groupMemberStatus = groupMember.dataValues.status;
+  const groupMemberStatus = groupMember.status;
 
-  if (
-    group.dataValues.organizerId === currUserId ||
-    groupMemberStatus === "co-host"
-  ) {
+  if (group.organizerId === currUserId || groupMemberStatus === "co-host") {
     const attendees = await Event.findByPk(req.params.eventId, {
       include: {
         model: User,
         attributes: ["id", "firstName", "lastName"],
         through: {
           attributes: ["status"],
-          as: "Attendance",
+          // as: "Attendance",
         },
       },
     });
