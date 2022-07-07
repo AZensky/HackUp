@@ -234,7 +234,10 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
 
   const ownerId = group.dataValues.organizerId;
 
-  if (currUserId !== req.params.memberId && currUserId !== ownerId) {
+  console.log(currUserId, req.params.memberId);
+  console.log(typeof currUserId, typeof req.params.memberId);
+
+  if (currUserId != req.params.memberId && currUserId !== ownerId) {
     res.status(403);
     res.json({
       message: "Only the User or organizer may delete a Membership",
