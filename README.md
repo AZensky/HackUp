@@ -1101,7 +1101,7 @@ Creates and returns a new venue for a group specified by its id
 - Request
 
   - Method: POST
-  - URL: /api/groups/:groupId/venues \*\*Inconsistency
+  - URL: /api/groups/:groupId/venues
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1919,9 +1919,9 @@ Return events filtered by query parameters.
 - Request
 
   - Method: GET
-  - URL: /api/events ???
+  - URL: /api/events 
   - Query Parameters
-    - page: integer, minimum: 0, maximum: 10, default: 0
+    - page: integer, minimum: 0, maximum: 10, default: 1
     - size: integer, minimum: 0, maximum: 20, default: 20
     - name: string, optional
     - type: string, optional
