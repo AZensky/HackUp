@@ -2,8 +2,6 @@
 
 ## Database Schema Design: https://dbdiagram.io/d/62bdc4c669be0b672c765535
 
-`<insert database schema design here>`
-
 ## API Documentation
 
 ## All endpoints that require authentication
