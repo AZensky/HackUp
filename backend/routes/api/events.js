@@ -187,6 +187,7 @@ router.post("/:eventId/images", requireAuth, async (req, res) => {
   delete result.eventId;
   delete result.updatedAt;
   delete result.createdAt;
+  delete result.groupId;
 
   res.json(result);
 });
