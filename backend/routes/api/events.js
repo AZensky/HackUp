@@ -267,7 +267,7 @@ router.post("/:eventId/attendees", requireAuth, async (req, res) => {
   }
 
   const currUser = req.user;
-  let currUserId = currUser.id;
+  let currUserId = currUser.dataValues.id;
 
   const eventAttendee = await EventAttendee.findOne({
     where: {
@@ -334,7 +334,8 @@ router.put("/:eventId/attendees", requireAuth, async (req, res) => {
     },
   });
 
-  const groupMemberStatus = groupMember.dataValues.status;
+  let groupMemberStatus;
+  if (groupMember) groupMemberStatus = groupMember.dataValues.status;
 
   if (
     group.dataValues.organizerId !== currUserId &&
