@@ -1,6 +1,8 @@
 # Meetup Clone
 
-## Database Schema Design: https://dbdiagram.io/d/62bdc4c669be0b672c765535
+## Database Schema Design: 
+
+![meetup_diagram](https://user-images.githubusercontent.com/95510710/177867178-ed3c0bc8-959e-4f66-a82e-ce91e5eef7c0.png)
 
 ## API Documentation
 
