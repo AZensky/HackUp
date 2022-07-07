@@ -254,7 +254,7 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
 
   if (!groupMember) {
     res.status(404);
-    res.json({
+    return res.json({
       message: "Membership does not exist for this User",
       statusCode: 404,
     });
