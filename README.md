@@ -1,5 +1,7 @@
 # Meetup Clone
 
+## Deployed Project: https://api-meetup-clone.herokuapp.com/
+
 ## Database Schema Design: 
 
 ![meetup_diagram](https://user-images.githubusercontent.com/95510710/177867178-ed3c0bc8-959e-4f66-a82e-ce91e5eef7c0.png)
