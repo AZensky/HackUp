@@ -234,9 +234,6 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
 
   const ownerId = group.dataValues.organizerId;
 
-  console.log(currUserId, req.params.memberId);
-  console.log(typeof currUserId, typeof req.params.memberId);
-
   if (currUserId != req.params.memberId && currUserId !== ownerId) {
     res.status(403);
     return res.json({
