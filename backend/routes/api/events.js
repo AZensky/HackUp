@@ -569,7 +569,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
   const where = {};
 
   if (name && name !== "") {
-    where.name = name;
+    where.name = { [Op.substring]: name };
   }
 
   if (type) {
