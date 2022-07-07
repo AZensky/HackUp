@@ -11,8 +11,8 @@ const events = [
     capacity: 10,
     price: 18.5,
     description: "The first meet and greet for our group! Come say hello!",
-    startDate: "2021-11-19 20:00:00",
-    endDate: "2021-11-19 21:00:00",
+    startDate: new Date("2022-11-19 20:00:00"),
+    endDate: new Date("2022-11-19 21:00:00"),
   },
   {
     groupId: 1,
@@ -22,8 +22,8 @@ const events = [
     capacity: 10,
     price: 18.5,
     description: "The first meet and greet for our group! Come say hello!",
-    startDate: "2021-11-19 20:00:00",
-    endDate: "2021-11-19 21:00:00",
+    startDate: new Date("2023-11-19 20:00:00"),
+    endDate: new Date("2023-11-19 21:00:00"),
   },
   {
     groupId: 2,
@@ -33,8 +33,8 @@ const events = [
     capacity: 10,
     price: 18.5,
     description: "The first meet and greet for our group! Come say hello!",
-    startDate: "2021-11-19 20:00:00",
-    endDate: "2021-11-19 21:00:00",
+    startDate: new Date("2024-11-19 20:00:00"),
+    endDate: new Date("2024-11-19 21:00:00"),
   },
 ];
 

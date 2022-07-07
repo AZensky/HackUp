@@ -578,8 +578,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
 
   if (startDate) {
     let paramStartDate = new Date(startDate);
-    let milliseconds = paramStartDate.getTime();
-    where.startDate = milliseconds;
+    where.startDate = paramStartDate;
   }
 
   const events = await Event.findAll({
