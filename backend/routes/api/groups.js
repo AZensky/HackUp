@@ -465,8 +465,8 @@ router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, r
       capacity,
       price,
       description,
-      startDate,
-      endDate,
+      startDate = new Date(startDate),
+      endDate = new Date(endDate)
     } = req.body;
 
     const venue = await Venue.findByPk(venueId);
