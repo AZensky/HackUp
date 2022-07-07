@@ -239,7 +239,7 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
 
   if (currUserId != req.params.memberId && currUserId !== ownerId) {
     res.status(403);
-    res.json({
+    return res.json({
       message: "Only the User or organizer may delete a Membership",
       statusCode: 403,
     });
