@@ -605,7 +605,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
     event.dataValues.numAttending = numAttending;
   }
 
-  res.json({ Events: events });
+  res.json({ Events: events, page: page, size: size });
 });
 
 module.exports = router;
