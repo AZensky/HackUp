@@ -2,6 +2,14 @@
 
 ## Deployed Project: https://api-meetup-clone.herokuapp.com/
 
+## Personal Notes
+1. What was the most challenging part of this project for you?
+- The most challenging part of this project for myself was fixing compatibility and bug issues when migrating from SQLite in development to PostgreSQL in production. I found SQLite was more lenient than PostgreSQL, so I had to debug my code and refactor to make my code compatible with both SQLite and PostgreSQL.
+2. What part of your work on the project are you most proud of?
+- I am proud of my database schema. Developing a thoughtful blueprint significantly helped me code the logic needed to provide the application's desired functionality. Integrating the routes was simple, as I had thought of the necessary relationships and associations to relate my database tables.
+3. What are some parts you would like to go back and improve and/or minor bugs you would like to clean up?
+- I would like to improve the efficiency of some of my queries. I lazy loaded some of my aggregate queries, and I believe I could improve the efficiency by eager loading the data.
+
 ## Database Schema Design: 
 
 ![meetup_diagram](https://user-images.githubusercontent.com/95510710/177867178-ed3c0bc8-959e-4f66-a82e-ce91e5eef7c0.png)
