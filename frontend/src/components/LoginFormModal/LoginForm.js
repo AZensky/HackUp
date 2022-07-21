@@ -1,32 +1,31 @@
-// frontend/src/components/LoginFormPage/index.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-function LoginFormPage() {
+function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  //if there is a current session user in the redux store, redirect the user to '/'
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    //if errors when trying to log in, setErrors, so we can display them.
+
+    //if there are errors when trying to log in, set the errors, so we can display them
     return dispatch(sessionActions.login({ email, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.message) setErrors([data.message]);
+        if (data && data.errors) setErrors(data.errors);
       }
     );
   };
 
-  //form with controlled components for email and password
+  //form with controlled components
   return (
     <form onSubmit={handleSubmit}>
       <ul>
@@ -57,4 +56,4 @@ function LoginFormPage() {
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;
