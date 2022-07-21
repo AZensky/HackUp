@@ -18,6 +18,7 @@ export const removeUser = () => {
   };
 };
 
+//thunk action creator to call the api to login and then set the session user
 export const thunkSetUser = (user) => async (dispatch) => {
   const { email, password } = user;
   const response = await csrfFetch("/api/session", {
@@ -30,7 +31,7 @@ export const thunkSetUser = (user) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data.user));
+    dispatch(setUser(data));
     return data;
   }
 };
