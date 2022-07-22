@@ -22,9 +22,14 @@ const initialState = {};
 export const groupsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_GROUPS: {
-      const newState = { ...state };
-      newState.groups = action.payload.Groups;
-      return newState;
+      const allGroups = {};
+      action.payload.Groups.forEach((group) => {
+        allGroups[group.id] = group;
+      });
+      return {
+        ...state,
+        ...allGroups,
+      };
     }
 
     default: {
