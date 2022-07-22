@@ -1,4 +1,4 @@
-import Reac, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "../../store/groups";
 
@@ -8,12 +8,12 @@ function GroupsPage() {
   console.log(groups);
   useEffect(() => {
     dispatch(getAllGroups());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       {groups.map((group) => (
-        <span>{group.name}</span>
+        <span>{group.name} | </span>
       ))}
     </div>
   );
