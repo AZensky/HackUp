@@ -620,7 +620,6 @@ router.put("/:groupId", requireAuth, validateCreateGroup, async (req, res) => {
 });
 
 //Delete a group
-//NEED TO FIX
 router.delete("/:groupId", requireAuth, async (req, res) => {
   const group = await Group.findByPk(req.params.groupId);
 
