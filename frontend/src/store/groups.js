@@ -123,8 +123,6 @@ export const groupsReducer = (state = initialState, action) => {
 
     case DELETE_GROUP: {
       const newState = { ...state };
-      console.log("ID???: ", action.payload);
-      console.log("CURRENT GROUPS:", newState);
       delete newState[action.payload];
       return newState;
     }

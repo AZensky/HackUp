@@ -30,12 +30,12 @@ export const edit = (info) => {
 };
 
 // //action creator to delete a group
-// export const remove = (id) => {
-//   return {
-//     type: DELETE_GROUP,
-//     payload: id,
-//   };
-// };
+export const remove = (id) => {
+  return {
+    type: DELETE_EVENT,
+    payload: id,
+  };
+};
 
 //thunk action creator to load events
 export const getAllEvents = () => async (dispatch) => {
@@ -81,18 +81,18 @@ export const editEvent = (id, info) => async (dispatch) => {
   }
 };
 
-// //thunk action creator to delete a group
-// export const deleteGroup = (id) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/groups/${id}`, {
-//     method: "DELETE",
-//   });
+// //thunk action creator to delete an event
+export const deleteEvent = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/events/${id}`, {
+    method: "DELETE",
+  });
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(remove(id));
-//     return data;
-//   }
-// };
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(remove(id));
+    return data;
+  }
+};
 
 const initialState = {};
 
@@ -121,13 +121,11 @@ export const eventsReducer = (state = initialState, action) => {
       return newState;
     }
 
-    // case DELETE_GROUP: {
-    //   const newState = { ...state };
-    //   console.log("ID???: ", action.payload);
-    //   console.log("CURRENT GROUPS:", newState);
-    //   delete newState[action.payload];
-    //   return newState;
-    // }
+    case DELETE_EVENT: {
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
+    }
 
     default: {
       return state;
