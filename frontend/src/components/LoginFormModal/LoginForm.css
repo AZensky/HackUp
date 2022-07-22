@@ -1,2 +1,68 @@
-.login__email {
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-form input {
+  display: block;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+}
+
+.login__title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  line-height: 36px;
+}
+
+.login-form__subtitle {
+  display: flex;
+  line-height: 24px;
+  gap: 6px;
+  justify-content: center;
+}
+
+.login-form__subtitle__sign-up {
+  color: rgb(0, 130, 148);
+  text-decoration: none;
+}
+
+.login-form__email {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__email__label {
+  line-height: 24px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.login-form__password__label {
+  line-height: 24px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.login-form__log-in {
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #f65858;
+  padding: 8px 12px;
+  border: 1px solid #f65858;
+  font-size: 1.25rem;
+  height: 3rem;
 }

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import "./LoginForm.css";
+// import meetup-login.svg from '../../assets/images.meetup-login.svg'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -24,13 +27,21 @@ function LoginForm() {
 
   //form with controlled components
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+
+      <h1 className="login-form__title">Log in</h1>
+      <div className="login-form__subtitle">
+        <span>Not a member yet?</span>
+        <Link to="/signup" className="login-form__subtitle__sign-up">
+          Sign up
+        </Link>
+      </div>
+      <label className="login-form__email__label">
         Email
         <input
           type="text"
@@ -39,7 +50,7 @@ function LoginForm() {
           required
         />
       </label>
-      <label>
+      <label className="login-form__password__label">
         Password
         <input
           type="password"
@@ -48,7 +59,9 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" className="login-form__log-in">
+        Log In
+      </button>
     </form>
   );
 }
