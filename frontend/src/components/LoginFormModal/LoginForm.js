@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
-// import meetup-login.svg from '../../assets/images.meetup-login.svg'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -32,7 +31,11 @@ function LoginForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-
+      <img
+        className="login-form__icon"
+        src="https://secure.meetupstatic.com/s/img/642287997414509021596/logo/svg/logo--mSwarm--2color.svg"
+        alt="logo"
+      />
       <h1 className="login-form__title">Log in</h1>
       <div className="login-form__subtitle">
         <span>Not a member yet?</span>
