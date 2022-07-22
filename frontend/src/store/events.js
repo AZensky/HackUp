@@ -21,13 +21,13 @@ export const addEvent = (info) => {
   };
 };
 
-// //action creator to edit a group
-// export const edit = (info) => {
-//   return {
-//     type: EDIT_GROUP,
-//     payload: info,
-//   };
-// };
+// //action creator to edit an event
+export const edit = (info) => {
+  return {
+    type: EDIT_EVENT,
+    payload: info,
+  };
+};
 
 // //action creator to delete a group
 // export const remove = (id) => {
@@ -64,22 +64,22 @@ export const createEvent = (id, info) => async (dispatch) => {
   }
 };
 
-// //thunk action creator to edit a group
-// export const editGroup = (id, info) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/groups/${id}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(info),
-//   });
+// //thunk action creator to edit an event
+export const editEvent = (id, info) => async (dispatch) => {
+  const response = await csrfFetch(`/api/events/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(info),
+  });
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(edit(data));
-//     return data;
-//   }
-// };
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(edit(data));
+    return data;
+  }
+};
 
 // //thunk action creator to delete a group
 // export const deleteGroup = (id) => async (dispatch) => {
@@ -115,11 +115,11 @@ export const eventsReducer = (state = initialState, action) => {
       return newState;
     }
 
-    // case EDIT_GROUP: {
-    //   const newState = { ...state };
-    //   newState[action.payload.id] = action.payload;
-    //   return newState;
-    // }
+    case EDIT_EVENT: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
 
     // case DELETE_GROUP: {
     //   const newState = { ...state };
