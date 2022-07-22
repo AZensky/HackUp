@@ -64,6 +64,15 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+// thunk action creator to handle logging out the user
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session", {
+    method: "DELETE",
+  });
+  dispatch(removeUser());
+  return response;
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -71,6 +80,12 @@ const sessionReducer = (state = initialState, action) => {
     case SET_USER: {
       const newState = { ...state };
       newState.user = action.payload;
+      return newState;
+    }
+
+    case REMOVE_USER: {
+      let newState = { ...state };
+      newState.user = null;
       return newState;
     }
     default: {
