@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_GROUPS = "/groups/LOAD_GROUPS";
 const ADD_GROUP = "/groups/ADD_GROUP";
 const EDIT_GROUP = "/groups/EDIT_GROUP";
+const DELETE_GROUP = "/groups/DELETE_GROUP";
 
 //action creator to load all groups
 export const loadGroups = (groups) => {
@@ -25,6 +26,14 @@ export const edit = (info) => {
   return {
     type: EDIT_GROUP,
     payload: info,
+  };
+};
+
+//action creator to delete a group
+export const remove = (id) => {
+  return {
+    type: DELETE_GROUP,
+    payload: id,
   };
 };
 
@@ -72,6 +81,19 @@ export const editGroup = (id, info) => async (dispatch) => {
   }
 };
 
+//thunk action creator to delete a group
+export const deleteGroup = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${id}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(remove(id));
+    return data;
+  }
+};
+
 const initialState = {};
 
 export const groupsReducer = (state = initialState, action) => {
@@ -96,6 +118,14 @@ export const groupsReducer = (state = initialState, action) => {
     case EDIT_GROUP: {
       const newState = { ...state };
       newState[action.payload.id] = action.payload;
+      return newState;
+    }
+
+    case DELETE_GROUP: {
+      const newState = { ...state };
+      console.log("ID???: ", action.payload);
+      console.log("CURRENT GROUPS:", newState);
+      delete newState[action.payload];
       return newState;
     }
 
