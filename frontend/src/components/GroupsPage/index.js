@@ -5,7 +5,6 @@ import { getAllGroups } from "../../store/groups";
 function GroupsPage() {
   const dispatch = useDispatch();
   const groups = Object.values(useSelector((state) => state.groups));
-  console.log(groups);
   useEffect(() => {
     dispatch(getAllGroups());
   }, [dispatch]);
@@ -13,7 +12,7 @@ function GroupsPage() {
   return (
     <div>
       {groups.map((group) => (
-        <span>{group.name} | </span>
+        <span key={group.id}>{group.name} | </span>
       ))}
     </div>
   );
