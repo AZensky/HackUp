@@ -1,9 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_EVENTS = "/groups/LOAD_EVENTS";
-const ADD_EVENT = "/groups/ADD_EVENT";
-const EDIT_EVENT = "/groups/EDIT_EVENT";
-const DELETE_EVENT = "/groups/DELETE_EVENT";
+const LOAD_EVENTS = "/events/LOAD_EVENTS";
+const ADD_EVENT = "/events/ADD_EVENT";
+const EDIT_EVENT = "/events/EDIT_EVENT";
+const DELETE_EVENT = "/events/DELETE_EVENT";
 
 //action creator to load all events
 export const loadEvents = (events) => {
