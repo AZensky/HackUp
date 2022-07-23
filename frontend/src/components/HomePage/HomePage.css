@@ -1,0 +1,36 @@
+.home-page {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.home-page__header-container {
+  display: flex;
+  line-height: 24px;
+  margin-top: 140px;
+}
+
+div.home-page__header-container__header-text > h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 48px;
+  margin: 0;
+}
+
+/* .home-page__header-container__header-text {
+  display: flex;
+  flex-direction: column;
+} */
+
+div.home-page__header-container > img {
+  margin: auto;
+  display: block;
+  width: 50%;
+  height: 50%;
+  padding-bottom: 50px;
+}
+
+div.home-page > p {
+  line-height: 24px;
+  margin-top: 24px;
+}
