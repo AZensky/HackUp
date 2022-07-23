@@ -3,15 +3,12 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "./LoginForm";
 import "./index.css";
 
-function LoginFormModal() {
+function LoginFormModal({ styleClass }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="home-page-navigation__login"
-      >
+      <button onClick={() => setShowModal(true)} className={styleClass}>
         Log In
       </button>
       {showModal && (

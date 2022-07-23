@@ -25,7 +25,7 @@ function Footer() {
           <Link to="/signup" className="signup-login-footer-link">
             Sign up
           </Link>
-          <LoginFormModal />
+          <LoginFormModal styleClass="footer-login" />
         </div>
         <FooterColumn
           title={"Discover"}
