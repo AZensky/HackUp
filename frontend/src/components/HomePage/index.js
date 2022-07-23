@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import { getAllGroups } from "../../store/groups";
+import Footer from "../Footer";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -309,6 +310,9 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,20 @@
+.footer-column {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-column > h4 {
+  color: rgb(246, 247, 248);
+  line-height: 24px;
+  margin: 0;
+  margin-top: 12px;
+}
+
+.category-link {
+  text-decoration: none;
+  color: rgb(197, 196, 196);
+  font-size: 14px;
+  cursor: pointer;
+  margin: 4px 0px;
+}
