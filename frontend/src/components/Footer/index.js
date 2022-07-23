@@ -18,7 +18,6 @@ function Footer() {
       </div>
 
       {/* Footer Columns */}
-
       <div className="footer-columns-container">
         <div className="your-account-column">
           <h4>Your Account</h4>
@@ -40,6 +39,22 @@ function Footer() {
           <p>Sequelize</p>
           <p>React</p>
           <p>Redux</p>
+        </div>
+      </div>
+
+      {/* Footer Social Links */}
+      <div className="footer-socials-container">
+        <h4>Connect with Me!</h4>
+        <div className="footer-social-links">
+          <a href="https://www.linkedin.com/in/alex-zelinsky/">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://medium.com/@alexzelinsky124">
+            <i class="fa-brands fa-medium"></i>
+          </a>
+          <a href="https://www.instagram.com/a.zelinsky7/?hl=en">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
         </div>
       </div>
     </div>

@@ -86,3 +86,28 @@
   font-size: 14px;
   margin: 4px 0px;
 }
+
+.footer-socials-container {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-socials-container > h4 {
+  color: rgb(246, 247, 248);
+  line-height: 24px;
+  margin-bottom: 1rem;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 24px;
+}
+
+.fa-brands {
+  color: rgb(217, 217, 217);
+  font-size: 2rem;
+}
