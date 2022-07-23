@@ -115,16 +115,57 @@ function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* How Meetup Works */}
       </div>
 
+      {/* How Meetup Works */}
       <div className="home-page__secondary-content">
         <h2>How Meetup Works</h2>
         <p>
           Meet new people who share your interests through online and in-person
           events. It's free to create an account.
         </p>
+
+        {/* Find Groups and Events */}
+        <div className="home-page__secondary-content__events-and-groups">
+          <div className="home-page__secondary-content__events-and-groups__content-container">
+            <img
+              src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"
+              alt="Group of people"
+            />
+            <h3>Find a Group</h3>
+            <p>
+              Do what you love, meet others who love it, find your community.
+              The rest is history!
+            </p>
+          </div>
+          <div className="home-page__secondary-content__events-and-groups__content-container">
+            <img
+              src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256"
+              alt="Group of people"
+            />
+            <h3>Attend a Hackathon</h3>
+            <p>
+              Hackathons are happening all the time, covering topics such as
+              machine learning, web development, data, and FinTech.
+            </p>
+          </div>
+          <div className="home-page__secondary-content__events-and-groups__content-container">
+            <img
+              src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
+              alt="Group of people"
+            />
+            <h3>Discover Your Passion</h3>
+            <p>
+              You don't have to be an expert to attend an event and discover
+              explore your interests.
+            </p>
+          </div>
+        </div>
+
+        {/* Link to Sign up */}
+        <Link to="/signup" className="home-page__secondary-content__signup">
+          Join Meetup
+        </Link>
       </div>
     </div>
   );
