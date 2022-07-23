@@ -115,6 +115,16 @@ function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* How Meetup Works */}
+      </div>
+
+      <div className="home-page__secondary-content">
+        <h2>How Meetup Works</h2>
+        <p>
+          Meet new people who share your interests through online and in-person
+          events. It's free to create an account.
+        </p>
       </div>
     </div>
   );
