@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllEvents } from "../../store/events";
 
 function HomePage() {
+  const dispatch = useDispatch();
+  const allEvents = Object.values(useSelector((state) => state.events));
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, [dispatch]);
+
+  const events = allEvents.slice(0, 4);
+  console.log(events);
+
   return (
     <div className="home-page">
       <div className="home-page__main-content">
@@ -116,9 +127,8 @@ function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* How Meetup Works */}
       <div className="home-page__secondary-content">
+        {/* How Meetup Works */}
         <h2>How Meetup Works</h2>
         <p>
           Meet new people who share your interests through online and in-person
@@ -166,6 +176,72 @@ function HomePage() {
         <Link to="/signup" className="home-page__secondary-content__signup">
           Join Meetup
         </Link>
+      </div>
+
+      <div className="home-page__tertiary-content">
+        {/* Upcoming Events */}
+        <div className="upcoming-events-header">
+          <h2>Upcoming events</h2>
+          <Link to="/events" className="upcoming-events-header__explore">
+            Explore more events
+          </Link>
+        </div>
+        <div className="upcoming-events__container">
+          <div className="upcoming-events">
+            <div className="upcoming-events__event">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                alt="People Talking"
+              />
+              <div className="upcoming-events__event__details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="upcoming-events-event-title">
+                  The Annual Great Hackathon: Hosted by HackDevs
+                </p>
+                <p className="upcoming-events__group-name">HackDevs Group</p>
+              </div>
+            </div>
+            <div className="upcoming-events__event">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                alt="People Talking"
+              />
+              <div className="upcoming-events__event__details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="upcoming-events-event-title">
+                  The Annual Great Hackathon: Hosted by HackDevs
+                </p>
+                <p className="upcoming-events__group-name">HackDevs Group</p>
+              </div>
+            </div>
+            <div className="upcoming-events__event">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                alt="People Talking"
+              />
+              <div className="upcoming-events__event__details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="upcoming-events-event-title">
+                  The Annual Great Hackathon: Hosted by HackDevs
+                </p>
+                <p className="upcoming-events__group-name">HackDevs Group</p>
+              </div>
+            </div>
+            <div className="upcoming-events__event">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                alt="People Talking"
+              />
+              <div className="upcoming-events__event__details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="upcoming-events-event-title">
+                  The Annual Great Hackathon: Hosted by HackDevs
+                </p>
+                <p className="upcoming-events__group-name">HackDevs Group</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
