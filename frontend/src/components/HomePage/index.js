@@ -3,6 +3,7 @@ import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvents } from "../../store/events";
+import { getAllGroups } from "../../store/groups";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -11,8 +12,16 @@ function HomePage() {
     dispatch(getAllEvents());
   }, [dispatch]);
 
+  const allGroups = Object.values(useSelector((state) => state.groups));
+  useEffect(() => {
+    dispatch(getAllGroups());
+  }, [dispatch]);
+
   const events = allEvents.slice(0, 4);
-  console.log(events);
+  console.log("Events:", events);
+
+  const groups = allGroups.slice(0, 3);
+  console.log("Groups:", groups);
 
   return (
     <div className="home-page">
@@ -238,6 +247,63 @@ function HomePage() {
                   The Annual Great Hackathon: Hosted by HackDevs
                 </p>
                 <p className="upcoming-events__group-name">HackDevs Group</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Popular Groups */}
+        <div className="upcoming-groups-header">
+          <h2>Popular groups</h2>
+          <Link to="/groups" className="upcoming-groups-header__explore">
+            Explore more groups
+          </Link>
+        </div>
+        <div className="popular-groups-container">
+          <div className="popular-groups-container__popular-groups">
+            <div className="popular-groups__group">
+              <div className="group__info-container">
+                <img
+                  src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  alt="Tech Group"
+                />
+                <h3>College students that love to code</h3>
+              </div>
+              <div className="popular-groups__group-details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="popular-group-description">
+                  Tech savvy college students developing projects
+                </p>
+              </div>
+            </div>
+            <div className="popular-groups__group">
+              <div className="group__info-container">
+                <img
+                  src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  alt="Tech Group"
+                />
+                <h3>College students that love to code</h3>
+              </div>
+              <div className="popular-groups__group-details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="popular-group-description">
+                  Tech savvy college students developing projects
+                </p>
+              </div>
+            </div>
+            <div className="popular-groups__group">
+              <div className="group__info-container">
+                <img
+                  src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  alt="Tech Group"
+                />
+                <h3>College students that love to code</h3>
+              </div>
+              <div className="popular-groups__group-details">
+                <time>Fri, Mar 3 · 11:00 AM PDT</time>
+                <p className="popular-group-description">
+                  Tech savvy college students developing projects
+                </p>
               </div>
             </div>
           </div>
