@@ -1,0 +1,21 @@
+.home-page-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+  margin: 0px 15px;
+}
+
+.home-page-navigation__sign-up {
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgb(33, 33, 33);
+  margin-left: 20px;
+}
+
+div.home-page-navigation > ul > li {
+  list-style: none;
+}

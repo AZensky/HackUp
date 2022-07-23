@@ -15,13 +15,16 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup"> Sign Up</NavLink>
+        <NavLink to="/signup" className="home-page-navigation__sign-up">
+          {" "}
+          Sign Up
+        </NavLink>
       </>
     );
   }
 
   return (
-    <>
+    <div className="home-page-navigation">
       <svg
         viewBox="0 0 111 40"
         xmlns="http://www.w3.org/2000/svg"
@@ -34,14 +37,9 @@ function Navigation({ isLoaded }) {
         ></path>
       </svg>
       <ul>
-        <li>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-          {isLoaded && sessionLinks}
-        </li>
+        <li>{isLoaded && sessionLinks}</li>
       </ul>
-    </>
+    </div>
   );
 }
 
