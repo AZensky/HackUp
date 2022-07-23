@@ -1,0 +1,17 @@
+.home-page-navigation__login {
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgb(33, 33, 33);
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
