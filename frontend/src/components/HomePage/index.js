@@ -74,6 +74,47 @@ function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Home Search Form and What's Happening Links */}
+        <div className="home-page__search-container__features">
+          <div className="home-page__search-container">
+            <h2>What do you want to do?</h2>
+            <form className="home-page__search-container__form">
+              <label>
+                <input type="text" placeholder='Search for "Tennis"' />
+              </label>
+              <button>Search</button>
+            </form>
+          </div>
+          <div className="home-page__search-dates">
+            <h2>See what's happening</h2>
+            <div className="home-page__search-dates__feature__container">
+              <Link to="/" className="home-page__search-dates__feature">
+                Starting soon
+              </Link>
+              <Link to="/" className="home-page__search-dates__feature">
+                Today
+              </Link>
+              <Link to="/" className="home-page__search-dates__feature">
+                Tomorrow
+              </Link>
+              <Link to="/" className="home-page__search-dates__feature">
+                This week
+              </Link>
+            </div>
+            <div>
+              <Link to="/" className="home-page__search-dates__feature">
+                Online
+              </Link>
+              <Link to="/" className="home-page__search-dates__feature">
+                In person
+              </Link>
+              <Link to="/" className="home-page__search-dates__feature">
+                Trending near you
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
