@@ -25,6 +25,7 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/signup">
+            <Navigation />
             <SignupFormPage />
           </Route>
           <Route path="/groups">
