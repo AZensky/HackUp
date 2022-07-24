@@ -10,6 +10,12 @@
   display: flex;
 }
 
+.nav-choice-main-title {
+  color: rgb(117, 117, 117);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .nav-choice-link {
   margin-right: 1rem;
   text-decoration: none;

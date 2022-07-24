@@ -1,0 +1,60 @@
+.group-details-container {
+  width: 65%;
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 20px;
+}
+
+.group-details-info {
+  width: 70%;
+  display: flex;
+  border-bottom: 1px solid rgb(217, 217, 217);
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+.group-details-info > img {
+  border-radius: 0.5rem;
+  height: 90px;
+  object-fit: contain;
+}
+
+.group-details-name {
+  color: rgb(33, 33, 33);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  padding-bottom: 4px;
+  margin: 0;
+  margin-top: 4px;
+}
+
+.group-details-location {
+  color: rgb(135, 116, 87);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 20px;
+  text-transform: uppercase;
+  margin: 0;
+  padding-bottom: 0.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.group-details-about {
+  color: rgb(117, 117, 117);
+  font-size: 0.875rem;
+  line-height: 20px;
+  margin: 0;
+  /* This puts a ... if the text goes over 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-details-group-attendees {
+  color: rgb(117, 117, 117);
+  font-size: 0.875rem;
+  line-height: 20px;
+}

@@ -12,12 +12,11 @@ function EventsPage() {
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
-  console.log(events);
 
   return (
     <>
       <div className="events-page-container">
-        <NavChoice />
+        <NavChoice displaySort={true} isEvent={true} />
         {events.map((event) => (
           <EventDetails
             key={event.id}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./NavChoice.css";
 import NavSort from "./NavSort";
 
-function NavChoice() {
+function NavChoice({ displaySort, isEvent }) {
   return (
     <div className="nav-choice-container">
       <div className="nav-choice">
@@ -14,7 +14,10 @@ function NavChoice() {
           Groups
         </Link>
       </div>
-      <NavSort />
+      <h1 className="nav-choice-main-title">
+        Suggested {isEvent ? "events" : "groups"}{" "}
+      </h1>
+      {displaySort && <NavSort />}
     </div>
   );
 }

@@ -28,7 +28,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/groups">
-            <GeneralNavigation />
+            <GeneralNavigation isLoaded={isLoaded} />
             <GroupsPage />
           </Route>
           <Route path="/events">
