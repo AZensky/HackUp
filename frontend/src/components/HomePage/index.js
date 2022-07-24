@@ -226,6 +226,7 @@ function HomePage() {
                 name={group.name}
                 about={group.about}
                 preview={group.previewImage}
+                id={group.id}
               />
             ))}
           </div>

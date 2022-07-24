@@ -1,9 +1,10 @@
 import React from "react";
 import "./PopularGroup.css";
+import { Link } from "react-router-dom";
 
-function PopularGroup({ name, about, preview }) {
+function PopularGroup({ name, about, preview, id }) {
   return (
-    <div className="popular-groups__group">
+    <Link to={`/groups/${id}`} className="popular-groups__group">
       <div className="group__info-container">
         <img src={preview} alt="Tech Group" />
         <h3>{name}</h3>
@@ -12,7 +13,7 @@ function PopularGroup({ name, about, preview }) {
         <time>Fri, Mar 3 · 11:00 AM PDT</time>
         <p className="popular-group-description">{about}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

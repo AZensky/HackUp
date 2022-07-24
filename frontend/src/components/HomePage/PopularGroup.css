@@ -6,6 +6,7 @@
   flex-direction: column;
   width: 33.333%;
   height: 100%;
+  text-decoration: none;
 }
 
 .group__info-container {
