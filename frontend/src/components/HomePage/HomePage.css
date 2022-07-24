@@ -75,7 +75,7 @@ div.home-page > p {
 .home-page__topic-link__link-container {
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 0px;
 }
 
 .home-page__topic-link__link {

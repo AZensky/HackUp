@@ -49,11 +49,13 @@ function HomePage() {
         {/* Topic Links */}
         <div className="home-page__topic-links">
           <div className="home-page__topic-links__content">
-            <img
-              src="https://images.unsplash.com/photo-1543269865-0a740d43b90c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              alt="Pair Programming"
-              className="home-page__topic-link__image"
-            />
+            <Link to="/groups">
+              <img
+                src="https://images.unsplash.com/photo-1543269865-0a740d43b90c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                alt="Pair Programming"
+                className="home-page__topic-link__image"
+              />
+            </Link>
             <div className="home-page__topic-link__link-container">
               <Link to="/groups" className="home-page__topic-link__link">
                 <span>Make new friends</span>
@@ -65,11 +67,13 @@ function HomePage() {
             </div>
           </div>
           <div className="home-page__topic-links__content">
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-              alt="People laughing"
-              className="home-page__topic-link__image"
-            />
+            <Link to="/events">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
+                alt="People laughing"
+                className="home-page__topic-link__image"
+              />
+            </Link>
             <div className="home-page__topic-link__link-container">
               <Link to="/groups" className="home-page__topic-link__link">
                 <span>Attend a hackathon</span>
@@ -81,11 +85,13 @@ function HomePage() {
             </div>
           </div>
           <div className="home-page__topic-links__content">
-            <img
-              src="https://secure.meetupstatic.com/next/images/indexPage/category3.webp?w=1920"
-              alt="People laughing"
-              className="home-page__topic-link__image"
-            />
+            <Link to="/groups">
+              <img
+                src="https://secure.meetupstatic.com/next/images/indexPage/category3.webp?w=1920"
+                alt="People laughing"
+                className="home-page__topic-link__image"
+              />
+            </Link>
             <div className="home-page__topic-link__link-container">
               <Link to="/groups" className="home-page__topic-link__link">
                 <span>Connect over tech</span>
