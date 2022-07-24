@@ -206,6 +206,7 @@ function HomePage() {
                 preview={event.previewImage}
                 name={event.name}
                 group={event.Group.name}
+                id={event.id}
               />
             ))}
           </div>
