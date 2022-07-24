@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Footer from "../Footer";
 import ProfileButton from "../HomePageNavigation/ProfileButton";
 import "./UserProfile.css";
@@ -9,6 +9,7 @@ function UserProfile() {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [groupsJoined, setGroupsJoined] = useState("");
+  console.log(groupsJoined);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +46,26 @@ function UserProfile() {
         <div className="joined-groups-container">
           <div className="joined-groups">
             <h2>Groups</h2>
+            <div className="all-joined-groups">
+              {groupsJoined.length > 0 &&
+                groupsJoined.map((group) => (
+                  <Link
+                    to={`/groups/${group.id}`}
+                    className="groups-joined-link"
+                  >
+                    <div className="joined-group-details-container">
+                      <img
+                        src={group.previewImage}
+                        alt=""
+                        className="joined-group-details__img"
+                      />
+                      <div className="joined-group-details__name">
+                        {group.name}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+            </div>
           </div>
         </div>
       </div>

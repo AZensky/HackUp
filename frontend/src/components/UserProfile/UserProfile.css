@@ -67,3 +67,39 @@
   font-weight: 700;
   line-height: 36px;
 }
+
+.all-joined-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.groups-joined-link {
+  text-decoration: none;
+  flex-basis: 30%;
+}
+
+.joined-group-details-container {
+  display: flex;
+  border: 1px solid rgb(230, 230, 230);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  min-height: 94px;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.joined-group-details__img {
+  border-radius: 0.375rem;
+  object-fit: cover;
+  width: 68px;
+  height: 68px;
+}
+
+.joined-group-details__name {
+  line-height: 1.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: rgb(0, 0, 0);
+}
