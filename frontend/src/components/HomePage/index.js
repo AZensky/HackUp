@@ -111,12 +111,12 @@ function HomePage() {
           </div>
           <div className="home-page__search-dates">
             <h2>See what's happening</h2>
-            <div className="home-page__search-dates__feature__container">
+            {/* <div className="home-page__search-dates__feature__container">
               <Link to="/" className="home-page__search-dates__feature">
-                Starting soon
+                Events
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
-                Today
+                Groups
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
                 Tomorrow
@@ -124,17 +124,23 @@ function HomePage() {
               <Link to="/" className="home-page__search-dates__feature">
                 This week
               </Link>
-            </div>
+            </div> */}
             <div>
+              <Link to="/events" className="home-page__search-dates__feature">
+                Events
+              </Link>
+              <Link to="/groups" className="home-page__search-dates__feature">
+                Groups
+              </Link>
               <Link to="/" className="home-page__search-dates__feature">
                 Online
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
                 In person
               </Link>
-              <Link to="/" className="home-page__search-dates__feature">
-                Trending near you
-              </Link>
+              {/* <Link to="/" className="home-page__search-dates__feature">
+                Trending
+              </Link> */}
             </div>
           </div>
         </div>
