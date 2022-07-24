@@ -8,6 +8,7 @@ import Navigation from "./components/HomePageNavigation";
 import GeneralNavigation from "./components/GeneralNavigation";
 import HomePage from "./components/HomePage";
 import * as sessionActions from "./store/session";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,10 @@ function App() {
           <Route path="/events">
             <GeneralNavigation isLoaded={isLoaded} />
             <EventsPage />
+          </Route>
+          <Route path="/profile">
+            <GeneralNavigation isLoaded={isLoaded} />
+            <UserProfile />
           </Route>
         </Switch>
       )}
