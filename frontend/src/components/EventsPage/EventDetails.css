@@ -1,7 +1,6 @@
 .event-details-container {
   width: 65%;
   display: flex;
-  border-bottom: 1px solid rgb(217, 217, 217);
   padding-top: 16px;
   padding-bottom: 20px;
 }
@@ -9,10 +8,44 @@
 .event-details-info {
   width: 70%;
   display: flex;
+  border-bottom: 1px solid rgb(217, 217, 217);
+  gap: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .event-details-info > img {
   border-radius: 0.5rem;
   height: 90px;
   object-fit: contain;
+}
+
+.event-details-description > time {
+  color: rgb(135, 116, 87);
+  letter-spacing: -0.35px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.event-details-title {
+  color: rgb(33, 33, 33);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 24px;
+  padding-bottom: 4px;
+  margin: 0;
+  margin-top: 4px;
+}
+
+.event-details-group-name {
+  color: rgb(117, 117, 117);
+  font-size: 0.875rem;
+  line-height: 20px;
+  margin: 0;
+}
+
+.event-details-group-attendees {
+  color: rgb(117, 117, 117);
+  font-size: 0.875rem;
+  line-height: 20px;
 }

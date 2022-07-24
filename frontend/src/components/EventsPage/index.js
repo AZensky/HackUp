@@ -19,8 +19,10 @@ function EventsPage() {
       {events.map((event) => (
         <EventDetails
           key={event.id}
+          name={event.name}
           group={event.Group.name}
           city={event.Venue.city}
+          state={event.Venue.state}
           attendees={event.numAttending}
         />
       ))}
