@@ -85,7 +85,8 @@ div.home-page > p {
   font-weight: 600;
   font-family: "Roboto";
   line-height: 24px;
-  margin-right: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .home-page__search-container__features {
