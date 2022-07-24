@@ -4,33 +4,63 @@ const { Op } = require("sequelize");
 const groups = [
   {
     organizerId: 1,
-    name: "Evening Tennis on the Water",
+    name: "HackDevs",
     about:
-      "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+      "Tech savvy college students enthusiastic about developing projects.",
     type: "In person",
     private: true,
     city: "New York",
     state: "NY",
+    previewImage:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
   },
   {
     organizerId: 1,
-    name: "Morning Mimosas on the Lake",
+    name: "HackCrew",
     about:
-      "Relax with rounds of drinks with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+      "Experienced developers looking to collaborate and learn cutting-edge technologies.",
     type: "In person",
     private: true,
-    city: "New York",
-    state: "NY",
+    city: "San Jose",
+    state: "CA",
+    previewImage:
+      "https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTZ8fGNvZGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
   },
   {
     organizerId: 2,
-    name: "Afternoon Music on the Lake",
+    name: "Aspiring Software Engineers",
     about:
-      "Relax with jazz music and drinks with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+      "Self-taught developers looking to break into the medical field. We welcome all levels of expertise, whether you're a complete beginner, or an established software engineer! Join us to support a growing community of aspiring software developers!",
     type: "In person",
     private: true,
-    city: "New York",
-    state: "NY",
+    city: "Seattle",
+    state: "WA",
+    previewImage:
+      "https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    organizerId: 2,
+    name: "Anime-Lovers",
+    about:
+      "We are a group of individuals employed in the tech industry. We appreciate anime, and the Japanese culture.",
+    type: "In person",
+    private: true,
+    city: "Los Angeles",
+    state: "CA",
+    previewImage:
+      "https://images.unsplash.com/photo-1528901166007-3784c7dd3653?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    organizerId: 1,
+    name: "UCDHackers",
+    about:
+      "UC Davis students enthusiastic about programming and technology. We collaborate on projects and compete in hackathons. UC Davis students only!",
+    type: "In person",
+    private: true,
+    city: "San Jose",
+    state: "CA",
+    previewImage:
+      "https://images.unsplash.com/photo-1521185496955-15097b20c5fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
   },
 ];
 
@@ -60,9 +90,11 @@ module.exports = {
     await queryInterface.bulkDelete("Groups", {
       name: {
         [Op.in]: [
-          "Evening Tennis on the Water",
-          "Morning Mimosas on the Lake",
-          "Afternoon Music on the Lake",
+          "HackDevs",
+          "HackCrew",
+          "Aspiring Software Engineers",
+          "Anime-Lovers",
+          "UCDHackers",
         ],
       },
     });

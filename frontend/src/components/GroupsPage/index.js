@@ -26,6 +26,7 @@ function GroupsPage() {
             state={group.state}
             about={group.about}
             members={group.numMembers}
+            preview={group.previewImage}
           />
         ))}
       </div>
