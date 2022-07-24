@@ -291,7 +291,7 @@ div.home-page > p {
   gap: 0.15rem;
 }
 
-.upcoming-events__event {
+/* .upcoming-events__event {
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -336,7 +336,7 @@ div.home-page > p {
   font-size: 0.875rem;
   line-height: 20px;
   margin: 0;
-}
+} */
 
 .upcoming-groups-header {
   display: flex;
