@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import "./ProfileButton.css";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, classStyle }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-
-  console.log("USER:", user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -34,7 +32,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="profile-button">
+      <button onClick={openMenu} className={classStyle}>
         {user.firstName[0]}
       </button>
       {showMenu && (

@@ -1,0 +1,69 @@
+.profile-main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.users-info-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 4rem;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  /* width: 70%;
+  height: 100%; */
+}
+
+.users-info-container > h1 {
+  font-size: 2.625rem;
+  font-weight: 700;
+  line-height: 63px;
+}
+
+.group-count-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-top: 1px solid rgb(230, 230, 230);
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.group-count {
+  padding: 1rem 0;
+}
+
+.group-count > span {
+  color: rgb(255, 255, 255);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 2px 0.5rem;
+  background-color: rgb(0 130 148);
+  border-radius: 9999px;
+  margin-right: 0.25rem;
+}
+
+.joined-groups-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.joined-groups {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.joined-groups > h2 {
+  margin-bottom: 24px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
