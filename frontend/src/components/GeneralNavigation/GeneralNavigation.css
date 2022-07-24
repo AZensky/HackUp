@@ -1,0 +1,55 @@
+.general-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+  margin: 0px 15px;
+  border-bottom: 1px solid rgb(217, 217, 217);
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.keyword-search {
+  min-width: 210px;
+  height: 24px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(217, 217, 217);
+  background: none;
+  margin-left: 2.5rem;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.general-navigation__sign-up {
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgb(33, 33, 33);
+  margin-left: 20px;
+}
+
+div.right-nav > ul > li {
+  list-style: none;
+}
+
+.left-nav > button {
+  background-color: rgb(246, 88, 88);
+  border: none;
+  padding: 0.5rem;
+  margin-left: -5px;
+  height: 42px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 42px;
+}
+
+.fa-magnifying-glass {
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,19 @@
+.events-filter-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.events-filter-container > button {
+  padding: 1rem;
+  background-color: 246, 247, 248;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500px;
+  max-height: 48px;
+  width: max-content;
+  margin-top: 1rem;
+  margin-left: -4px;
+}

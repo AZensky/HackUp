@@ -32,7 +32,7 @@ function HomePage() {
           <div className="home-page__header-container__header-text">
             <h1>Celebrating 20 years of real connections on Meetup</h1>
             <p>
-              Whatever you’re looking to do this year, Meetup can help. For 20
+              Whatever you're looking to do this year, Meetup can help. For 20
               years, people have turned to Meetup to meet people, make friends,
               find support, grow a business, and explore their interests.
               Thousands of events are happening every day—join the fun.
