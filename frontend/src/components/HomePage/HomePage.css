@@ -185,6 +185,9 @@ div.home-page > p {
   max-height: 3rem;
   margin-bottom: 0.5rem;
   margin-right: 1rem;
+  width: fit-content;
+  display: inline-flex;
+  flex-wrap: wrap;
   text-decoration: none;
   box-sizing: border-box;
 }

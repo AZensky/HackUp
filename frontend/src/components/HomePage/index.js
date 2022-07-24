@@ -113,10 +113,10 @@ function HomePage() {
             <h2>See what's happening</h2>
             {/* <div className="home-page__search-dates__feature__container">
               <Link to="/" className="home-page__search-dates__feature">
-                Events
+                Starting soon
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
-                Groups
+                Today
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
                 Tomorrow
@@ -139,7 +139,7 @@ function HomePage() {
                 In person
               </Link>
               {/* <Link to="/" className="home-page__search-dates__feature">
-                Trending
+                Trending near you
               </Link> */}
             </div>
           </div>
