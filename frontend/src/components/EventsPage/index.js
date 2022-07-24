@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../store/events";
-import { Link } from "react-router-dom";
 import NavChoice from "../EventGroupSharedComponents/NavChoice";
+import EventDetails from "./EventDetails";
 import "./EventsPage.css";
 
 function EventsPage() {
@@ -11,10 +11,19 @@ function EventsPage() {
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
+  console.log(events);
 
   return (
     <div className="events-page-container">
       <NavChoice />
+      {events.map((event) => (
+        <EventDetails
+          key={event.id}
+          group={event.Group.name}
+          city={event.Venue.city}
+          attendees={event.numAttending}
+        />
+      ))}
     </div>
   );
 }

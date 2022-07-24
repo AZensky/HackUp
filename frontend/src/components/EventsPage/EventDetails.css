@@ -1,0 +1,18 @@
+.event-details-container {
+  width: 65%;
+  display: flex;
+  border-bottom: 1px solid rgb(217, 217, 217);
+  padding-top: 16px;
+  padding-bottom: 20px;
+}
+
+.event-details-info {
+  width: 70%;
+  display: flex;
+}
+
+.event-details-info > img {
+  border-radius: 0.5rem;
+  height: 90px;
+  object-fit: contain;
+}
