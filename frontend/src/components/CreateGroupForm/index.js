@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CreateGroupForm.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createGroup } from "../../store/groups";
 
@@ -10,14 +10,29 @@ function CreateGroupForm() {
 
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Online");
   const [isPrivate, setIsPrivate] = useState(false);
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  useEffect(() => {
+    const errors = [];
+    if (name.length > 60) errors.push("Name must be 60 characters or less");
+    if (about.length < 50) errors.push("About must be 50 characters or more");
+
+    setValidationErrors(errors);
+  }, [name, about]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setHasSubmitted(true);
+
+    if (validationErrors.length > 0) {
+      return;
+    }
+
     const info = {
       name,
       about,
@@ -28,9 +43,8 @@ function CreateGroupForm() {
     };
 
     let createdGroup = await dispatch(createGroup(info));
-    if (createdGroup) {
-      history.push(`/groups/${createdGroup.id}`);
-    }
+
+    history.push(`/groups/${createdGroup.id}`);
   }
 
   return (
@@ -38,9 +52,9 @@ function CreateGroupForm() {
       <div className="create-group-form-container">
         <form onSubmit={handleSubmit} className="create-group-form">
           <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
+            {hasSubmitted &&
+              validationErrors.length > 0 &&
+              validationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
           <h1 className="create-group-form__title">Create a Group</h1>
           <label>
