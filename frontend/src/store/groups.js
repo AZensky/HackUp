@@ -49,6 +49,7 @@ export const getAllGroups = () => async (dispatch) => {
 
 //thunk action creator to create a group
 export const createGroup = (info) => async (dispatch) => {
+  console.log(info);
   const response = await csrfFetch("/api/groups", {
     method: "POST",
     headers: {

@@ -10,6 +10,7 @@ import HomePage from "./components/HomePage";
 import * as sessionActions from "./store/session";
 import UserProfile from "./components/UserProfile";
 import EventDetailsPage from "./components/EventDetailsPage";
+import CreateGroupForm from "./components/CreateGroupForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ function App() {
           <Route path="/events/:eventId">
             <GeneralNavigation isLoaded={isLoaded} />
             <EventDetailsPage />
+          </Route>
+
+          <Route path="/create-group">
+            <CreateGroupForm />
           </Route>
 
           <Route path="/signup">
