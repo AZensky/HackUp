@@ -1,0 +1,13 @@
+.other-events-container {
+  width: 70%;
+  border-top: 1px solid rgb(194, 193, 193);
+}
+
+.other-events-container > h2 {
+  font-size: 20px;
+}
+
+.other-events__event-container {
+  display: flex;
+  gap: 4rem;
+}
