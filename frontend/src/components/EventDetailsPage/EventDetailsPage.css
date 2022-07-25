@@ -162,3 +162,37 @@
 .event-details__description > h2 {
   font-size: 20px;
 }
+
+.about-and-upcoming-container {
+  width: 60%;
+}
+
+.group-details__about-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-and-upcoming-container h4 {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 20;
+  color: rgb(33, 33, 33);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.group-details__about-section > p {
+  line-height: 24px;
+  margin-bottom: 1rem;
+}
+
+.upcoming-event-container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  min-height: 260px;
+}
+
+.organizer-and-members-container {
+  width: 40%;
+}

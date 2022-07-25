@@ -8,4 +8,11 @@
 
 .group-details-page__main-content {
   width: 70%;
+  display: flex;
+  gap: 4rem;
+}
+
+.about-and-upcoming-container {
+  display: flex;
+  flex-direction: column;
 }
