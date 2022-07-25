@@ -1,0 +1,11 @@
+.create-group-button {
+  background-color: #008294;
+  height: 42px;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}

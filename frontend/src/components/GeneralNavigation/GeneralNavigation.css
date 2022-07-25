@@ -53,3 +53,10 @@ div.right-nav > ul > li {
   font-size: 15px;
   color: rgb(255, 255, 255);
 }
+
+.session-links-logged-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}

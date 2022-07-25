@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "../HomePageNavigation/ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import CreateGroupButton from "./CreateGroupButton";
 import "./GeneralNavigation.css";
 
 function GeneralNavigation({ isLoaded }) {
@@ -11,7 +12,10 @@ function GeneralNavigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} classStyle="profile-button" />
+      <div className="session-links-logged-in">
+        <CreateGroupButton />
+        <ProfileButton user={sessionUser} classStyle="profile-button" />
+      </div>
     );
   } else {
     sessionLinks = (
