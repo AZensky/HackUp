@@ -9,7 +9,7 @@ import GeneralNavigation from "./components/GeneralNavigation";
 import HomePage from "./components/HomePage";
 import * as sessionActions from "./store/session";
 import UserProfile from "./components/UserProfile";
-import GroupDetailsPage from "./components/GroupDetailsPage";
+import EventDetailsPage from "./components/EventDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +27,9 @@ function App() {
             <HomePage />
           </Route>
 
-          <Route path="/groups/:groupId">
+          <Route path="/events/:eventId">
             <GeneralNavigation isLoaded={isLoaded} />
-            <GroupDetailsPage />
+            <EventDetailsPage />
           </Route>
 
           <Route path="/signup">

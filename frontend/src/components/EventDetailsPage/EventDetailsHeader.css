@@ -1,4 +1,4 @@
-.group-details-header-container {
+.event-details-header-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -11,18 +11,18 @@
   border-bottom: 1px solid rgba(46, 62, 72, 0.12);
 }
 
-.group-details-header-content {
+.event-details-header-content {
   width: 70%;
 }
 
-.group-details-header-content > time {
+.event-details-header-content > time {
   color: rgb(117, 117, 117);
   font-weight: 400;
   margin-left: auto;
   margin-right: auto;
 }
 
-.group-details-header-content > h1 {
+.event-details-header-content > h1 {
   line-height: 1.25;
   font-weight: 700;
   font-size: 2.25rem;
@@ -34,7 +34,7 @@
   margin: 0;
 }
 
-.group-organizer-info {
+.event-organizer-info {
   display: flex;
   margin-top: 1.25rem;
   align-items: center;
