@@ -8,7 +8,7 @@ function EventDetailsPage() {
   const [event, setEvent] = useState();
   useEffect(() => {
     const setEventDetails = async () => {
-      const response = await fetch(`/api/groups/${eventId}`);
+      const response = await fetch(`/api/events/${eventId}`);
       const data = await response.json();
       setEvent(data);
       return data;

@@ -11,10 +11,7 @@ function EventDetailsHeader({ event }) {
           <i class="fa-solid fa-user"></i>
           <div className="hosted-label">
             <p>Hosted By</p>
-            <span>
-              {event && event.Organizer.firstName}{" "}
-              {event && event.Organizer.lastName}
-            </span>
+            <span>{event && event.Group.name}</span>
           </div>
         </div>
       </div>
