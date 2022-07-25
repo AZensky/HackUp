@@ -6,8 +6,56 @@
 }
 
 .other-event-card {
-  height: 300px;
-  min-width: 320px;
+  height: 258px;
+  width: 298px;
   max-width: 340px;
   border: 1px solid rgb(246, 247, 248);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.other-event-details > time {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgb(0, 130, 148);
+}
+
+.other-event-details > h4 {
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.other-event-details > p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: rgb(33, 33, 33);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.other-events-location {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.other-events-location > span {
+  color: rgb(117, 117, 117);
+  font-size: 0.875rem;
+}
+
+.other-event-numAttendees {
+  color: rgb(117, 117, 117);
 }
