@@ -1,0 +1,84 @@
+.group-details-header-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  flex: start;
+  border-bottom: 1px solid rgba(46, 62, 72, 0.12);
+}
+
+.group-details-header-content {
+  width: 70%;
+  display: flex;
+  gap: 2rem;
+}
+
+.group-details-header-content > img {
+  border-radius: 0.5rem;
+  width: 55%;
+  object-fit: cover;
+  max-height: 340px;
+}
+
+.group-header-info {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+
+.group-header-info > h1 {
+  color: rgb(33, 33, 33);
+  font-size: 2rem;
+  line-height: 38px;
+}
+
+.group-details-header-location-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.group-details-location-span {
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+}
+
+.fa-people-group {
+  color: rgb(117, 117, 117);
+}
+
+.group-details-headers-members-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.group-details-members-span {
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+}
+
+.group-details-headers-organizer-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.group-details-organizer-span {
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+}
+
+.group-details-headers-organizer-container .fa-user {
+  color: rgb(117, 117, 117);
+  background: none;
+  font-size: 14px;
+  padding: 0;
+  margin-right: 0.25rem;
+}

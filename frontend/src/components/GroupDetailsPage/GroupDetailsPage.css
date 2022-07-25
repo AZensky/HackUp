@@ -1,0 +1,11 @@
+.group-details-page__main-content-container {
+  padding: 48px 20px 24px 20px;
+  background-color: rgb(246, 247, 248);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group-details-page__main-content {
+  width: 70%;
+}

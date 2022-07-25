@@ -11,6 +11,7 @@ import * as sessionActions from "./store/session";
 import UserProfile from "./components/UserProfile";
 import EventDetailsPage from "./components/EventDetailsPage";
 import CreateGroupForm from "./components/CreateGroupForm";
+import GroupDetailsPage from "./components/GroupDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,11 @@ function App() {
           <Route path="/events/:eventId">
             <GeneralNavigation isLoaded={isLoaded} />
             <EventDetailsPage />
+          </Route>
+
+          <Route path="/groups/:groupId">
+            <GeneralNavigation isLoaded={isLoaded} />
+            <GroupDetailsPage />
           </Route>
 
           <Route path="/create-group">
