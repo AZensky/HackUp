@@ -26,6 +26,7 @@ function EventsPage() {
             state={event.Venue.state}
             attendees={event.numAttending}
             preview={event.previewImage}
+            id={event.id}
           />
         ))}
       </div>

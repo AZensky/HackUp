@@ -1,9 +1,10 @@
 import React from "react";
 import "./EventDetails.css";
+import { Link } from "react-router-dom";
 
-function EventDetails({ name, group, city, state, attendees, preview }) {
+function EventDetails({ name, group, city, state, attendees, preview, id }) {
   return (
-    <div className="event-details-container">
+    <Link to={`/events/${id}`} className="event-details-container">
       <div className="event-details-info">
         <img src={preview} alt="Event Pic" />
         <div className="event-details-description">
@@ -17,7 +18,7 @@ function EventDetails({ name, group, city, state, attendees, preview }) {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

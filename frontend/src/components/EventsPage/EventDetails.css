@@ -3,6 +3,7 @@
   display: flex;
   padding-top: 16px;
   padding-bottom: 20px;
+  text-decoration: none;
 }
 
 .event-details-info {

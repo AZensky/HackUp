@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./GroupDetail.css";
 
-function GroupDetails({ name, city, state, about, members, preview }) {
+function GroupDetails({ name, city, state, about, members, preview, id }) {
   return (
-    <div className="group-details-container">
+    <Link to={`/groups/${id}`} className="group-details-container">
       <div className="group-details-info">
         <img src={preview} alt="Event Pic" />
         <div className="group-details-description">
@@ -17,7 +18,7 @@ function GroupDetails({ name, city, state, about, members, preview }) {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
