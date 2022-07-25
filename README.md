@@ -1,3 +1,7 @@
+# Meetup Clone
+
+## Deployed Project: https://api-meetup-clone.herokuapp.com/
+
 ### Getting Started
 
 - Clone the repo
