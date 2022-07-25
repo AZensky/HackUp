@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../store/events";
+import { Link } from "react-router-dom";
 import "./OtherEvents.css";
 import OtherEventCard from "./OtherEventCard";
 
@@ -12,13 +13,26 @@ function OtherEvents() {
   }, [dispatch]);
 
   const events = allEvents.slice(0, 3);
+  console.log(events);
 
   return (
     <div className="other-events-container">
       <h2>Other Events</h2>
       <div className="other-events__event-container">
         {events.length > 0 &&
-          events.map((event) => <OtherEventCard key={event.id} />)}
+          events.map((event) => (
+            <Link to={`/events/${event.id}`} className="other-event-link">
+              <OtherEventCard
+                key={event.id}
+                id={event.id}
+                name={event.name}
+                city={event.Venue.city}
+                state={event.Venue.state}
+                group={event.Group.name}
+                attendees={event.numAttending}
+              />
+            </Link>
+          ))}
       </div>
     </div>
   );
