@@ -22,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Navigation isLoaded={isLoaded} classStyle="profile-button" />
+            <Navigation isLoaded={isLoaded} />
             <HomePage />
           </Route>
           <Route path="/signup">

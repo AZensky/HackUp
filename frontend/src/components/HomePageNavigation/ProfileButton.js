@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./ProfileButton.css";
 
@@ -32,17 +33,22 @@ function ProfileButton({ user, classStyle }) {
 
   return (
     <>
-      <button onClick={openMenu} className={classStyle}>
-        {user.firstName[0]}
-      </button>
+      <div className="profile-button-container" onClick={openMenu}>
+        <button className={classStyle}>{user.firstName[0]}</button>
+        {showMenu === false ? (
+          <i class="fa-solid fa-caret-down"></i>
+        ) : (
+          <i class="fa-solid fa-caret-up"></i>
+        )}
+      </div>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>
-            {user.firstName} {user.lastName}
-          </li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
+          <Link to="/profile" className="profile-button-your-profile">
+            Your Profile
+          </Link>
+          <li onClick={logout}>
+            {/* <button onClick={logout}>Log Out</button> */}
+            Log Out
           </li>
         </ul>
       )}

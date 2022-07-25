@@ -1,3 +1,7 @@
+.profile-button-container {
+  cursor: pointer;
+}
+
 .profile-button {
   height: 50px;
   border-radius: 50%;
@@ -6,6 +10,8 @@
   font-weight: 500;
   color: rgb(17, 15, 15);
   font-family: inherit;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .profile-page-img {
@@ -16,4 +22,48 @@
   font-weight: 400;
   font-size: 6rem;
   color: rgb(17, 15, 15);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.fa-caret-down {
+  color: rgb(162, 162, 162);
+  cursor: pointer;
+}
+
+.fa-caret-up {
+  color: rgb(162, 162, 162);
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  inset: 5rem 1rem auto auto;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 0.25rem;
+  z-index: 52;
+  list-style: none;
+  width: 190px;
+}
+
+.profile-button-your-profile {
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+.profile-dropdown > li {
+  cursor: pointer;
+}
+
+.profile-dropdown button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
