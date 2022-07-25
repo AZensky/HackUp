@@ -21,7 +21,11 @@ function OtherEvents() {
       <div className="other-events__event-container">
         {events.length > 0 &&
           events.map((event) => (
-            <Link to={`/events/${event.id}`} className="other-event-link">
+            <Link
+              to={`/events/${event.id}`}
+              className="other-event-link"
+              key={event.id}
+            >
               <OtherEventCard
                 key={event.id}
                 id={event.id}

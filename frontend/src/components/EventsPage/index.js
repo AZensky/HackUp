@@ -17,18 +17,19 @@ function EventsPage() {
     <>
       <div className="events-page-container">
         <NavChoice displaySort={true} isEvent={true} />
-        {events.map((event) => (
-          <EventDetails
-            key={event.id}
-            name={event.name}
-            group={event.Group.name}
-            city={event.Venue.city}
-            state={event.Venue.state}
-            attendees={event.numAttending}
-            preview={event.previewImage}
-            id={event.id}
-          />
-        ))}
+        {events.length > 0 &&
+          events.map((event) => (
+            <EventDetails
+              key={event.id}
+              name={event.name}
+              group={event.Group.name}
+              city={event.Venue.city}
+              state={event.Venue.state}
+              attendees={event.numAttending}
+              preview={event.previewImage}
+              id={event.id}
+            />
+          ))}
       </div>
 
       <Footer />

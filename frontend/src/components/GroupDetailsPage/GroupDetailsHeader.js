@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import "./GroupDetailsHeader.css";
+import { useDispatch } from "react-redux";
+import { deleteGroup } from "../../store/groups";
+import { useParams, useHistory } from "react-router-dom";
 
 function GroupDetailsHeader() {
+  const { groupId } = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+
+  function handleDelete() {
+    dispatch(deleteGroup(groupId));
+
+    history.push("/groups");
+  }
+
   return (
     <div className="group-details-header-container">
       <div className="group-details-header-content">
@@ -36,7 +49,7 @@ function GroupDetailsHeader() {
         ></i>
         {showMenu && (
           <div className="group-edit-delete-menu">
-            <button>Delete Event</button>
+            <button onClick={handleDelete}>Delete Event</button>
           </div>
         )}
       </div>
