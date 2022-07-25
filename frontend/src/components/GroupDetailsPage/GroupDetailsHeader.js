@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./GroupDetailsHeader.css";
 
 function GroupDetailsHeader() {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <div className="group-details-header-container">
       <div className="group-details-header-content">
@@ -26,6 +27,18 @@ function GroupDetailsHeader() {
             <span className="group-details-organizer-span">Organized By</span>
           </div>
         </div>
+      </div>
+
+      <div className="group-edit-delete-menu-container">
+        <i
+          class="fa-solid fa-ellipsis"
+          onClick={() => setShowMenu(!showMenu)}
+        ></i>
+        {showMenu && (
+          <div className="group-edit-delete-menu">
+            <button>Delete Event</button>
+          </div>
+        )}
       </div>
     </div>
   );
