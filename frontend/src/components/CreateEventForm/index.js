@@ -118,6 +118,8 @@ function CreateEventForm() {
             Price
             <input
               type="number"
+              min="0.00"
+              step="0.10"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
