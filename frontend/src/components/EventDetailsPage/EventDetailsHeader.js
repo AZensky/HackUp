@@ -36,8 +36,8 @@ function EventDetailsHeader({ event }) {
     }
   }, [eventDetails]);
 
-  function handleDelete() {
-    dispatch(deleteEvent(eventId));
+  async function handleDelete() {
+    await dispatch(deleteEvent(eventId));
 
     history.push("/events");
   }
