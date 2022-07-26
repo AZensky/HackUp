@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GroupDetailsHeader.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteGroup } from "../../store/groups";
 import { useParams, useHistory, Link } from "react-router-dom";
 
@@ -8,7 +8,20 @@ function GroupDetailsHeader() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
+  const [groupDetails, setGroupDetails] = useState();
+
+  useEffect(() => {
+    const getGroupDetails = async () => {
+      let response = await fetch(`/api/groups/${groupId}`);
+      let data = await response.json();
+      setGroupDetails(data);
+    };
+
+    getGroupDetails().catch(console.error);
+  }, [groupId]);
 
   function handleDelete() {
     dispatch(deleteGroup(groupId));
@@ -43,27 +56,40 @@ function GroupDetailsHeader() {
           </div>
         </div>
 
-        <div className="group-edit-delete-menu-container">
-          <i
-            class="fa-solid fa-ellipsis"
-            onClick={() => setShowMenu(!showMenu)}
-          ></i>
-          {showMenu && (
-            <div className="group-edit-delete-menu">
-              <Link to={`/groups/edit/${groupId}`} className="edit-group-link">
-                Edit group
-              </Link>
-              <button onClick={handleDelete}>Delete group</button>
+        {/* Only display edit and delete event if they are organizer of the group */}
+        {sessionUser &&
+          groupDetails &&
+          sessionUser.id === groupDetails.organizerId && (
+            <div className="group-edit-delete-menu-container">
+              <i
+                class="fa-solid fa-ellipsis"
+                onClick={() => setShowMenu(!showMenu)}
+              ></i>
+              {showMenu && (
+                <div className="group-edit-delete-menu">
+                  <Link
+                    to={`/groups/edit/${groupId}`}
+                    className="edit-group-link"
+                  >
+                    Edit group
+                  </Link>
+                  <button onClick={handleDelete}>Delete group</button>
+                </div>
+              )}
             </div>
           )}
-        </div>
       </div>
 
-      <div className="create-event-container">
-        <Link to={`/groups/${groupId}/create-event`}>
-          <button>Create an Event</button>
-        </Link>
-      </div>
+      {/* Only display create event if they are organizer of the group */}
+      {sessionUser &&
+        groupDetails &&
+        sessionUser.id === groupDetails.organizerId && (
+          <div className="create-event-container">
+            <Link to={`/groups/${groupId}/create-event`}>
+              <button>Create an Event</button>
+            </Link>
+          </div>
+        )}
     </>
   );
 }
