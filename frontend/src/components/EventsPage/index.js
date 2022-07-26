@@ -8,6 +8,7 @@ import "./EventsPage.css";
 
 function EventsPage() {
   const dispatch = useDispatch();
+
   const events = Object.values(useSelector((state) => state.events));
   useEffect(() => {
     dispatch(getAllEvents());
