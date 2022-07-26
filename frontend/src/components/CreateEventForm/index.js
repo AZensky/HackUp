@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { editEvent } from "../../store/events";
-import "./EditEventForm.css";
-
-function EditEventForm() {
-  let { eventId } = useParams();
-  const [event, setEvent] = useState();
+import { createEvent } from "../../store/events";
+function CreateEventForm() {
+  let { groupId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [name, setName] = useState("");
@@ -23,20 +20,6 @@ function EditEventForm() {
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
-    const getEvent = async () => {
-      let response = await fetch(`/api/events/${eventId}`);
-      let data = await response.json();
-      setEvent(data);
-      setName(data.name);
-      setCapacity(data.capacity);
-      setPrice(data.price);
-      setDescription(data.description);
-      setStartDate(data.startDate);
-      setEndDate(data.endDate);
-      setVenue(data.venueId);
-      return data;
-    };
-
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
@@ -44,9 +27,8 @@ function EditEventForm() {
       return data;
     };
 
-    getEvent().catch(console.error);
-    getVenues();
-  }, [eventId]);
+    getVenues().catch(console.error);
+  }, []);
 
   useEffect(() => {
     const errors = [];
@@ -79,11 +61,9 @@ function EditEventForm() {
       endDate,
     };
 
-    let editedEvent = await dispatch(editEvent(eventId, info)).catch((e) =>
-      console.log(e)
-    );
+    let createdEvent = await dispatch(createEvent(groupId, info));
 
-    history.push(`/events/${editedEvent.id}`);
+    history.push(`/events/${createdEvent.id}`);
   }
 
   return (
@@ -95,9 +75,7 @@ function EditEventForm() {
               validationErrors.length > 0 &&
               validationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <h1 className="create-group-form__title">
-            Edit {event && event.name}
-          </h1>
+          <h1 className="create-group-form__title">Create an Event</h1>
           <label>
             Event Name
             <input
@@ -172,11 +150,11 @@ function EditEventForm() {
               required
             />
           </label>
-          <button type="submit">Edit Group</button>
+          <button type="submit">Create Group</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default EditEventForm;
+export default CreateEventForm;
