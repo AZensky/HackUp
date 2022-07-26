@@ -43,7 +43,8 @@ function EditEventForm() {
     if (capacity < 0) errors.push("Capacity must be 0 or greater");
     if (price < 0) errors.push("Price must be 0 or greater");
     // Need to fix
-    if (startDate < new Date()) errors.push("Start date must be in the future");
+    if (new Date(startDate) < new Date())
+      errors.push("Start date must be in the future");
     if (startDate >= endDate) errors.push("End date must be after start date");
 
     setValidationErrors(errors);
