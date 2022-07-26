@@ -82,6 +82,10 @@
   margin-right: 0.25rem;
 }
 
+.group-edit-delete-menu-container .fa-ellipsis {
+  margin-bottom: 1rem;
+}
+
 .groups-delete-edit-menu {
   position: absolute;
   top: 0;
@@ -105,6 +109,19 @@
 .group-edit-delete-menu {
   background-color: rgb(246, 247, 248);
   border-radius: 0.5rem;
+  margin-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  width: 125px;
+}
+
+.edit-group-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
 }
 
 .group-edit-delete-menu-container button {
@@ -112,4 +129,5 @@
   border: none;
   margin: 0;
   cursor: pointer;
+  font-size: 16px;
 }

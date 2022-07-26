@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./GroupDetailsHeader.css";
 import { useDispatch } from "react-redux";
 import { deleteGroup } from "../../store/groups";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 function GroupDetailsHeader() {
   const { groupId } = useParams();
@@ -49,7 +49,10 @@ function GroupDetailsHeader() {
         ></i>
         {showMenu && (
           <div className="group-edit-delete-menu">
-            <button onClick={handleDelete}>Delete Event</button>
+            <Link to={`/groups/edit/${groupId}`} className="edit-group-link">
+              Edit group
+            </Link>
+            <button onClick={handleDelete}>Delete group</button>
           </div>
         )}
       </div>
