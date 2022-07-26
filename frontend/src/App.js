@@ -12,6 +12,7 @@ import UserProfile from "./components/UserProfile";
 import EventDetailsPage from "./components/EventDetailsPage";
 import CreateGroupForm from "./components/CreateGroupForm";
 import GroupDetailsPage from "./components/GroupDetailsPage";
+import EditGroupForm from "./components/EditGroupForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,11 @@ function App() {
             <HomePage />
           </Route>
 
+          <Route path="/groups/edit/:groupId">
+            <Navigation />
+            <EditGroupForm />
+          </Route>
+
           <Route path="/events/:eventId">
             <GeneralNavigation isLoaded={isLoaded} />
             <EventDetailsPage />
@@ -40,6 +46,7 @@ function App() {
           </Route>
 
           <Route path="/create-group">
+            <Navigation />
             <CreateGroupForm />
           </Route>
 
