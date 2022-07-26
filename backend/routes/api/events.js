@@ -445,7 +445,8 @@ router.put("/:eventId", requireAuth, validateCreateEvent, async (req, res) => {
     },
   });
 
-  const groupMemberStatus = groupMember.dataValues.status;
+  let groupMemberStatus;
+  if (groupMember) groupMemberStatus = groupMember.dataValues.status;
 
   if (
     group.dataValues.organizerId !== currUserId &&

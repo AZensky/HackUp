@@ -119,17 +119,20 @@ function EditEventForm() {
             </select>
           </label>
 
-          <label className="create-group-form__email__label">
-            Venue
-            <select value={venue} onChange={(e) => setVenue(e.target.value)}>
-              {venues.length > 0 &&
-                venues.map((venue) => (
-                  <option value={venue.id} key={venue.id}>
-                    {venue.address}, {venue.city}, {venue.state}
-                  </option>
-                ))}
-            </select>
-          </label>
+          {venues.length > 0 && (
+            <label className="create-group-form__email__label">
+              Venue
+              <select value={venue} onChange={(e) => setVenue(e.target.value)}>
+                {venues.length > 0 &&
+                  venues.map((venue) => (
+                    <option value={venue.id} key={venue.id}>
+                      {venue.address}, {venue.city}, {venue.state}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          )}
+
           <label>
             Capacity
             <input

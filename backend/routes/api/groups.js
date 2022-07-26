@@ -439,12 +439,17 @@ router.post("/:groupId/events", requireAuth,  validateCreateEvent, async (req, r
 
     const groupMember = await GroupMember.findOne({
       where: {
-        GroupId: groupId,
-        UserId: currUserId,
+        GroupId: {
+          [Op.eq]: groupId,
+        },
+        UserId: {
+          [Op.eq]: currUserId,
+        },
       },
     });
 
-    const groupMemberStatus = groupMember.dataValues.status;
+    let groupMemberStatus;
+    if (groupMember) groupMemberStatus = groupMember.dataValues.status;
 
     if (group.dataValues.organizerId !== currUserId && groupMemberStatus !== "co-host") {
       res.status(403);
