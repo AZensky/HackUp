@@ -15,6 +15,7 @@ import GroupDetailsPage from "./components/GroupDetailsPage";
 import EditGroupForm from "./components/EditGroupForm";
 import EditEventForm from "./components/EditEventForm";
 import CreateEventForm from "./components/CreateEventForm";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,16 +36,19 @@ function App() {
           <Route path="/groups/:groupId/create-event">
             <Navigation />
             <CreateEventForm />
+            <Footer />
           </Route>
 
           <Route path="/groups/edit/:groupId">
             <Navigation />
             <EditGroupForm />
+            <Footer />
           </Route>
 
           <Route path="/events/edit/:eventId">
             <Navigation />
             <EditEventForm />
+            <Footer />
           </Route>
 
           <Route path="/events/:eventId">
@@ -60,11 +64,13 @@ function App() {
           <Route path="/create-group">
             <Navigation />
             <CreateGroupForm />
+            <Footer />
           </Route>
 
           <Route path="/signup">
             <Navigation />
             <SignupFormPage />
+            <Footer />
           </Route>
 
           <Route path="/groups">

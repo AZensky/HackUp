@@ -3,24 +3,26 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
+  background-color: rgb(246, 247, 248);
 }
 
 .create-group-form-container {
-  width: 28%;
+  width: 40%;
   display: flex;
+  justify-content: center;
   background-color: white;
   padding: 36px 40px 3.75rem 40px;
   border: 1px solid rgb(230, 230, 230);
+  border-radius: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .create-group-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   padding: 2rem 0 0 0;
   width: 100%;
-  margin-top: 2rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
   max-width: 484px;
@@ -32,8 +34,9 @@
   border: 1px solid rgb(230, 230, 230);
   border-radius: 8px;
   margin: 0;
+  margin-bottom: 0.5rem;
   padding: 8px 12px;
-  width: 100%;
+  width: 94%;
 }
 
 .create-group-form label {
@@ -46,8 +49,21 @@
 
 .create-group-form__title {
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   font-size: 1.75rem;
   line-height: 36px;
-  text-align: left;
+  text-align: center;
+}
+
+.create-group-form-container button {
+  margin-top: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #f65858;
+  padding: 8px 12px;
+  border: 1px solid #f65858;
+  font-size: 1.25rem;
+  height: 3rem;
 }
