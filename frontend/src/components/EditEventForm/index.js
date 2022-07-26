@@ -42,7 +42,6 @@ function EditEventForm() {
     if (name.length < 5) errors.push("Name must be at least 5 characters");
     if (capacity < 0) errors.push("Capacity must be 0 or greater");
     if (price < 0) errors.push("Price must be 0 or greater");
-    // Need to fix
     if (new Date(startDate) < new Date())
       errors.push("Start date must be in the future");
     if (startDate >= endDate) errors.push("End date must be after start date");
@@ -135,7 +134,7 @@ function EditEventForm() {
           <label>
             Start Date
             <input
-              type="date"
+              type="datetime-local"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               required
@@ -144,7 +143,7 @@ function EditEventForm() {
           <label>
             End Date
             <input
-              type="date"
+              type="datetime-local"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               required
