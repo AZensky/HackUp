@@ -90,4 +90,12 @@ router.put("/:venueId", requireAuth, validateCreateVenue, async (req, res) => {
   res.json(result);
 });
 
+// Get all venues
+
+router.get("/", async (req, res) => {
+  let venues = await Venue.findAll();
+
+  res.json(venues);
+});
+
 module.exports = router;
