@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "../HomePageNavigation/ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import CreateGroupButton from "./CreateGroupButton";
+import DemoLoginButton from "../HomePageNavigation/DemoLogin";
 import "./GeneralNavigation.css";
 
 function GeneralNavigation({ isLoaded }) {
@@ -20,6 +21,7 @@ function GeneralNavigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
+        <DemoLoginButton />
         <LoginFormModal styleClass="home-page-navigation__login " />
         <NavLink to="/signup" className="general-navigation__sign-up">
           Sign Up
