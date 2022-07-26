@@ -51,6 +51,7 @@ function UserProfile() {
                   <Link
                     to={`/groups/${group.id}`}
                     className="groups-joined-link"
+                    key={group.id}
                   >
                     <div className="joined-group-details-container">
                       <img
