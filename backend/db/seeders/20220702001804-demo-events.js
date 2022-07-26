@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const events = [
   {
     groupId: 1,
-    venueId: 1,
+    venueId: 2,
     name: "The Annual Great Hackathon",
     type: "Online",
     capacity: 10,
@@ -19,7 +19,7 @@ const events = [
   },
   {
     groupId: 1,
-    venueId: 1,
+    venueId: 3,
     name: "Web Development Hackathon",
     type: "Online",
     capacity: 10,
@@ -33,7 +33,7 @@ const events = [
   },
   {
     groupId: 2,
-    venueId: 2,
+    venueId: 4,
     name: "HackCrew Pizza Night",
     type: "Online",
     capacity: 10,
@@ -47,7 +47,7 @@ const events = [
   },
   {
     groupId: 2,
-    venueId: 2,
+    venueId: 4,
     name: "National FinTech Hackathon",
     type: "Online",
     capacity: 10,

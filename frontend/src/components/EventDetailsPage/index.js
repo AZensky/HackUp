@@ -63,8 +63,11 @@ function EventDetailsPage() {
                   <div className="location-address">
                     <span>{event && event.Venue.city}</span>
                     <span>
-                      {event && event.Venue.address},{" "}
-                      {event && event.Venue.city}, {event && event.Venue.state}
+                      {event && event?.Venue.address}
+                      {event?.Venue.address !== "No Venue" && ", "}
+                      {event && event?.Venue.city}
+                      {event?.Venue.address !== "No Venue" && ", "}
+                      {event && event?.Venue.state}
                     </span>
                   </div>
                 </div>
