@@ -17,6 +17,8 @@ function EditEventForm() {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [venues, setVenues] = useState([]);
+  const [venue, setVenue] = useState(1);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -31,10 +33,19 @@ function EditEventForm() {
       setDescription(data.description);
       setStartDate(data.startDate);
       setEndDate(data.endDate);
+      setVenue(data.venueId);
+      return data;
+    };
+
+    const getVenues = async () => {
+      let response = await fetch("/api/venues");
+      let data = await response.json();
+      setVenues(data);
       return data;
     };
 
     getEvent().catch(console.error);
+    getVenues();
   }, [eventId]);
 
   useEffect(() => {
@@ -58,6 +69,7 @@ function EditEventForm() {
     }
 
     const info = {
+      venueId: venue,
       name,
       type,
       capacity,
@@ -102,6 +114,18 @@ function EditEventForm() {
             <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="Online">Online</option>
               <option value="In person">In Person</option>
+            </select>
+          </label>
+
+          <label className="create-group-form__email__label">
+            Venue
+            <select value={venue} onChange={(e) => setVenue(e.target.value)}>
+              {venues.length > 0 &&
+                venues.map((venue) => (
+                  <option value={venue.id} key={venue.id}>
+                    {venue.address}, {venue.city}, {venue.state}
+                  </option>
+                ))}
             </select>
           </label>
           <label>

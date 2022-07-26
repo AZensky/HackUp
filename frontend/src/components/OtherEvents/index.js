@@ -29,8 +29,8 @@ function OtherEvents() {
                 key={event.id}
                 id={event.id}
                 name={event.name}
-                city={event.Venue.city}
-                state={event.Venue.state}
+                city={event?.Venue?.city || "New York"}
+                state={event?.Venue?.state || "NY"}
                 group={event.Group.name}
                 attendees={event.numAttending}
               />
