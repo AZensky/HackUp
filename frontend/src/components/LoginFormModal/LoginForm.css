@@ -12,6 +12,15 @@
   margin: 0;
   padding: 8px 12px;
   width: 94%;
+  outline: none;
+}
+
+.login-form input:hover {
+  border: 1px solid rgb(117, 117, 117);
+}
+
+.login-form input:focus {
+  border: 1px solid rgb(1, 130, 148);
 }
 
 .login-form label {
@@ -75,5 +84,5 @@
   border: 1px solid #f65858;
   font-size: 1.25rem;
   height: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
