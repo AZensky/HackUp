@@ -97,7 +97,6 @@ function SignupFormPage() {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

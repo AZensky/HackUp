@@ -3,24 +3,26 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
+  background-color: rgb(246, 247, 248);
 }
 
 .signup-form-container {
-  width: 28%;
+  width: 40%;
   display: flex;
+  justify-content: center;
   background-color: white;
   padding: 36px 40px 3.75rem 40px;
   border: 1px solid rgb(230, 230, 230);
+  border-radius: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   padding: 2rem 0 0 0;
   width: 100%;
-  margin-top: 2rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
   max-width: 484px;
@@ -32,44 +34,45 @@
   border: 1px solid rgb(230, 230, 230);
   border-radius: 8px;
   margin: 0;
+  margin-bottom: 1rem;
   padding: 8px 12px;
-  width: 100%;
+  width: 94%;
+  outline: none;
+}
+
+.signup-form input:hover {
+  border: 1px solid rgb(117, 117, 117);
+}
+
+.signup-form input:focus {
+  border: 1px solid rgb(1, 130, 148);
 }
 
 .signup-form label {
   display: block;
   text-align: left;
-}
-
-.signup__title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 1.75rem;
-  line-height: 36px;
-  text-align: left;
-}
-
-.signup-form__email {
-  display: flex;
-  flex-direction: column;
-}
-
-.signup-form label {
   line-height: 24px;
   margin-bottom: 4px;
   font-weight: 500;
 }
 
-.private-option {
-  padding-right: 10px;
+.signup-form__title {
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  line-height: 36px;
+  text-align: center;
 }
 
-.create-group-form select {
-  height: 1.5rem;
-  border: 1px solid #666;
+.signup-form-container button {
+  margin-top: 1rem;
   border-radius: 8px;
-  margin: 10px 0;
-  font-size: 1rem;
-  padding: 2px 5px;
-  margin-left: 1rem;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #f65858;
+  padding: 8px 12px;
+  border: 1px solid #f65858;
+  font-size: 1.25rem;
+  height: 3rem;
 }
