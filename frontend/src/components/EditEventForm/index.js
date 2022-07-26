@@ -21,6 +21,7 @@ function EditEventForm() {
   const [venue, setVenue] = useState(1);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [groupId, setGroupId] = useState("");
 
   useEffect(() => {
     const getEvent = async () => {
@@ -34,19 +35,21 @@ function EditEventForm() {
       setStartDate(data.startDate);
       setEndDate(data.endDate);
       setVenue(data.venueId);
+      setGroupId(data.groupId);
       return data;
     };
 
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
-      setVenues(data);
+      let groupVenues = data.filter((venue) => venue.groupId === groupId);
+      setVenues(groupVenues);
       return data;
     };
 
     getEvent().catch(console.error);
     getVenues();
-  }, [eventId]);
+  }, [eventId, groupId]);
 
   useEffect(() => {
     const errors = [];

@@ -1,0 +1,14 @@
+.demo-login-button {
+  display: inline-block;
+  outline: none;
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgb(33, 33, 33);
+  margin-left: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}

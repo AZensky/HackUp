@@ -23,7 +23,9 @@ function CreateEventForm() {
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
-      setVenues(data);
+      let groupVenues = data.filter((venue) => venue.groupId === groupId);
+      if (groupVenues.length > 0) setVenues(groupVenues);
+
       return data;
     };
 
@@ -49,6 +51,8 @@ function CreateEventForm() {
     if (validationErrors.length > 0) {
       return;
     }
+
+    console.log(venue);
 
     const info = {
       venueId: venue,
@@ -94,17 +98,20 @@ function CreateEventForm() {
             </select>
           </label>
 
-          <label className="create-group-form__email__label">
-            Venue
-            <select value={venue} onChange={(e) => setVenue(e.target.value)}>
-              {venues.length > 0 &&
-                venues.map((venue) => (
-                  <option value={venue.id} key={venue.id}>
-                    {venue.address}, {venue.city}, {venue.state}
-                  </option>
-                ))}
-            </select>
-          </label>
+          {venues.length > 0 && (
+            <label className="create-group-form__email__label">
+              Venue
+              <select value={venue} onChange={(e) => setVenue(e.target.value)}>
+                {venues.length > 0 &&
+                  venues.map((venue) => (
+                    <option value={venue.id} key={venue.id}>
+                      {venue.address}, {venue.city}, {venue.state}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          )}
+
           <label>
             Capacity
             <input
@@ -152,7 +159,7 @@ function CreateEventForm() {
               required
             />
           </label>
-          <button type="submit">Create Group</button>
+          <button type="submit">Create Event</button>
         </form>
       </div>
     </div>
