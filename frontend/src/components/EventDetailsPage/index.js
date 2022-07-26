@@ -27,17 +27,24 @@ function EventDetailsPage() {
       <div className="event-details-page__main-content-container">
         <div className="event-details-page__main-content">
           <div className="event-details-page__main-img-content">
-            {/* {event && <img src={event.Images[0]} alt="Event Image" />} */}
-            <img
-              src="https://images.unsplash.com/photo-1556742111-a301076d9d18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              alt="Event pic"
-            />
+            {event && event.Images[0] ? (
+              <img src={event.Images[0]?.url} alt="Event Image" />
+            ) : (
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6lrmBCsboVg4QhJtKQP7QzwmtYDnY3Jsbw&usqp=CAU"
+                alt="Event pic"
+              />
+            )}
             <div className="right-hand-event-info">
               <div className="right-event-info__group-container">
-                <img
-                  src="https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                  alt="placeholder pic"
-                />
+                {event && event.Images[0] ? (
+                  <img src={event.Images[0]?.url} alt="Event Image" />
+                ) : (
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrNu3n3yXwM8Y7kbTuTCPS6g8mf4eAlniV6g&usqp=CAU"
+                    alt="Event pic"
+                  />
+                )}
                 <div className="right-event-info__group-name">
                   {event && event.Group.name}
                 </div>

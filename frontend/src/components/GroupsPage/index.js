@@ -12,7 +12,6 @@ function GroupsPage() {
   useEffect(() => {
     dispatch(getAllGroups());
   }, [dispatch]);
-  console.log(groups);
 
   return (
     <>

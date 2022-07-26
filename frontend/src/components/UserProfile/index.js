@@ -9,7 +9,6 @@ function UserProfile() {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [groupsJoined, setGroupsJoined] = useState("");
-  console.log(groupsJoined);
 
   useEffect(() => {
     const fetchData = async () => {

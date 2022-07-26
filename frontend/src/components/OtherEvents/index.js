@@ -13,7 +13,6 @@ function OtherEvents() {
   }, [dispatch]);
 
   const events = allEvents.slice(0, 3);
-  console.log(events);
 
   return (
     <div className="other-events-container">

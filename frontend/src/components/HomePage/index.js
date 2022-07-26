@@ -21,10 +21,8 @@ function HomePage() {
   }, [dispatch]);
 
   const events = allEvents.slice(0, 4);
-  console.log("Events:", events);
 
   const groups = allGroups.slice(0, 3);
-  console.log("Groups:", groups);
 
   return (
     <div className="home-page">

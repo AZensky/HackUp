@@ -42,7 +42,6 @@ function EditEventForm() {
     if (name.length < 5) errors.push("Name must be at least 5 characters");
     if (capacity < 0) errors.push("Capacity must be 0 or greater");
     if (price < 0) errors.push("Price must be 0 or greater");
-    console.log(startDate);
     // Need to fix
     if (startDate < new Date()) errors.push("Start date must be in the future");
     if (startDate >= endDate) errors.push("End date must be after start date");
@@ -72,8 +71,6 @@ function EditEventForm() {
     let editedEvent = await dispatch(editEvent(eventId, info)).catch((e) =>
       console.log(e)
     );
-
-    console.log(editedEvent);
 
     history.push(`/events/${editedEvent.id}`);
   }
