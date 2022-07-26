@@ -616,7 +616,7 @@ router.put("/:groupId", requireAuth, validateCreateGroup, async (req, res) => {
 
   const { numMembers, previewImage, ...groupToSend } = group.dataValues;
 
-  res.send(groupToSend);
+  res.json(groupToSend);
 });
 
 //Delete a group
@@ -644,7 +644,7 @@ router.delete("/:groupId", requireAuth, async (req, res) => {
 
   await group.destroy();
 
-  res.send({
+  res.json({
     message: "Successfully deleted",
     statusCode: 200,
   });
@@ -681,7 +681,7 @@ router.post("/", requireAuth, validateCreateGroup, async (req, res, next) => {
     state,
   });
 
-  res.send(group);
+  res.json(group);
 });
 
 module.exports = router;

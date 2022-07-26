@@ -23,8 +23,8 @@ function GroupDetailsHeader() {
     getGroupDetails().catch(console.error);
   }, [groupId]);
 
-  function handleDelete() {
-    dispatch(deleteGroup(groupId));
+  async function handleDelete() {
+    await dispatch(deleteGroup(groupId));
 
     history.push("/groups");
   }

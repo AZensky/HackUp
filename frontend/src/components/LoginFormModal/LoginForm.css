@@ -11,7 +11,7 @@
   border-radius: 8px;
   margin: 0;
   padding: 8px 12px;
-  width: 100%;
+  width: 94%;
 }
 
 .login-form label {
@@ -75,4 +75,5 @@
   border: 1px solid #f65858;
   font-size: 1.25rem;
   height: 3rem;
+  margin-top: 1rem;
 }
