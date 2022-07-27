@@ -16,6 +16,7 @@ import EditGroupForm from "./components/EditGroupForm";
 import EditEventForm from "./components/EditEventForm";
 import CreateEventForm from "./components/CreateEventForm";
 import Footer from "./components/Footer";
+import NotFoundPage from "./components/404NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,12 @@ function App() {
           <Route path="/profile">
             <GeneralNavigation isLoaded={isLoaded} />
             <UserProfile />
+          </Route>
+
+          <Route>
+            <Navigation />
+            <NotFoundPage />
+            <Footer />
           </Route>
         </Switch>
       )}
