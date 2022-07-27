@@ -48,7 +48,7 @@ function HomePage() {
           </div>
           <img
             src="https://secure.meetupstatic.com/next/images/shared/online_events.svg?w=640"
-            alt="Meetup Header"
+            alt="HackUp Header"
           />
         </div>
 

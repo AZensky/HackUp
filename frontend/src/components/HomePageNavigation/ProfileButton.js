@@ -36,9 +36,9 @@ function ProfileButton({ user, classStyle }) {
       <div className="profile-button-container" onClick={openMenu}>
         <button className={classStyle}>{user.firstName[0]}</button>
         {showMenu === false ? (
-          <i class="fa-solid fa-caret-down"></i>
+          <i className="fa-solid fa-caret-down"></i>
         ) : (
-          <i class="fa-solid fa-caret-up"></i>
+          <i className="fa-solid fa-caret-up"></i>
         )}
       </div>
       {showMenu && (

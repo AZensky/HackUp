@@ -29,8 +29,6 @@ function GroupDetailsHeader() {
     history.push("/groups");
   }
 
-  console.log(groupDetails);
-
   return (
     <>
       <div className="group-details-header-container">
@@ -46,14 +44,14 @@ function GroupDetailsHeader() {
           <div className="group-header-info">
             <h1>{groupDetails && groupDetails.name}</h1>
             <div className="group-details-header-location-container">
-              <i class="fa-solid fa-lg fa-location-pin"></i>
+              <i className="fa-solid fa-lg fa-location-pin"></i>
               <span className="group-details-location-span">
                 {groupDetails && groupDetails.city},{" "}
                 {groupDetails && groupDetails.state}
               </span>
             </div>
             <div className="group-details-headers-members-container">
-              <i class="fa-solid fa-sm fa-people-group"></i>
+              <i className="fa-solid fa-sm fa-people-group"></i>
               <span className="group-details-members-span">
                 {groupDetails && groupDetails.numMembers}{" "}
                 {groupDetails && groupDetails.numMembers === 1
@@ -62,7 +60,7 @@ function GroupDetailsHeader() {
               </span>
             </div>
             <div className="group-details-headers-organizer-container">
-              <i class="fa-solid fa-xl fa-user"></i>
+              <i className="fa-solid fa-xl fa-user"></i>
               <span className="group-details-organizer-span">
                 Organized By {groupDetails && groupDetails.Organizer.firstName}{" "}
                 {groupDetails && groupDetails.Organizer.lastName}
@@ -77,7 +75,7 @@ function GroupDetailsHeader() {
           sessionUser.id === groupDetails.organizerId && (
             <div className="group-edit-delete-menu-container">
               <i
-                class="fa-solid fa-ellipsis"
+                className="fa-solid fa-ellipsis"
                 onClick={() => setShowMenu(!showMenu)}
               ></i>
               {showMenu && (

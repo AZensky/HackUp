@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import Footer from "../Footer";
-import ProfileButton from "../HomePageNavigation/ProfileButton";
 import "./UserProfile.css";
 
 function UserProfile() {
@@ -23,8 +22,6 @@ function UserProfile() {
 
   // if user is not logged in, redirect
   if (!sessionUser) return <Redirect to="/" />;
-
-  console.log(sessionUser);
 
   return (
     <>

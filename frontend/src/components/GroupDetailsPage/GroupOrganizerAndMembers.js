@@ -10,7 +10,7 @@ function GroupOrganizerAndMembers({
     <>
       <div className="organizer-group-details">
         <h4>Organizers</h4>
-        <i class="fa-solid fa-user"></i>
+        <i className="fa-solid fa-user"></i>
         <span>
           {organizerFirstName}, {organizerLastName}
         </span>

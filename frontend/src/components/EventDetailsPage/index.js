@@ -51,14 +51,14 @@ function EventDetailsPage() {
 
               <div className="right-event-info__location-container">
                 <div className="right-time-container">
-                  <i class="fa-solid fa-clock"></i>
+                  <i className="fa-solid fa-clock"></i>
                   <time>
                     Friday, March 3, 2023 at 5:15 PM to Friday, March 3, 2023 at
                     6:00 PM
                   </time>
                 </div>
                 <div className="location-address-city-container">
-                  <i class="fa-solid fa-lg fa-location-pin"></i>
+                  <i className="fa-solid fa-lg fa-location-pin"></i>
                   <div className="location-address">
                     <span>{event && event.Venue.city}</span>
                     <span>

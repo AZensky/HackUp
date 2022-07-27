@@ -23,7 +23,6 @@ function CreateEventForm() {
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
-      console.log(groupId);
       let groupVenues = data.filter((venue) => venue.groupId === +groupId);
       if (groupVenues.length > 0) setVenues(groupVenues);
 

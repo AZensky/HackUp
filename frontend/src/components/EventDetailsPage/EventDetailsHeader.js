@@ -48,7 +48,7 @@ function EventDetailsHeader({ event }) {
         <time>Friday, March 3, 2023</time>
         <h1>{event && event.name} </h1>
         <div className="event-organizer-info">
-          <i class="fa-solid fa-user"></i>
+          <i className="fa-solid fa-user"></i>
           <div className="hosted-label">
             <p>Hosted By</p>
             <span>{event && event.Group.name}</span>
@@ -60,7 +60,7 @@ function EventDetailsHeader({ event }) {
       {sessionUser && eventDetails && groupDetails && (
         <div className="event-edit-delete-menu-container">
           <i
-            class="fa-solid fa-ellipsis"
+            className="fa-solid fa-ellipsis"
             onClick={() => setShowMenu(!showMenu)}
           ></i>
           {showMenu && (

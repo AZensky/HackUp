@@ -28,7 +28,7 @@ function GroupUpcomingEvents() {
             <time>Fri, Mar 3, 2023, 8:00 AM PST</time>
             <span>{event.name}</span>
             <div className="group-upcoming-event-attendees-container">
-              <i class="fa-solid fa-user-large"></i>
+              <i className="fa-solid fa-user-large"></i>
               <p className="group-upcoming-event-num-attendees">
                 {event.numAttending}{" "}
                 {event.numAttending === 1 ? "attendee" : "attendees"}{" "}
