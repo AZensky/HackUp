@@ -59,6 +59,7 @@ function App() {
           <Route path="/groups/:groupId">
             <GeneralNavigation isLoaded={isLoaded} />
             <GroupDetailsPage />
+            <Footer />
           </Route>
 
           <Route path="/create-group">

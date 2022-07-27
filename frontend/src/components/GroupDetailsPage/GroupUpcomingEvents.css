@@ -1,0 +1,44 @@
+.group-upcoming-event-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.group-upcoming-event-info-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.group-upcoming-event-info-container > time {
+  color: rgb(117, 117, 117);
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.group-upcoming-event-info-container > span {
+  color: rgb(117, 117, 117);
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 1rem;
+}
+
+.group-upcoming-event-attendees-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.group-upcoming-event-attendees-container > .fa-user-large {
+  margin-left: 1rem;
+  color: rgb(117, 117, 117);
+}
+
+.group-upcoming-event-attendees-container
+  > .group-upcoming-event-num-attendees {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgb(117, 117, 117);
+}
