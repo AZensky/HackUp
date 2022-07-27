@@ -39,7 +39,7 @@ function OtherEventCard({ id, name, city, state, group, attendees, startDate, })
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours
-  }:${minutes.length > 1 ? minutes : "0" + minutes} ${
+  }:${minutes >= 10 ? minutes : "0" + minutes} ${
     hours > 12 ? "PM" : "AM"
   }`;
 

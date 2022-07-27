@@ -66,10 +66,10 @@ function EventDetailsPage() {
     timeStr = `${startDay}, ${startMonth}, ${startDateNum}, ${startYear} at ${
       startHour > 12 ? startHour - 12 : startHour
     }:${
-      startMinute.length > 1 ? startMinute : "0" + startMinute
+      startMinute >= 10 ? startMinute : "0" + startMinute
     } PDT to ${endDay}, ${endMonth}, ${endDateNum}, ${endYear} at ${
       endHour > 12 ? endHour - 12 : endHour
-    }:${endMinute.length > 1 ? endMinute : "0" + endMinute} PDT`;
+    }:${endMinute >= 10 ? endMinute : "0" + endMinute} PDT`;
   }
 
   return (

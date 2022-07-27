@@ -38,9 +38,7 @@ function UpcomingEvent({ preview, name, group, id, startDate }) {
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours
-  }:${minutes.length > 1 ? minutes : "0" + minutes} ${
-    hours > 12 ? "PM" : "AM"
-  }`;
+  }:${minutes >= 10 ? minutes : "0" + minutes} ${hours > 12 ? "PM" : "AM"}`;
 
   console.log(timeStr);
   return (

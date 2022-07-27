@@ -57,7 +57,7 @@ function GroupUpcomingEvents() {
       let year = newDate.getFullYear();
       timeStrings[idx] = `${day}, ${month} ${date}, ${year} · ${
         hours > 12 ? hours - 12 : hours
-      }:${minutes.length > 1 ? minutes : "0" + minutes} ${
+      }:${minutes >= 10 ? minutes : "0" + minutes} ${
         hours > 12 ? "PM" : "AM"
       } PDT`;
     });

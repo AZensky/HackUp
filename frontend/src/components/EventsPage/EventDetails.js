@@ -39,7 +39,7 @@ function EventDetails({name, group, city, state, attendees, preview, id, startDa
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours
-  }:${minutes.length > 1 ? minutes : "0" + minutes} ${
+  }:${minutes >= 10 ? minutes : "0" + minutes} ${
     hours > 12 ? "PM" : "AM"
   } PDT`;
 
