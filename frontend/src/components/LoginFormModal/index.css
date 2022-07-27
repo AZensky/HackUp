@@ -11,6 +11,10 @@
   margin-left: 20px;
 }
 
+.home-page-navigation__login:hover {
+  color: rgb(0, 130, 148);
+}
+
 .footer-login {
   text-decoration: none;
   color: rgb(197, 196, 196);

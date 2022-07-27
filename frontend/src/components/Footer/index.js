@@ -19,7 +19,7 @@ function Footer() {
       {/* Footer header */}
       <div className="footer-header-container">
         <div className="footer-header">
-          <p>Get started on Meetup.</p>
+          <p>Get started on HackUp.</p>
           <Link to="/signup" className="footer-signup">
             Sign Up
           </Link>

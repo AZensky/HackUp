@@ -12,3 +12,7 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+.demo-login-button:hover {
+  color: rgb(0, 130, 148);
+}

@@ -38,10 +38,10 @@ function HomePage() {
         {/* Header Text and Image */}
         <div className="home-page__header-container">
           <div className="home-page__header-container__header-text">
-            <h1>Celebrating 20 years of real connections on Meetup</h1>
+            <h1>Celebrating 20 years of real connections on HackUp</h1>
             <p>
-              Whatever you're looking to do this year, Meetup can help. For 20
-              years, people have turned to Meetup to meet people, make friends,
+              Whatever you're looking to do this year, HackUp can help. For 20
+              years, people have turned to HackUp to meet people, make friends,
               find support, grow a business, and explore their interests.
               Thousands of events are happening every day—join the fun.
             </p>
@@ -166,8 +166,8 @@ function HomePage() {
         </div>
       </div>
       <div className="home-page__secondary-content">
-        {/* How Meetup Works */}
-        <h2>How Meetup Works</h2>
+        {/* How HackUp Works */}
+        <h2>How HackUp Works</h2>
         <p>
           Meet new people who share your interests through online and in-person
           events. It's free to create an account.
@@ -218,7 +218,7 @@ function HomePage() {
 
         {/* Link to Sign up */}
         <Link to="/signup" className="home-page__secondary-content__signup">
-          Join Meetup
+          Join HackUp
         </Link>
       </div>
 
