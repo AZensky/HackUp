@@ -84,3 +84,7 @@
   font-size: 1.25rem;
   height: 3rem;
 }
+
+.create-group-form-container button:hover {
+  background-color: rgb(247, 112, 112);
+}
