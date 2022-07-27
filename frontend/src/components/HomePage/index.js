@@ -239,6 +239,7 @@ function HomePage() {
                 name={event.name}
                 group={event.Group.name}
                 id={event.id}
+                startDate={event.startDate}
               />
             ))}
           </div>

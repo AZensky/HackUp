@@ -10,7 +10,6 @@ function PopularGroup({ name, about, preview, id }) {
         <h3>{name}</h3>
       </div>
       <div className="popular-groups__group-details">
-        <time>Fri, Mar 3 · 11:00 AM PDT</time>
         <p className="popular-group-description">{about}</p>
       </div>
     </Link>
