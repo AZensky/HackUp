@@ -13,7 +13,7 @@ const events = [
     description:
       "HackDevs annual hackathon! Get your friends and come compete for a chance to win prizes!",
     startDate: new Date("2023-03-19 20:00:00"),
-    endDate: new Date("2022-03-19 21:00:00"),
+    endDate: new Date("2023-03-19 21:00:00"),
     previewImage:
       "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3R1ZHlpbmclMjB0b2dldGhlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
   },
