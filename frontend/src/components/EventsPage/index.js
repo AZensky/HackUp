@@ -5,16 +5,18 @@ import NavChoice from "../EventGroupSharedComponents/NavChoice";
 import EventDetails from "./EventDetails";
 import Footer from "../Footer";
 import "./EventsPage.css";
-import { useParams, useQuery } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function EventsPage() {
   const dispatch = useDispatch();
-  const { query } = useParams();
+
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  let query = useQuery();
 
   const events = Object.values(useSelector((state) => state.events));
   useEffect(() => {
-    if (query) dispatch(getAllEvents(query));
-    else dispatch(getAllEvents());
+    dispatch(getAllEvents(query.get("name")));
   }, [dispatch]);
 
   return (
