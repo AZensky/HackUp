@@ -35,16 +35,32 @@
   border-radius: 8px;
   margin: 0;
   margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
   padding: 8px 12px;
   width: 94%;
   outline: none;
+}
+
+.create-group-form input:hover {
+  border: 1px solid rgb(117, 117, 117);
+}
+
+.create-group-form input:focus {
+  border: 1px solid rgb(1, 130, 148);
+}
+
+.create-group-form-container select {
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0 0.5rem 0.75rem;
+  cursor: pointer;
 }
 
 .create-group-form label {
   display: block;
   text-align: left;
   line-height: 24px;
-  margin-bottom: 4px;
+  margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
