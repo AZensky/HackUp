@@ -42,16 +42,3 @@
   font-weight: 400;
   color: rgb(117, 117, 117);
 }
-
-.organizer-group-details > h4 {
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.organizer-group-details > .fa-user {
-  margin-right: 1rem;
-}
-
-.organizer-group-details > span {
-  font-weight: 500;
-}

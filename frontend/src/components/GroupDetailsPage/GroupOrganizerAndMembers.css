@@ -1,0 +1,17 @@
+.organizer-group-details > h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.organizer-group-details > .fa-user {
+  margin-right: 1rem;
+}
+
+.organizer-group-details > span {
+  font-weight: 500;
+}
+
+.members-group-details {
+  font-size: 20px;
+  font-weight: 500;
+}
