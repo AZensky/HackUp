@@ -18,6 +18,7 @@ function EventsPage() {
   let searchWord = query.get("name") ? query.get("name") : undefined;
 
   useEffect(() => {
+    console.log(typeof searchWord);
     dispatch(getAllEvents(searchWord));
   }, [dispatch, searchWord]);
 

@@ -569,7 +569,7 @@ router.get("/", validateEventsQuery, async (req, res) => {
   //Implement search filters
   const where = {};
 
-  if (name && name !== "") {
+  if (name && name !== "" && name !== "undefined") {
     where.name = { [Op.substring]: name };
   }
 
