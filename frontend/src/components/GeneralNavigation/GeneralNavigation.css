@@ -25,6 +25,11 @@
   line-height: 24px;
 }
 
+.keyword-search:focus {
+  outline: none;
+  border: 1px solid rgb(0, 130, 148);
+}
+
 .general-navigation__sign-up {
   text-decoration: none;
   font-size: 0.875rem;
@@ -33,6 +38,11 @@
   font-weight: 500;
   color: rgb(33, 33, 33);
   margin-left: 20px;
+  margin-right: 5px;
+}
+
+.general-navigation__sign-up:hover {
+  color: rgb(0, 130, 148);
 }
 
 div.right-nav > ul > li {

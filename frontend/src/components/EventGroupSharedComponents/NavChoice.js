@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./NavChoice.css";
 import NavSort from "./NavSort";
 
@@ -7,12 +7,20 @@ function NavChoice({ displaySort, isEvent }) {
   return (
     <div className="nav-choice-container">
       <div className="nav-choice">
-        <Link to="/events" className="nav-choice-link">
+        <NavLink
+          to="/events"
+          className="nav-choice-link"
+          activeClassName="selected"
+        >
           Events
-        </Link>
-        <Link to="/groups" className="nav-choice-link">
+        </NavLink>
+        <NavLink
+          to="/groups"
+          className="nav-choice-link"
+          activeClassName="selected"
+        >
           Groups
-        </Link>
+        </NavLink>
       </div>
       <h1 className="nav-choice-main-title">
         Suggested {isEvent ? "events" : "groups"}{" "}

@@ -24,13 +24,13 @@ function UserProfile() {
   // if user is not logged in, redirect
   if (!sessionUser) return <Redirect to="/" />;
 
+  console.log(sessionUser);
+
   return (
     <>
       <div className="profile-main-content">
         <div className="users-info-container">
-          <div className="user-image">
-            <ProfileButton classStyle="profile-page-img" user={sessionUser} />
-          </div>
+          <div className="profile-page-img">{sessionUser.firstName[0]}</div>
           <h1>
             {sessionUser.firstName} {sessionUser.lastName}
           </h1>

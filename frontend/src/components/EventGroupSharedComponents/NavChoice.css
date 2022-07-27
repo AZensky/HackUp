@@ -3,11 +3,13 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid rgb(217, 217, 217);
+  margin-top: 2rem;
 }
 
 .nav-choice {
   width: 100%;
   display: flex;
+  margin-bottom: 1rem;
 }
 
 .nav-choice-main-title {
@@ -22,4 +24,9 @@
   color: rgb(117, 117, 117);
   font-size: 20px;
   font-weight: 500;
+}
+
+.selected {
+  color: rgb(0, 130, 148);
+  border-bottom: 4px solid rgb(0, 130, 148);
 }

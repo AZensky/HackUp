@@ -14,18 +14,6 @@
   cursor: pointer;
 }
 
-.profile-page-img {
-  width: 20vw;
-  height: 40vh;
-  background-color: hsla(170, 45%, 34%, 0.341);
-  border-radius: 50%;
-  font-weight: 400;
-  font-size: 6rem;
-  color: rgb(17, 15, 15);
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
 .fa-caret-down {
   color: rgb(162, 162, 162);
   cursor: pointer;

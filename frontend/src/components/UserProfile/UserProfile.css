@@ -103,3 +103,17 @@
   font-size: 1.25rem;
   color: rgb(0, 0, 0);
 }
+
+.profile-page-img {
+  width: 20vw;
+  height: 40vh;
+  background-color: hsla(170, 45%, 34%, 0.341);
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 6rem;
+  color: rgb(17, 15, 15);
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

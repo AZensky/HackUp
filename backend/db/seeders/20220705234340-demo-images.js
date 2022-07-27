@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const demoImages = [
   {
-    url: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    url: "https://images.unsplash.com/photo-1561347981-969c80cf4463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     userId: 1,
     eventId: 1,
   },
