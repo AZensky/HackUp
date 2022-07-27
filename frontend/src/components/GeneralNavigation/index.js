@@ -50,7 +50,7 @@ function GeneralNavigation({ isLoaded }) {
           <input
             type="text"
             className="keyword-search"
-            placeholder="Search for keywords"
+            placeholder="Search for events"
           />
         </label>
         <button>

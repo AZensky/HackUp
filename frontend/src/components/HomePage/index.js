@@ -153,12 +153,12 @@ function HomePage() {
               <Link to="/groups" className="home-page__search-dates__feature">
                 Groups
               </Link>
-              <Link to="/" className="home-page__search-dates__feature">
+              {/* <Link to="/" className="home-page__search-dates__feature">
                 Online
               </Link>
               <Link to="/" className="home-page__search-dates__feature">
                 In person
-              </Link>
+              </Link> */}
               {/* <Link to="/" className="home-page__search-dates__feature">
                 Trending near you
               </Link> */}
