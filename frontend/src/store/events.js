@@ -4,6 +4,7 @@ const LOAD_EVENTS = "/events/LOAD_EVENTS";
 const ADD_EVENT = "/events/ADD_EVENT";
 const EDIT_EVENT = "/events/EDIT_EVENT";
 const DELETE_EVENT = "/events/DELETE_EVENT";
+const LOAD_FILTERED_EVENTS = "/events/LOAD_FILTERED_EVENTS";
 
 //action creator to load all events
 export const loadEvents = (events) => {
@@ -37,9 +38,16 @@ export const remove = (id) => {
   };
 };
 
+export const loadFiltered = (events) => {
+  return {
+    type: LOAD_FILTERED_EVENTS,
+    payload: events,
+  };
+};
+
 //thunk action creator to load events
-export const getAllEvents = () => async (dispatch) => {
-  const response = await fetch("/api/events");
+export const getAllEvents = (name) => async (dispatch) => {
+  const response = await fetch(`/api/events?name=${name}`);
 
   if (response.ok) {
     const data = await response.json();
@@ -94,6 +102,17 @@ export const deleteEvent = (id) => async (dispatch) => {
   }
 };
 
+//thunk action creator to get filtered events
+export const getFilteredEvents = (name) => async (dispatch) => {
+  const response = await fetch(`/api/events/${name}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(loadFiltered(data));
+    return data;
+  }
+};
+
 const initialState = {};
 
 export const eventsReducer = (state = initialState, action) => {
@@ -124,6 +143,16 @@ export const eventsReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState[action.payload];
       return newState;
+    }
+
+    case LOAD_FILTERED_EVENTS: {
+      const allEvents = {};
+      action.payload.Events.forEach((event) => {
+        allEvents[event.id] = event;
+      });
+      return {
+        ...allEvents,
+      };
     }
 
     default: {
