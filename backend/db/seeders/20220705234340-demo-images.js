@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const demoImages = [
   {
-    url: "https://images.unsplash.com/photo-1561347981-969c80cf4463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    url: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     userId: 1,
     eventId: 1,
   },
@@ -13,7 +13,7 @@ const demoImages = [
     eventId: 2,
   },
   {
-    url: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzZ8fHRlY2hub2xvZ3l8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+    url: "https://images.unsplash.com/photo-1561347981-969c80cf4463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     userId: 2,
     groupId: 1,
   },
