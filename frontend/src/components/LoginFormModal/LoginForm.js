@@ -26,7 +26,7 @@ function LoginForm() {
   //form with controlled components
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <ul>
+      <ul className="login-form__validation-errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}

@@ -76,3 +76,9 @@
   font-size: 1.25rem;
   height: 3rem;
 }
+
+.signup-form__validation-errors {
+  list-style: none;
+  color: red;
+  text-align: center;
+}

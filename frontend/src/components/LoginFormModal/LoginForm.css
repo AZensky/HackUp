@@ -86,3 +86,10 @@
   height: 3rem;
   margin-top: 1.5rem;
 }
+
+.login-form__validation-errors {
+  list-style: none;
+  color: red;
+  text-align: center;
+  padding-left: 0;
+}
