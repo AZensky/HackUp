@@ -36,6 +36,7 @@ function EventsPage() {
               attendees={event.numAttending}
               preview={event.previewImage}
               id={event.id}
+              startDate={event.startDate}
             />
           ))}
         {events.length === 0 && <h2>No Events Found</h2>}

@@ -59,7 +59,7 @@ function GroupUpcomingEvents() {
         hours > 12 ? hours - 12 : hours
       }:${minutes.length > 1 ? minutes : "0" + minutes} ${
         hours > 12 ? "PM" : "AM"
-      }`;
+      } PDT`;
     });
   }
 
