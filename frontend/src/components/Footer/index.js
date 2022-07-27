@@ -30,12 +30,12 @@ function Footer() {
       <div className="footer-columns-container">
         <div className="your-account-column">
           <h4>Your Account</h4>
-          <Link to="/signup" className="signup-login-footer-link">
+          <Link to="/signup" className="signup-login-footer-link footer-hover">
             Sign up
           </Link>
           {!sessionUser && <LoginFormModal styleClass="footer-login" />}
           {sessionUser && (
-            <div className="footer-log-out" onClick={logout}>
+            <div className="footer-log-out footer-hover" onClick={logout}>
               Log Out
             </div>
           )}
@@ -48,11 +48,11 @@ function Footer() {
           ]}
         />
         <div className="technologies-column">
-          <h4>Technologies Used</h4>
-          <p>Express</p>
-          <p>Sequelize</p>
-          <p>React</p>
-          <p>Redux</p>
+          <h4 className="footer-hover">Technologies Used</h4>
+          <p className="footer-hover">Express</p>
+          <p className="footer-hover">Sequelize</p>
+          <p className="footer-hover">React</p>
+          <p className="footer-hover">Redux</p>
         </div>
       </div>
 
@@ -61,13 +61,13 @@ function Footer() {
         <h4>Connect with Me!</h4>
         <div className="footer-social-links">
           <a href="https://www.linkedin.com/in/alex-zelinsky/">
-            <i class="fa-brands fa-linkedin"></i>
+            <i className="fa-brands fa-linkedin footer-hover"></i>
           </a>
           <a href="https://medium.com/@alexzelinsky124">
-            <i class="fa-brands fa-medium"></i>
+            <i className="fa-brands fa-medium footer-hover"></i>
           </a>
           <a href="https://www.instagram.com/a.zelinsky7/?hl=en">
-            <i class="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-instagram footer-hover"></i>
           </a>
         </div>
       </div>

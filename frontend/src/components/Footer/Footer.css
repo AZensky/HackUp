@@ -124,3 +124,8 @@
   text-align: start;
   padding: 0;
 }
+
+.footer-hover:hover {
+  color: rgb(162, 162, 162);
+  cursor: pointer;
+}

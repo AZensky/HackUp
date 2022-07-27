@@ -333,6 +333,14 @@ div.home-page > p {
   cursor: pointer;
 }
 
+.upcoming-events-header__explore:hover {
+  text-decoration: underline;
+}
+
+.upcoming-groups-header__explore:hover {
+  text-decoration: underline;
+}
+
 .popular-groups-container {
   width: 100%;
   height: 203px;

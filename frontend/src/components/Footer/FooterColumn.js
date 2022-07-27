@@ -10,7 +10,7 @@ function FooterColumn({ title, categories }) {
         <Link
           to={`/${category.link}`}
           key={category.name}
-          className="category-link"
+          className="category-link footer-hover"
         >
           {category.name}
         </Link>
