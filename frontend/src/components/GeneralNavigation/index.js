@@ -60,7 +60,7 @@ function GeneralNavigation({ isLoaded }) {
             <input
               type="text"
               className="keyword-search"
-              placeholder="Search for events"
+              placeholder="Search for events (case-sensitive)"
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />

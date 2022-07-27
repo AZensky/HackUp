@@ -121,7 +121,7 @@ function HomePage() {
               <label>
                 <input
                   type="text"
-                  placeholder='Search for "Tennis"'
+                  placeholder='Search for "Hackathon" (case-sensitive)'
                   value={searchName}
                   onChange={(e) => setSearchName(e.target.value)}
                 />
@@ -180,7 +180,9 @@ function HomePage() {
               src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"
               alt="Group of people"
             />
-            <h3>Find a Group</h3>
+            <Link to="/groups" className="home-page-find">
+              <h3>Find a Group</h3>
+            </Link>
             <p>
               Do what you love, meet others who love it, find your community.
               The rest is history!
@@ -191,7 +193,9 @@ function HomePage() {
               src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256"
               alt="Group of people"
             />
-            <h3>Attend a Hackathon</h3>
+            <Link to="/events" className="home-page-find">
+              <h3>Attend a Hackathon</h3>
+            </Link>
             <p>
               Hackathons are happening all the time, covering topics such as
               machine learning, web development, data, and FinTech.
@@ -202,7 +206,9 @@ function HomePage() {
               src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
               alt="Group of people"
             />
-            <h3>Discover Your Passion</h3>
+            <Link to="/events" className="home-page-find">
+              <h3>Discover Your Passion</h3>
+            </Link>
             <p>
               You don't have to be an expert to attend an event and discover
               explore your interests.

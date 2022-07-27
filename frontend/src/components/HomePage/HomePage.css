@@ -227,8 +227,14 @@ div.home-page > p {
   height: 100%;
 }
 
-.home-page__secondary-content__events-and-groups__content-container > h3 {
+.home-page__secondary-content__events-and-groups__content-container h3 {
   margin-bottom: 0.75rem;
+  text-decoration: none;
+  color: rgb(33, 33, 33);
+}
+
+.home-page-find {
+  text-decoration: none;
 }
 
 .home-page__secondary-content__events-and-groups__content-container > p {
