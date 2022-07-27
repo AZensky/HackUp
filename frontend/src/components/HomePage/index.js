@@ -24,7 +24,6 @@ function HomePage() {
 
   async function handleSearch(e) {
     e.preventDefault();
-    await dispatch(getAllEvents(searchName));
 
     history.push(`/events?name=${searchName}`);
   }

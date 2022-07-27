@@ -15,10 +15,11 @@ function EventsPage() {
   let query = useQuery();
 
   const events = Object.values(useSelector((state) => state.events));
+  let searchWord = query.get("name") ? query.get("name") : undefined;
+
   useEffect(() => {
-    let searchWord = query.get("name") ? query.get("name") : undefined;
     dispatch(getAllEvents(searchWord));
-  }, [dispatch]);
+  }, [dispatch, searchWord]);
 
   return (
     <>

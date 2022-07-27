@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "../HomePageNavigation/ProfileButton";
 import LoginFormModal from "../LoginFormModal";
@@ -8,7 +8,16 @@ import DemoLoginButton from "../HomePageNavigation/DemoLogin";
 import "./GeneralNavigation.css";
 
 function GeneralNavigation({ isLoaded }) {
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+
+  const [searchName, setSearchName] = useState();
+
+  async function handleSearch(e) {
+    e.preventDefault();
+
+    history.push(`/events?name=${searchName}`);
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -45,17 +54,20 @@ function GeneralNavigation({ isLoaded }) {
             fillRule="evenodd"
           ></path>
         </svg>
-
-        <label>
-          <input
-            type="text"
-            className="keyword-search"
-            placeholder="Search for events"
-          />
-        </label>
-        <button>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+        <form onSubmit={handleSearch}>
+          <label>
+            <input
+              type="text"
+              className="keyword-search"
+              placeholder="Search for events"
+              value={searchName}
+              onChange={(e) => setSearchName(e.target.value)}
+            />
+          </label>
+          <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
       </div>
 
       {/* Right side of nav */}

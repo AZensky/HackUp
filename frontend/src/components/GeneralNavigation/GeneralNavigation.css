@@ -38,7 +38,7 @@ div.right-nav > ul > li {
   list-style: none;
 }
 
-.left-nav > button {
+.left-nav button {
   background-color: rgb(246, 88, 88);
   border: none;
   padding: 0.5rem;
