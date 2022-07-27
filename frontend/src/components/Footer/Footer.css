@@ -111,3 +111,16 @@
   color: rgb(217, 217, 217);
   font-size: 2rem;
 }
+
+.footer-log-out {
+  text-decoration: none;
+  color: rgb(197, 196, 196);
+  font-size: 14px;
+  cursor: pointer;
+  margin: 4px 0px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: start;
+  padding: 0;
+}

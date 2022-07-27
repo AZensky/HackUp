@@ -1,10 +1,19 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as sessionActions from "../../store/session";
 import FooterColumn from "./FooterColumn";
 import LoginFormModal from "../LoginFormModal";
 
 function Footer() {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+  };
   return (
     <div className="footer-container">
       {/* Footer header */}
@@ -24,7 +33,12 @@ function Footer() {
           <Link to="/signup" className="signup-login-footer-link">
             Sign up
           </Link>
-          <LoginFormModal styleClass="footer-login" />
+          {!sessionUser && <LoginFormModal styleClass="footer-login" />}
+          {sessionUser && (
+            <div className="footer-log-out" onClick={logout}>
+              Log Out
+            </div>
+          )}
         </div>
         <FooterColumn
           title={"Discover"}
