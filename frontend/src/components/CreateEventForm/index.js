@@ -23,7 +23,8 @@ function CreateEventForm() {
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
-      let groupVenues = data.filter((venue) => venue.groupId === groupId);
+      console.log(groupId);
+      let groupVenues = data.filter((venue) => venue.groupId === +groupId);
       if (groupVenues.length > 0) setVenues(groupVenues);
 
       return data;
@@ -51,8 +52,6 @@ function CreateEventForm() {
     if (validationErrors.length > 0) {
       return;
     }
-
-    console.log(venue);
 
     const info = {
       venueId: venue,
@@ -105,7 +104,11 @@ function CreateEventForm() {
                 {venues.length > 0 &&
                   venues.map((venue) => (
                     <option value={venue.id} key={venue.id}>
-                      {venue.address}, {venue.city}, {venue.state}
+                      {venue.address}
+                      {venue.address !== "No Venue" && ", "}
+                      {venue.city}
+                      {venue.address !== "No Venue" && ", "}
+                      {venue.state}
                     </option>
                   ))}
               </select>

@@ -31,7 +31,7 @@ function OtherEvents() {
                 name={event.name}
                 city={event?.Venue?.city || "New York"}
                 state={event?.Venue?.state || "NY"}
-                group={event?.Group.name}
+                group={event?.Group?.name}
                 attendees={event.numAttending}
               />
             </Link>

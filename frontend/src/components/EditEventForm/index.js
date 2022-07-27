@@ -42,7 +42,7 @@ function EditEventForm() {
     const getVenues = async () => {
       let response = await fetch("/api/venues");
       let data = await response.json();
-      let groupVenues = data.filter((venue) => venue.groupId === groupId);
+      let groupVenues = data.filter((venue) => venue.groupId === +groupId);
       setVenues(groupVenues);
       return data;
     };
@@ -126,7 +126,11 @@ function EditEventForm() {
                 {venues.length > 0 &&
                   venues.map((venue) => (
                     <option value={venue.id} key={venue.id}>
-                      {venue.address}, {venue.city}, {venue.state}
+                      {venue.address}
+                      {venue.address !== "No Venue" && ", "}
+                      {venue.city}
+                      {venue.address !== "No Venue" && ", "}
+                      {venue.state}
                     </option>
                   ))}
               </select>
