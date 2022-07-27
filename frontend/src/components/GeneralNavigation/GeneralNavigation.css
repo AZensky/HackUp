@@ -16,7 +16,8 @@
   min-width: 210px;
   height: 24px;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
   border: 1px solid rgb(217, 217, 217);
   background: none;
   margin-left: 2.5rem;
@@ -47,6 +48,7 @@ div.right-nav > ul > li {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 42px;
+  cursor: pointer;
 }
 
 .fa-magnifying-glass {
@@ -59,4 +61,9 @@ div.right-nav > ul > li {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+}
+
+.general-navigation form {
+  display: flex;
+  align-items: center;
 }

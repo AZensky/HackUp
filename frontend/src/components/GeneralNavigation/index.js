@@ -15,8 +15,9 @@ function GeneralNavigation({ isLoaded }) {
 
   async function handleSearch(e) {
     e.preventDefault();
-
-    history.push(`/events?name=${searchName}`);
+    let searchInput = searchName;
+    setSearchName("");
+    history.push(`/events?name=${searchInput}`);
   }
 
   let sessionLinks;
