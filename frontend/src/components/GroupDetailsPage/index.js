@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./GroupDetailsPage.css";
 import GroupDetailsHeader from "./GroupDetailsHeader";
 import GroupUpcomingEvents from "./GroupUpcomingEvents";
+import GroupOrganizerAndMembers from "./GroupOrganizerAndMembers";
 import { useParams } from "react-router-dom";
 
 function GroupDetailsPage() {
   const { groupId } = useParams();
 
-  const [groupDetails, setGroupDetails] = useState({});
+  const [groupDetails, setGroupDetails] = useState();
 
   useEffect(() => {
     const getGroupDetails = async () => {
@@ -17,7 +18,8 @@ function GroupDetailsPage() {
     };
 
     getGroupDetails().catch(console.error);
-  }, []);
+  }, [groupId]);
+
   return (
     <>
       <GroupDetailsHeader />
@@ -26,13 +28,23 @@ function GroupDetailsPage() {
           <div className="about-and-upcoming-container">
             <div className="group-details__about-section">
               <h4>What we're about</h4>
-              <p>{groupDetails.about}</p>
+              <p>{groupDetails && groupDetails.about}</p>
             </div>
             <h4>Upcoming Events</h4>
             <GroupUpcomingEvents />
           </div>
 
-          <div className="organizer-and-members-container"></div>
+          <div className="organizer-and-members-container">
+            <GroupOrganizerAndMembers
+              organizerFirstName={
+                groupDetails && groupDetails.Organizer.firstName
+              }
+              organizerLastName={
+                groupDetails && groupDetails.Organizer.lastName
+              }
+              numMembers={groupDetails && groupDetails.numMembers}
+            />
+          </div>
         </div>
       </div>
     </>
