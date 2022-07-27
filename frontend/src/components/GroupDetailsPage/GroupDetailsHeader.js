@@ -48,7 +48,8 @@ function GroupDetailsHeader() {
             <div className="group-details-header-location-container">
               <i class="fa-solid fa-lg fa-location-pin"></i>
               <span className="group-details-location-span">
-                San Francisco CA
+                {groupDetails && groupDetails.city},{" "}
+                {groupDetails && groupDetails.state}
               </span>
             </div>
             <div className="group-details-headers-members-container">
