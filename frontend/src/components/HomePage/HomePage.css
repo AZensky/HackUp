@@ -89,6 +89,10 @@ div.home-page > p {
   gap: 5px;
 }
 
+.home-page__topic-link__image:hover {
+  opacity: 0.7;
+}
+
 .home-page__search-container__features {
   display: flex;
   width: 100%;
@@ -145,13 +149,17 @@ div.home-page > p {
   cursor: pointer;
   height: 3rem;
   font-weight: 700;
-  background-color: #f77070;
-  border-color: #f77070;
+  background-color: rgb(246, 88, 88);
+  border-color: rgb(246, 88, 88);
   color: rgb(255, 255, 255);
   text-align: center;
   border-style: solid;
   border-radius: 0.75rem;
   width: 100%;
+}
+
+.home-page__search-container__form > button:hover {
+  background-color: rgb(247, 112, 112);
 }
 
 .home-page__search-dates {
@@ -237,6 +245,14 @@ div.home-page > p {
   text-decoration: none;
 }
 
+.home-page-find > h3 {
+  color: rgb(0, 130, 148);
+}
+
+.home-page-find > h3:hover {
+  text-decoration: underline;
+}
+
 .home-page__secondary-content__events-and-groups__content-container > p {
   text-align: center;
 }
@@ -258,6 +274,10 @@ div.home-page > p {
   box-sizing: border-box;
   text-align: center;
   margin-top: 3rem;
+}
+
+.home-page__secondary-content__signup:hover {
+  opacity: 0.8;
 }
 
 .home-page__tertiary-content {
