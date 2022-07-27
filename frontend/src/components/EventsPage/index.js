@@ -5,13 +5,16 @@ import NavChoice from "../EventGroupSharedComponents/NavChoice";
 import EventDetails from "./EventDetails";
 import Footer from "../Footer";
 import "./EventsPage.css";
+import { useParams, useQuery } from "react-router-dom";
 
 function EventsPage() {
   const dispatch = useDispatch();
+  const { query } = useParams();
 
   const events = Object.values(useSelector((state) => state.events));
   useEffect(() => {
-    dispatch(getAllEvents());
+    if (query) dispatch(getAllEvents(query));
+    else dispatch(getAllEvents());
   }, [dispatch]);
 
   return (
@@ -31,6 +34,7 @@ function EventsPage() {
               id={event.id}
             />
           ))}
+        {events.length === 0 && <h2>No Events Found</h2>}
       </div>
 
       <Footer />

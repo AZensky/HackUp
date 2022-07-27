@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import { getAllGroups } from "../../store/groups";
@@ -10,6 +10,8 @@ import PopularGroup from "./PopularGroup";
 
 function HomePage() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [searchName, setSearchName] = useState();
   const allEvents = Object.values(useSelector((state) => state.events));
   useEffect(() => {
     dispatch(getAllEvents());
@@ -19,6 +21,13 @@ function HomePage() {
   useEffect(() => {
     dispatch(getAllGroups());
   }, [dispatch]);
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    await dispatch(getAllEvents(searchName));
+
+    history.push(`/events/search/${searchName}`);
+  }
 
   const events = allEvents.slice(0, 4);
 
@@ -106,9 +115,17 @@ function HomePage() {
         <div className="home-page__search-container__features">
           <div className="home-page__search-container">
             <h2>What do you want to do?</h2>
-            <form className="home-page__search-container__form">
+            <form
+              className="home-page__search-container__form"
+              onSubmit={handleSearch}
+            >
               <label>
-                <input type="text" placeholder='Search for "Tennis"' />
+                <input
+                  type="text"
+                  placeholder='Search for "Tennis"'
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
+                />
               </label>
               <button>Search</button>
             </form>

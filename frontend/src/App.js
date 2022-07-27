@@ -40,6 +40,11 @@ function App() {
             <Footer />
           </Route>
 
+          <Route path="/events/search/:query">
+            <GeneralNavigation isLoaded={isLoaded} />
+            <EventsPage />
+          </Route>
+
           <Route path="/groups/edit/:groupId">
             <Navigation />
             <EditGroupForm />
