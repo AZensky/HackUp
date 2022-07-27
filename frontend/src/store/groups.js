@@ -104,7 +104,6 @@ export const groupsReducer = (state = initialState, action) => {
         allGroups[group.id] = group;
       });
       return {
-        ...state,
         ...allGroups,
       };
     }

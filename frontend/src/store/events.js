@@ -104,7 +104,6 @@ export const eventsReducer = (state = initialState, action) => {
         allEvents[event.id] = event;
       });
       return {
-        ...state,
         ...allEvents,
       };
     }

@@ -88,7 +88,10 @@ function CreateGroupForm() {
             onChange={(e) => setIsPrivate(e.target.value)}
           >
             Private?
-            <select value={isPrivate}>
+            <select
+              value={isPrivate}
+              onChange={(e) => setIsPrivate(e.target.value)}
+            >
               <option value={false}>No</option>
               <option value={true}>Yes</option>
             </select>
