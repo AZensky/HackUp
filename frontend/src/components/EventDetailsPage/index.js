@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import EventDetailsHeader from "./EventDetailsHeader";
 import Footer from "../Footer";
 import OtherEvents from "../OtherEvents";
-import NotFoundPage from "../404NotFound";
 
 function EventDetailsPage() {
   const { eventId } = useParams();
@@ -19,6 +18,59 @@ function EventDetailsPage() {
 
     setEventDetails().catch(console.error);
   }, [eventId]);
+
+  let days = {
+    0: "Sunday",
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+  };
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let timeStr;
+
+  if (event) {
+    const newDate = new Date(event.startDate);
+    const startDateNum = newDate.getUTCDate();
+    let startDay = days[newDate.getDay()];
+    let startHour = newDate.getHours();
+    let startMonth = monthNames[newDate.getMonth()];
+    const startMinute = newDate.getMinutes();
+    const startYear = newDate.getFullYear();
+
+    const endDate = new Date(event.endDate);
+    const endDateNum = endDate.getUTCDate();
+    let endDay = days[endDate.getDay()];
+    let endHour = endDate.getHours();
+    let endMonth = monthNames[endDate.getMonth()];
+    const endMinute = endDate.getMinutes();
+    const endYear = endDate.getFullYear();
+
+    timeStr = `${startDay}, ${startMonth}, ${startYear} at ${
+      startHour > 12 ? startHour - 12 : startHour
+    }:${
+      startMinute.length > 1 ? startMinute : "0" + startMinute
+    } PDT to ${endDay}, ${endMonth}, ${endYear} at ${
+      endHour > 12 ? endHour - 12 : endHour
+    }:${endMinute.length > 1 ? endMinute : "0" + endMinute} PDT`;
+  }
 
   return (
     <>
@@ -52,10 +104,7 @@ function EventDetailsPage() {
               <div className="right-event-info__location-container">
                 <div className="right-time-container">
                   <i className="fa-solid fa-clock"></i>
-                  <time>
-                    Friday, March 3, 2023 at 5:15 PM to Friday, March 3, 2023 at
-                    6:00 PM
-                  </time>
+                  <time>{timeStr}</time>
                 </div>
                 <div className="location-address-city-container">
                   <i className="fa-solid fa-lg fa-location-pin"></i>
