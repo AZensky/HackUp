@@ -42,10 +42,49 @@ function EventDetailsHeader({ event }) {
     history.push("/events");
   }
 
+  let days = {
+    0: "Sunday",
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+  };
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let timeStr;
+  if (event) {
+    const newDate = new Date(event.startDate);
+    const date = newDate.getUTCDate();
+    let day = days[newDate.getDay()];
+    let hours = newDate.getHours();
+    let month = monthNames[newDate.getMonth()];
+    const minutes = newDate.getMinutes();
+    const year = newDate.getFullYear();
+    console.log(minutes);
+
+    timeStr = `${day}, ${month} ${date}, ${year}`;
+  }
+
   return (
     <div className="event-details-header-container">
       <div className="event-details-header-content">
-        <time>Friday, March 3, 2023</time>
+        <time>{timeStr}</time>
         <h1>{event && event.name} </h1>
         <div className="event-organizer-info">
           <i className="fa-solid fa-user"></i>
