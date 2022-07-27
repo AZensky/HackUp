@@ -6,7 +6,14 @@ function GroupDetails({ name, city, state, about, members, preview, id }) {
   return (
     <Link to={`/groups/${id}`} className="group-details-container">
       <div className="group-details-info">
-        <img src={preview} alt="Event Pic" />
+        <img
+          src={
+            preview
+              ? preview
+              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6lrmBCsboVg4QhJtKQP7QzwmtYDnY3Jsbw&usqp=CAU"
+          }
+          alt="Event Pic"
+        />
         <div className="group-details-description">
           <p className="group-details-name">{name}</p>
           <p className="group-details-location">

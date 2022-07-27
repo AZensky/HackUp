@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import EventDetailsHeader from "./EventDetailsHeader";
 import Footer from "../Footer";
 import OtherEvents from "../OtherEvents";
+import NotFoundPage from "../404NotFound";
 
 function EventDetailsPage() {
   const { eventId } = useParams();
@@ -18,8 +19,6 @@ function EventDetailsPage() {
 
     setEventDetails().catch(console.error);
   }, [eventId]);
-
-  console.log(event);
 
   return (
     <>

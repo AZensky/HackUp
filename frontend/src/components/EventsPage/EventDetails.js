@@ -6,7 +6,14 @@ function EventDetails({ name, group, city, state, attendees, preview, id }) {
   return (
     <Link to={`/events/${id}`} className="event-details-container">
       <div className="event-details-info">
-        <img src={preview} alt="Event Pic" />
+        <img
+          src={
+            preview
+              ? preview
+              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6lrmBCsboVg4QhJtKQP7QzwmtYDnY3Jsbw&usqp=CAU"
+          }
+          alt="Event Pic"
+        />
         <div className="event-details-description">
           <time>Fri, Mar 3 · 11:00 AM PDT</time>
           <p className="event-details-title">{name}</p>
