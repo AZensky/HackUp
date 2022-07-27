@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import NavChoice from "../EventGroupSharedComponents/NavChoice";
@@ -8,33 +8,36 @@ import "./EventsPage.css";
 
 function EventsPage() {
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const events = Object.values(useSelector((state) => state.events));
+  const events = useSelector((state) => state.events);
   useEffect(() => {
-    dispatch(getAllEvents());
+    dispatch(getAllEvents()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
-    <>
-      <div className="events-page-container">
-        <NavChoice displaySort={false} isEvent={true} />
-        {events.length > 0 &&
-          events.map((event) => (
-            <EventDetails
-              key={event.id}
-              name={event.name}
-              group={event.Group.name}
-              city={event.Venue.city}
-              state={event.Venue.state}
-              attendees={event.numAttending}
-              preview={event.previewImage}
-              id={event.id}
-            />
-          ))}
-      </div>
+    isLoaded && (
+      <>
+        <div className="events-page-container">
+          <NavChoice displaySort={false} isEvent={true} />
+          {events.length > 0 &&
+            events.map((event) => (
+              <EventDetails
+                key={event.id}
+                name={event.name}
+                group={event.Group.name}
+                city={event.Venue.city}
+                state={event.Venue.state}
+                attendees={event.numAttending}
+                preview={event.previewImage}
+                id={event.id}
+              />
+            ))}
+        </div>
 
-      <Footer />
-    </>
+        <Footer />
+      </>
+    )
   );
 }
 
