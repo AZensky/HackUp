@@ -63,11 +63,11 @@ function EventDetailsPage() {
     const endMinute = endDate.getMinutes();
     const endYear = endDate.getFullYear();
 
-    timeStr = `${startDay}, ${startMonth}, ${startYear} at ${
+    timeStr = `${startDay}, ${startMonth}, ${startDateNum}, ${startYear} at ${
       startHour > 12 ? startHour - 12 : startHour
     }:${
       startMinute.length > 1 ? startMinute : "0" + startMinute
-    } PDT to ${endDay}, ${endMonth}, ${endYear} at ${
+    } PDT to ${endDay}, ${endMonth}, ${endDateNum}, ${endYear} at ${
       endHour > 12 ? endHour - 12 : endHour
     }:${endMinute.length > 1 ? endMinute : "0" + endMinute} PDT`;
   }
@@ -79,7 +79,7 @@ function EventDetailsPage() {
         <div className="event-details-page__main-content">
           <div className="event-details-page__main-img-content">
             {event && event.Images[0] ? (
-              <img src={event.Images[0]?.url} alt="Event Image" />
+              <img src={event.Images[0]?.url} alt="Event Pic" />
             ) : (
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6lrmBCsboVg4QhJtKQP7QzwmtYDnY3Jsbw&usqp=CAU"
@@ -89,7 +89,7 @@ function EventDetailsPage() {
             <div className="right-hand-event-info">
               <div className="right-event-info__group-container">
                 {event && event.Images[0] ? (
-                  <img src={event.Images[0]?.url} alt="Event Image" />
+                  <img src={event.Images[0]?.url} alt="Event Pic" />
                 ) : (
                   <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrNu3n3yXwM8Y7kbTuTCPS6g8mf4eAlniV6g&usqp=CAU"

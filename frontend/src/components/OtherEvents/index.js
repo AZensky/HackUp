@@ -33,6 +33,7 @@ function OtherEvents() {
                 state={event?.Venue?.state || "NY"}
                 group={event?.Group?.name}
                 attendees={event.numAttending}
+                startDate={event.startDate}
               />
             </Link>
           ))}
