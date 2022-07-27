@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./GroupDetailsPage.css";
 import GroupDetailsHeader from "./GroupDetailsHeader";
 import GroupUpcomingEvents from "./GroupUpcomingEvents";
+import { useParams } from "react-router-dom";
 
 function GroupDetailsPage() {
+  const { groupId } = useParams();
+
+  const [groupDetails, setGroupDetails] = useState({});
+
+  useEffect(() => {
+    const getGroupDetails = async () => {
+      let response = await fetch(`/api/groups/${groupId}`);
+      let data = await response.json();
+      setGroupDetails(data);
+    };
+
+    getGroupDetails().catch(console.error);
+  }, []);
   return (
     <>
       <GroupDetailsHeader />
@@ -12,20 +26,7 @@ function GroupDetailsPage() {
           <div className="about-and-upcoming-container">
             <div className="group-details__about-section">
               <h4>What we're about</h4>
-              <p>
-                The Monthly dev is a series of online events brought to you with
-                love by daily.dev. It's a place for softwar engineers to gath
-                and hear world-class The Monthly dev is a series of online
-                events brought to you with love by daily.dev. It's a place for
-                softwar engineers to gath and hear world-class The Monthly dev
-                is a series of online events brought to you with love by
-                daily.dev. It's a place for softwar engineers to gath and hear
-                world-class The Monthly dev is a series of online events brought
-                to you with love by daily.dev. It's a place for softwar
-                engineers to gath and hear world-class The Monthly dev is a
-                series of online events brought to you with love by daily.dev.
-                It's a place for softwar engineers to gath and hear world-class
-              </p>
+              <p>{groupDetails.about}</p>
             </div>
             <h4>Upcoming Events</h4>
             <GroupUpcomingEvents />
