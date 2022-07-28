@@ -63,6 +63,9 @@ function Footer() {
           <a href="https://www.linkedin.com/in/alex-zelinsky/">
             <i className="fa-brands fa-linkedin footer-hover"></i>
           </a>
+          <a href="https://github.com/AZensky">
+            <i className="fa-brands fa-github footer-hover"></i>
+          </a>
           <a href="https://medium.com/@alexzelinsky124">
             <i className="fa-brands fa-medium footer-hover"></i>
           </a>
