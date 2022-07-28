@@ -2,7 +2,7 @@
 
 HackUp is a website clone, inspired by Meetup. HackUp can be used to find groups and individuals interested in programming and technology. HackUp users can also find events, such as hackathons and webinars, where they can test their skills or learn more technologies. It is ideal for all members of the tech industry, from beginner programmers to experienced developers.
 
-Live Site: [HackUp](https://api-meetup-clone.herokuapp.com/)
+**Live Site:** [HackUp](https://api-meetup-clone.herokuapp.com/)
 
 ## Wiki Links
 - [API Documentation](https://github.com/AZensky/meetup-clone/wiki/API-Documentation)
