@@ -34,13 +34,11 @@ function UpcomingEvent({ preview, name, group, id, startDate }) {
   let hours = newDate.getHours();
   let month = monthNames[newDate.getMonth()];
   const minutes = newDate.getMinutes();
-  console.log(minutes);
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours
   }:${minutes >= 10 ? minutes : "0" + minutes} ${hours > 12 ? "PM" : "AM"}`;
 
-  console.log(timeStr);
   return (
     <Link to={`/events/${id}`} className="upcoming-events__event">
       <img src={preview} alt="People Talking" />

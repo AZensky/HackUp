@@ -76,7 +76,6 @@ function EventDetailsHeader({ event }) {
     let month = monthNames[newDate.getMonth()];
     const minutes = newDate.getMinutes();
     const year = newDate.getFullYear();
-    console.log(minutes);
 
     timeStr = `${day}, ${month} ${date}, ${year}`;
   }

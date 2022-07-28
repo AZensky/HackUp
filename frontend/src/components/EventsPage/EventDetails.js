@@ -35,7 +35,6 @@ function EventDetails({name, group, city, state, attendees, preview, id, startDa
   let hours = newDate.getHours();
   let month = monthNames[newDate.getMonth()];
   const minutes = newDate.getMinutes();
-  console.log(minutes);
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours

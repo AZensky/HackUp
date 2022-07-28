@@ -35,7 +35,6 @@ function OtherEventCard({ id, name, city, state, group, attendees, startDate, })
   let hours = newDate.getHours();
   let month = monthNames[newDate.getMonth()];
   const minutes = newDate.getMinutes();
-  console.log(minutes);
 
   const timeStr = `${day}, ${month} ${date} · ${
     hours > 12 ? hours - 12 : hours
