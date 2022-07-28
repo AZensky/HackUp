@@ -48,11 +48,28 @@ function Footer() {
           ]}
         />
         <div className="technologies-column">
-          <h4 className="footer-hover">Technologies Used</h4>
-          <p className="footer-hover">Express</p>
-          <p className="footer-hover">Sequelize</p>
-          <p className="footer-hover">React</p>
-          <p className="footer-hover">Redux</p>
+          <h4>Technologies Used</h4>
+          <a
+            href="https://expressjs.com/"
+            className="footer-hover category-link"
+          >
+            Express
+          </a>
+          <a
+            href="https://sequelize.org/"
+            className="footer-hover category-link"
+          >
+            Sequelize
+          </a>
+          <a href="https://reactjs.org/" className="footer-hover category-link">
+            React
+          </a>
+          <a
+            href="https://redux.js.org/"
+            className="footer-hover category-link"
+          >
+            Redux
+          </a>
         </div>
       </div>
 

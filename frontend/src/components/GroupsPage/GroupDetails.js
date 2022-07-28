@@ -10,7 +10,7 @@ function GroupDetails({ name, city, state, about, members, preview, id }) {
           src={
             preview
               ? preview
-              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6lrmBCsboVg4QhJtKQP7QzwmtYDnY3Jsbw&usqp=CAU"
+              : "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
           }
           alt="Event Pic"
         />
