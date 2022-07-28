@@ -1,6 +1,4 @@
-# Meetup Clone
-
-## Deployed Project: https://api-meetup-clone.herokuapp.com/
+# Meetup Clone (HackUp)
 
 ## Personal Notes
 
