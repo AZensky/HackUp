@@ -44,10 +44,6 @@ Hosting:
 
 ![image](https://user-images.githubusercontent.com/95510710/181407890-afc09d79-46f4-480c-be8c-6671b76ee827.png)
 
-## User Profile Page
-
-![image](https://user-images.githubusercontent.com/95510710/181407984-5537f7a8-180b-4c35-bf64-12887ba3f6be.png)
-
 ## Run Locally
 
 - Clone the repo
