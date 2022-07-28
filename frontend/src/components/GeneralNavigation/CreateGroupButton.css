@@ -9,3 +9,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+.create-group-button:hover {
+  opacity: 0.8;
+}

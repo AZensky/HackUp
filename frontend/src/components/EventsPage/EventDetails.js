@@ -58,7 +58,7 @@ function EventDetails({name, group, city, state, attendees, preview, id, startDa
           <time>{timeStr}</time>
           <p className="event-details-title">{name}</p>
           <p className="event-details-group-name">
-            {group} · {city}, {state}
+            {group} {city && '·'} {city}{city && ','} {state}
           </p>
           <p className="event-details-group-attendees">
             {attendees} {attendees === 1 ? "attendee" : "attendees"}

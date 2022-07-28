@@ -200,6 +200,10 @@ div.home-page > p {
   box-sizing: border-box;
 }
 
+.home-page__search-dates__feature:hover {
+  opacity: 0.8;
+}
+
 .home-page__secondary-content {
   width: 70%;
   display: flex;
