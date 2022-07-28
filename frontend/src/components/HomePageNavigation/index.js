@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="home-page-navigation">
       <NavLink to="/" className="hackup-logo">
-        Hackup
+        HackUp
       </NavLink>
 
       <ul>

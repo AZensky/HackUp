@@ -45,7 +45,7 @@ function GeneralNavigation({ isLoaded }) {
       {/* Left side of nav */}
       <div className="left-nav">
         <NavLink to="/" className="hackup-logo">
-          Hackup
+          HackUp
         </NavLink>
 
         <form onSubmit={handleSearch}>
