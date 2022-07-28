@@ -81,7 +81,7 @@ function HomePage() {
               />
             </Link>
             <div className="home-page__topic-link__link-container">
-              <Link to="/groups" className="home-page__topic-link__link">
+              <Link to="/events" className="home-page__topic-link__link">
                 <span>Attend a hackathon</span>
                 <img
                   src="https://secure.meetupstatic.com/next/images/shared/right-arrow.svg?w=32"
