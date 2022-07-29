@@ -217,9 +217,9 @@ function HomePage() {
         </div>
 
         {/* Link to Sign up */}
-        <Link to="/signup" className="home-page__secondary-content__signup">
+        {/* <Link to="/signup" className="home-page__secondary-content__signup">
           Join HackUp
-        </Link>
+        </Link> */}
       </div>
 
       <div className="home-page__tertiary-content">

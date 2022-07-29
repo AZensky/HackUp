@@ -20,9 +20,11 @@ function Footer() {
       <div className="footer-header-container">
         <div className="footer-header">
           <p>Get started on HackUp.</p>
-          <Link to="/signup" className="footer-signup">
-            Sign Up
-          </Link>
+          {!sessionUser && (
+            <Link to="/signup" className="footer-signup">
+              Sign Up
+            </Link>
+          )}
         </div>
       </div>
 
@@ -30,9 +32,14 @@ function Footer() {
       <div className="footer-columns-container">
         <div className="your-account-column">
           <h4>Your Account</h4>
-          <Link to="/signup" className="signup-login-footer-link footer-hover">
-            Sign up
-          </Link>
+          {!sessionUser && (
+            <Link
+              to="/signup"
+              className="signup-login-footer-link footer-hover"
+            >
+              Sign up
+            </Link>
+          )}
           {!sessionUser && <LoginFormModal styleClass="footer-login" />}
           {sessionUser && (
             <div className="footer-log-out footer-hover" onClick={logout}>
