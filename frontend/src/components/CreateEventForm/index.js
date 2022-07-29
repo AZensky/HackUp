@@ -36,6 +36,8 @@ function CreateEventForm() {
     const errors = [];
     if (name.length < 5) errors.push("Name must be at least 5 characters");
     if (capacity < 0) errors.push("Capacity must be 0 or greater");
+    if (!Number.isInteger(Number(capacity)))
+      errors.push("Capacity must be an integer");
     if (price < 0) errors.push("Price must be 0 or greater");
     if (new Date(startDate) < new Date())
       errors.push("Start date must be in the future");
@@ -117,7 +119,9 @@ function CreateEventForm() {
           <label>
             Capacity
             <input
-              type="text"
+              type="number"
+              min="0.00"
+              step="1"
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               required
