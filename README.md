@@ -51,6 +51,26 @@ Hosting:
 - In the first terminal, cd into the backend folder, run npm install to install the necessary dependencies, and then run npm start
 - In the second terminal, cd into the frontend folder, run npm install to install the necessary dependencies, and then run npm start
 
+### Environment Variables
+
+To run this project, you need to add the following enviroment variables to your .env file in your backend folder.
+
+```
+PORT=8000
+DB_FILE=db/dev.db
+JWT_SECRET=«generate_strong_secret_here»
+JWT_EXPIRES_IN=604800
+```
+
+### Database setup
+
+To deploy this project run
+
+```
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+```
+
 ## To-do-list
 
 - Images feature
