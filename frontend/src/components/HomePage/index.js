@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import { getAllGroups } from "../../store/groups";
-import Footer from "../Footer";
 import UpcomingEvent from "./UpcomingEvent";
 import PopularGroup from "./PopularGroup";
 
@@ -266,9 +265,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

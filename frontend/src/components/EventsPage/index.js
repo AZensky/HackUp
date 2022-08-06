@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import NavChoice from "../EventGroupSharedComponents/NavChoice";
 import EventDetails from "./EventDetails";
-import Footer from "../Footer";
 import "./EventsPage.css";
 import { useLocation } from "react-router-dom";
 
@@ -41,8 +40,6 @@ function EventsPage() {
           ))}
         {events.length === 0 && <h2>No Events Found</h2>}
       </div>
-
-      <Footer />
     </>
   );
 }

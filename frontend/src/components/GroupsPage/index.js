@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "../../store/groups";
 import NavChoice from "../EventGroupSharedComponents/NavChoice";
-import Footer from "../Footer";
 import GroupDetails from "./GroupDetails";
 import "./GroupsPage.css";
 
@@ -30,8 +29,6 @@ function GroupsPage() {
           />
         ))}
       </div>
-
-      <Footer />
     </>
   );
 }

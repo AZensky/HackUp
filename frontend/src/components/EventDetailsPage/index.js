@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./EventDetailsPage.css";
 import { useParams } from "react-router-dom";
 import EventDetailsHeader from "./EventDetailsHeader";
-import Footer from "../Footer";
 import OtherEvents from "../OtherEvents";
 
 function EventDetailsPage() {
@@ -132,7 +131,6 @@ function EventDetailsPage() {
 
         <OtherEvents />
       </div>
-      <Footer />
     </>
   );
 }

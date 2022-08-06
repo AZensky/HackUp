@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import Footer from "../Footer";
 import "./UserProfile.css";
 
 function UserProfile() {
@@ -66,7 +65,6 @@ function UserProfile() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

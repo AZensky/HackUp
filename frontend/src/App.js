@@ -27,76 +27,72 @@ function App() {
 
   return (
     <>
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <Navigation isLoaded={isLoaded} />
-            <HomePage />
-          </Route>
+      <div className="application-main-content">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <Navigation isLoaded={isLoaded} />
+              <HomePage />
+            </Route>
 
-          <Route path="/groups/:groupId/create-event">
-            <Navigation />
-            <CreateEventForm />
-            <Footer />
-          </Route>
+            <Route path="/groups/:groupId/create-event">
+              <Navigation />
+              <CreateEventForm />
+            </Route>
 
-          <Route path="/groups/edit/:groupId">
-            <Navigation />
-            <EditGroupForm />
-            <Footer />
-          </Route>
+            <Route path="/groups/edit/:groupId">
+              <Navigation />
+              <EditGroupForm />
+            </Route>
 
-          <Route path="/events/edit/:eventId">
-            <Navigation />
-            <EditEventForm />
-            <Footer />
-          </Route>
+            <Route path="/events/edit/:eventId">
+              <Navigation />
+              <EditEventForm />
+            </Route>
 
-          <Route path="/events/:eventId">
-            <GeneralNavigation isLoaded={isLoaded} />
-            <EventDetailsPage />
-          </Route>
+            <Route path="/events/:eventId">
+              <GeneralNavigation isLoaded={isLoaded} />
+              <EventDetailsPage />
+            </Route>
 
-          <Route path="/groups/:groupId">
-            <GeneralNavigation isLoaded={isLoaded} />
-            <GroupDetailsPage />
-            <Footer />
-          </Route>
+            <Route path="/groups/:groupId">
+              <GeneralNavigation isLoaded={isLoaded} />
+              <GroupDetailsPage />
+            </Route>
 
-          <Route path="/create-group">
-            <Navigation />
-            <CreateGroupForm />
-            <Footer />
-          </Route>
+            <Route path="/create-group">
+              <Navigation />
+              <CreateGroupForm />
+            </Route>
 
-          <Route path="/signup">
-            <Navigation />
-            <SignupFormPage />
-            <Footer />
-          </Route>
+            <Route path="/signup">
+              <Navigation />
+              <SignupFormPage />
+            </Route>
 
-          <Route path="/groups">
-            <GeneralNavigation isLoaded={isLoaded} />
-            <GroupsPage />
-          </Route>
+            <Route path="/groups">
+              <GeneralNavigation isLoaded={isLoaded} />
+              <GroupsPage />
+            </Route>
 
-          <Route path="/events">
-            <GeneralNavigation isLoaded={isLoaded} />
-            <EventsPage />
-          </Route>
+            <Route path="/events">
+              <GeneralNavigation isLoaded={isLoaded} />
+              <EventsPage />
+            </Route>
 
-          <Route path="/profile">
-            <GeneralNavigation isLoaded={isLoaded} />
-            <UserProfile />
-          </Route>
+            <Route path="/profile">
+              <GeneralNavigation isLoaded={isLoaded} />
+              <UserProfile />
+            </Route>
 
-          <Route>
-            <Navigation />
-            <NotFoundPage />
-            <Footer />
-          </Route>
-        </Switch>
-      )}
+            <Route>
+              <Navigation />
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        )}
+      </div>
+      <Footer />
     </>
   );
 }
