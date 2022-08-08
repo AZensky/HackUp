@@ -78,5 +78,5 @@ npx dotenv sequelize db:seed:all
 - Group Members feature
 - Venues feature
 
-All to-do features have fully functional and implemented database tables and API routes. Only the UI is left to implement.
+All to-do features have fully functional database tables and API routes. Only the UI is left to implement.
 
