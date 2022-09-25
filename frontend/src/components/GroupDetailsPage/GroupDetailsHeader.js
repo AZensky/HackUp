@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./GroupDetailsHeader.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteGroup } from "../../store/groups";
-import { requestMembership } from "../../store/groupMembers";
+// import { requestMembership } from "../../store/groupMembers";
+import { csrfFetch } from "../../store/csrf";
 import { useParams, useHistory, Link } from "react-router-dom";
 
 function GroupDetailsHeader() {
@@ -40,7 +41,17 @@ function GroupDetailsHeader() {
 
   // function to request to join a group
   async function handleJoin() {
-    await dispatch(requestMembership(groupId, sessionUser.id));
+    let userId = sessionUser.id;
+    const response = await csrfFetch(`/api/groups/${groupId}/members`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+      }),
+    });
+
     const getGroupMembers = async () => {
       let response = await fetch(`/api/groups/${groupId}/members`);
       let data = await response.json();
