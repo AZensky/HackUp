@@ -1,0 +1,63 @@
+.member-approval-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.member-approval-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.member-approval-item-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.member-approval-item-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  height: 100%;
+  padding: 0 20px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e6e6e6;
+  gap: 1rem;
+}
+
+.member-approval-item-approve {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px 0px !important;
+}
+
+.member-approval-item-deny {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px 0px !important;
+}

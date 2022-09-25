@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./GroupDetailsHeader.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteGroup } from "../../store/groups";
+import { requestMembership } from "../../store/groupMembers";
 import { useParams, useHistory, Link } from "react-router-dom";
 
 function GroupDetailsHeader() {
@@ -12,6 +13,7 @@ function GroupDetailsHeader() {
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const [groupDetails, setGroupDetails] = useState();
+  const [groupMembers, setGroupMembers] = useState([]);
 
   useEffect(() => {
     const getGroupDetails = async () => {
@@ -20,7 +22,14 @@ function GroupDetailsHeader() {
       setGroupDetails(data);
     };
 
+    const getGroupMembers = async () => {
+      let response = await fetch(`/api/groups/${groupId}/members`);
+      let data = await response.json();
+      setGroupMembers(data.Members);
+    };
+
     getGroupDetails().catch(console.error);
+    getGroupMembers().catch(console.error);
   }, [groupId]);
 
   async function handleDelete() {
@@ -28,6 +37,20 @@ function GroupDetailsHeader() {
 
     history.push("/groups");
   }
+
+  // function to request to join a group
+  async function handleJoin() {
+    await dispatch(requestMembership(groupId, sessionUser.id));
+    const getGroupMembers = async () => {
+      let response = await fetch(`/api/groups/${groupId}/members`);
+      let data = await response.json();
+      setGroupMembers(data.Members);
+    };
+
+    getGroupMembers().catch(console.error);
+  }
+
+  console.log("group members", groupMembers);
 
   return (
     <>
@@ -69,7 +92,7 @@ function GroupDetailsHeader() {
           </div>
         </div>
 
-        {/* Only display edit and delete event if they are organizer of the group */}
+        {/* Only display edit and delete group if they are organizer of the group */}
         {sessionUser &&
           groupDetails &&
           sessionUser.id === groupDetails.organizerId && (
@@ -87,11 +110,44 @@ function GroupDetailsHeader() {
                     Edit group
                   </Link>
                   <button onClick={handleDelete}>Delete group</button>
+                  <Link
+                    to={`/groups/${groupId}/approve`}
+                    className="edit-group-link"
+                  >
+                    Edit Members
+                  </Link>
                 </div>
               )}
             </div>
           )}
       </div>
+
+      {/* Only display request to join a group if they are logged in and not the owner, and have not already requested to join the group and is not a member of the group */}
+      {sessionUser &&
+        groupDetails &&
+        sessionUser.id !== groupDetails.organizerId &&
+        !groupMembers?.find((member) => member.id === sessionUser.id) && (
+          <div className="group-details-join-group-container">
+            <button
+              className="group-details-join-group-button"
+              onClick={handleJoin}
+            >
+              Request to join group
+            </button>
+          </div>
+        )}
+
+      {/* Display request sent if they are logged in and not the owner, and their membership status is pending */}
+
+      {sessionUser &&
+        groupDetails &&
+        sessionUser.id !== groupDetails.organizerId &&
+        groupMembers?.find((member) => member.id === sessionUser.id)?.Membership
+          .status === "pending" && (
+          <div className="group-details-request-sent-container">
+            <button className="group-details-request-sent">Request sent</button>
+          </div>
+        )}
 
       {/* Only display create event if they are organizer of the group */}
       {sessionUser &&
