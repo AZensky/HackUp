@@ -1,3 +1,10 @@
+.member-approval-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .member-approval-list {
   display: flex;
   flex-direction: column;
@@ -49,7 +56,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 0px 0px !important;
+  padding: 0px 5px !important;
+  font-size: 1rem !important;
+  height: 2.5rem !important;
 }
 
 .member-approval-item-deny {
@@ -59,5 +68,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 0px 0px !important;
+  padding: 0px 5px !important;
+  font-size: 1rem !important;
+  height: 2.5rem !important;
 }

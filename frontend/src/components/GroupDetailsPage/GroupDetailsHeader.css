@@ -172,6 +172,7 @@
   color: #fff;
   font-size: 0.75rem;
   font-weight: bold;
+  letter-spacing: 0.5px;
   line-height: 20px;
   border: 1px solid rgb(246, 88, 88);
   padding: 7px 12.5px;
@@ -197,6 +198,7 @@
   font-size: 0.75rem;
   font-weight: bold;
   line-height: 20px;
+  letter-spacing: 0.5px;
   border: 1px solid rgb(197, 196, 196);
   padding: 7px 12.5px;
   /* cursor: pointer; */
@@ -218,9 +220,18 @@
   border-radius: 0.5rem;
   color: #fff;
   font-size: 0.75rem;
+  letter-spacing: 0.5px;
   font-weight: bold;
   line-height: 20px;
   border: 1px solid rgb(246, 88, 88);
   padding: 7px 12.5px;
   cursor: pointer;
+}
+
+.group-details-leave-group-button:hover {
+  opacity: 0.8;
+}
+
+.group-details-join-group-button:hover {
+  opacity: 0.8;
 }
