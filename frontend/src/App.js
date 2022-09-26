@@ -18,6 +18,7 @@ import CreateEventForm from "./components/CreateEventForm";
 import Footer from "./components/Footer";
 import NotFoundPage from "./components/404NotFound";
 import ApproveMembers from "./components/ApproveMembers";
+import ApproveEventAttendees from "./components/ApproveEventAttendees";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,11 @@ function App() {
             <Route path="/groups/edit/:groupId">
               <Navigation />
               <EditGroupForm />
+            </Route>
+
+            <Route path="/events/:eventId/approve/attendees">
+              <Navigation />
+              <ApproveEventAttendees />
             </Route>
 
             <Route path="/events/edit/:eventId">
