@@ -301,7 +301,7 @@ router.get("/:groupId/members", requireAuth, async (req, res) => {
         as: "Members",
         through: {
           attributes: ["status"],
-          where: { status: { [Op.not]: "pending" } },
+          // where: { status: { [Op.not]: "pending" } },
           as: "Membership",
         },
       },
