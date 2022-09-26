@@ -42,7 +42,7 @@ function GroupDetailsPage() {
               organizerLastName={
                 groupDetails && groupDetails.Organizer.lastName
               }
-              numMembers={groupDetails && groupDetails.numMembers}
+              // numMembers={groupDetails && groupDetails.numMembers}
             />
           </div>
         </div>

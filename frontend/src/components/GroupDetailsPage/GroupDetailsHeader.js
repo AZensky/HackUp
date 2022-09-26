@@ -61,7 +61,34 @@ function GroupDetailsHeader() {
     getGroupMembers().catch(console.error);
   }
 
-  console.log("group members", groupMembers);
+  // function to leave a group
+  async function handleLeave() {
+    let userId = sessionUser.id;
+    const response = await csrfFetch(
+      `/api/groups/${groupId}/members/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const getGroupMembers = async () => {
+      let response = await fetch(`/api/groups/${groupId}/members`);
+      let data = await response.json();
+      setGroupMembers(data.Members);
+    };
+
+    const getGroupDetails = async () => {
+      let response = await fetch(`/api/groups/${groupId}`);
+      let data = await response.json();
+      setGroupDetails(data);
+    };
+
+    getGroupMembers().catch(console.error);
+    getGroupDetails().catch(console.error);
+  }
 
   return (
     <>
@@ -149,7 +176,6 @@ function GroupDetailsHeader() {
         )}
 
       {/* Display request sent if they are logged in and not the owner, and their membership status is pending */}
-
       {sessionUser &&
         groupDetails &&
         sessionUser.id !== groupDetails.organizerId &&
@@ -157,6 +183,23 @@ function GroupDetailsHeader() {
           .status === "pending" && (
           <div className="group-details-request-sent-container">
             <button className="group-details-request-sent">Request sent</button>
+          </div>
+        )}
+
+      {/* Display leave group if they are logged in and have a membership status of member */}
+
+      {sessionUser &&
+        groupDetails &&
+        sessionUser.id !== groupDetails.organizerId &&
+        groupMembers?.find((member) => member.id === sessionUser.id)?.Membership
+          .status === "member" && (
+          <div className="group-details-leave-group-container">
+            <button
+              className="group-details-leave-group-button"
+              onClick={handleLeave}
+            >
+              Leave group
+            </button>
           </div>
         )}
 

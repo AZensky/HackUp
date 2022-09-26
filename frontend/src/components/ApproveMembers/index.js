@@ -20,27 +20,54 @@ function ApproveMembers() {
     getGroupMembers().catch(console.error);
   }, [groupId]);
 
-  console.log("group", groupMembers);
-
   const handleApprove = async (memberId) => {
-    const response = await csrfFetch(`/api/groups/${groupId}/members/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        memberId,
-        status: "member",
-      }),
-    });
+    async function approveRequest() {
+      await csrfFetch(`/api/groups/${groupId}/members/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          memberId,
+          status: "member",
+        }),
+      });
+    }
 
     const getGroupMembers = async () => {
       let response = await fetch(`/api/groups/${groupId}/members`);
       let data = await response.json();
-      setGroupMembers(data.Members);
+      let pendingMembers = data.Members.filter(
+        (member) => member.Membership.status === "pending"
+      );
+      setGroupMembers(pendingMembers);
     };
 
-    getGroupMembers().catch(console.error);
+    await approveRequest();
+    await getGroupMembers().catch(console.error);
+  };
+
+  const handleDeny = async (memberId) => {
+    async function denyRequest() {
+      await csrfFetch(`/api/groups/${groupId}/members/${memberId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    const getGroupMembers = async () => {
+      let response = await fetch(`/api/groups/${groupId}/members`);
+      let data = await response.json();
+      let pendingMembers = data.Members.filter(
+        (member) => member.Membership.status === "pending"
+      );
+      setGroupMembers(pendingMembers);
+    };
+
+    await denyRequest();
+    await getGroupMembers().catch(console.error);
   };
 
   return (
@@ -52,7 +79,7 @@ function ApproveMembers() {
           </div>
           <div className="member-approval-list">
             {groupMembers.map((member) => (
-              <div className="member-approval-item">
+              <div className="member-approval-item" key={member.id}>
                 <div className="member-approval-item-name">
                   {member.firstName} {member.lastName}
                 </div>
@@ -63,7 +90,12 @@ function ApproveMembers() {
                   >
                     Approve
                   </button>
-                  <button className="member-approval-item-deny">Deny</button>
+                  <button
+                    className="member-approval-item-deny"
+                    onClick={() => handleDeny(member.id)}
+                  >
+                    Deny
+                  </button>
                 </div>
               </div>
             ))}

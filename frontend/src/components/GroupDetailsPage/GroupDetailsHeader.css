@@ -203,3 +203,27 @@
   padding: 7px 12.5px;
   /* cursor: pointer; */
 }
+
+.group-details-leave-group-container {
+  position: absolute;
+  top: 125px;
+  left: 85%;
+  bottom: 0;
+  right: 0px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group-details-leave-group-button {
+  background-color: rgb(246, 88, 88);
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 20px;
+  border: 1px solid rgb(246, 88, 88);
+  padding: 7px 12.5px;
+  cursor: pointer;
+}
