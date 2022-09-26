@@ -249,6 +249,12 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
     },
   });
 
+  const eventAttendee = await EventAttendee.findOne({
+    where: {
+      UserId: req.params.memberId,
+    },
+  });
+
   if (!groupMember) {
     res.status(404);
     return res.json({
@@ -257,6 +263,10 @@ router.delete("/:groupId/members/:memberId", requireAuth, async (req, res) => {
     });
   }
   await groupMember.destroy();
+
+  if (eventAttendee) {
+    await eventAttendee.destroy();
+  }
 
   res.json({
     message: "Successfully deleted membership from group",
@@ -301,7 +311,7 @@ router.get("/:groupId/members", requireAuth, async (req, res) => {
         as: "Members",
         through: {
           attributes: ["status"],
-          where: { status: { [Op.not]: "pending" } },
+          // where: { status: { [Op.not]: "pending" } },
           as: "Membership",
         },
       },

@@ -56,10 +56,10 @@ function OtherEventCard({ id, name, city, state, group, attendees, startDate, })
             </span>
           </div>
         </div>
-
+{/*
         <div className="other-event-numAttendees">
           {attendees} {attendees === 1 ? "attendee" : "attendees"}
-        </div>
+        </div> */}
       </div>
     </div>
   );

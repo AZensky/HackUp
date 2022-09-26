@@ -128,7 +128,7 @@ router.delete(
 
     if (
       group.dataValues.organizerId === currUserId ||
-      currUserId === req.params.attendeeId ||
+      currUserId == req.params.attendeeId ||
       groupMemberStatus === "co-host"
     ) {
       await eventAttendee.destroy();
@@ -243,7 +243,7 @@ router.get("/:eventId/attendees", requireAuth, async (req, res) => {
         attributes: ["id", "firstName", "lastName"],
         through: {
           attributes: ["status"],
-          where: { status: { [Op.not]: "pending" } },
+          // where: { status: { [Op.not]: "pending" } },
           as: "Attendance",
         },
       },

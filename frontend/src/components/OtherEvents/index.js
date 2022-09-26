@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../store/events";
 import { Link } from "react-router-dom";
@@ -6,11 +6,23 @@ import "./OtherEvents.css";
 import OtherEventCard from "./OtherEventCard";
 
 function OtherEvents() {
-  const dispatch = useDispatch();
-  const allEvents = Object.values(useSelector((state) => state.events));
+  // const dispatch = useDispatch();
+  // const allEvents = Object.values(useSelector((state) => state.events));
+  // useEffect(() => {
+  //   dispatch(getAllEvents());
+  // }, [dispatch]);
+
+  const [allEvents, setAllEvents] = useState([]);
+
   useEffect(() => {
-    dispatch(getAllEvents());
-  }, [dispatch]);
+    async function getEvents() {
+      const response = await fetch("/api/events?name=undefined");
+      const data = await response.json();
+      setAllEvents(data.Events);
+    }
+
+    getEvents();
+  }, []);
 
   const events = allEvents.slice(0, 3);
 

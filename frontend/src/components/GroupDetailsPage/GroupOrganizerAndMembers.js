@@ -16,9 +16,9 @@ function GroupOrganizerAndMembers({
         </span>
       </div>
 
-      <div className="members-group-details">
+      {/* <div className="members-group-details">
         <h4>Members: {numMembers}</h4>
-      </div>
+      </div> */}
     </>
   );
 }
