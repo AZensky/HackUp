@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./EventDetailsPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import EventDetailsHeader from "./EventDetailsHeader";
 import OtherEvents from "../OtherEvents";
 
@@ -71,6 +71,8 @@ function EventDetailsPage() {
     }:${endMinute >= 10 ? endMinute : "0" + endMinute} PDT`;
   }
 
+  console.log(event);
+
   return (
     <>
       <EventDetailsHeader event={event} />
@@ -86,7 +88,10 @@ function EventDetailsPage() {
               />
             )}
             <div className="right-hand-event-info">
-              <div className="right-event-info__group-container">
+              <Link
+                to={`/groups/${event?.Group.id}`}
+                className="right-event-info__group-container"
+              >
                 {event && event.Images[0] ? (
                   <img src={event.Images[0]?.url} alt="Event Pic" />
                 ) : (
@@ -98,7 +103,7 @@ function EventDetailsPage() {
                 <div className="right-event-info__group-name">
                   {event && event.Group.name}
                 </div>
-              </div>
+              </Link>
 
               <div className="right-event-info__location-container">
                 <div className="right-time-container">

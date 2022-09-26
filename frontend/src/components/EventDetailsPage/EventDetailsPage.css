@@ -103,6 +103,8 @@
   padding: 24px;
   background-color: rgb(255, 255, 255);
   border-radius: 16px;
+  text-decoration: none;
+  color: #000000;
 }
 
 .right-event-info__group-container > img {
