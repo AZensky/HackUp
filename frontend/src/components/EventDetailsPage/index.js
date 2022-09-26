@@ -71,8 +71,6 @@ function EventDetailsPage() {
     }:${endMinute >= 10 ? endMinute : "0" + endMinute} PDT`;
   }
 
-  console.log(event);
-
   return (
     <>
       <EventDetailsHeader event={event} />

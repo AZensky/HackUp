@@ -145,9 +145,6 @@ function EventDetailsHeader({ event }) {
     timeStr = `${day}, ${month} ${date}, ${year}`;
   }
 
-  console.log("group members", groupMembers);
-  console.log("event attendees", eventAttendees);
-
   return (
     <div className="event-details-header-container">
       <div className="event-details-header-content">
