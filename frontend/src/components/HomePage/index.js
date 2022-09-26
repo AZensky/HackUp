@@ -236,7 +236,7 @@ function HomePage() {
                 key={event.id}
                 preview={event.previewImage}
                 name={event.name}
-                group={event.Group.name}
+                group={event?.Group?.name}
                 id={event.id}
                 startDate={event.startDate}
               />
