@@ -182,7 +182,9 @@ function GroupDetailsHeader() {
         groupMembers?.find((member) => member.id === sessionUser.id)?.Membership
           .status === "pending" && (
           <div className="group-details-request-sent-container">
-            <button className="group-details-request-sent">Request sent</button>
+            <button className="group-details-request-sent" disabled>
+              Request sent
+            </button>
           </div>
         )}
 
