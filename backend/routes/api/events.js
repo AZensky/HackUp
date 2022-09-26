@@ -126,10 +126,6 @@ router.delete(
 
     const groupMemberStatus = groupMember.dataValues.status;
 
-    // console.log("--------------------");
-    // console.log("heeerreee");
-    // console.log("--------------------");
-
     if (
       group.dataValues.organizerId === currUserId ||
       currUserId == req.params.attendeeId ||
