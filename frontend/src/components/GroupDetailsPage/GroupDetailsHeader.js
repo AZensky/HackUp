@@ -152,7 +152,7 @@ function GroupDetailsHeader() {
                     to={`/groups/${groupId}/approve`}
                     className="edit-group-link"
                   >
-                    Edit Members
+                    Edit members
                   </Link>
                 </div>
               )}

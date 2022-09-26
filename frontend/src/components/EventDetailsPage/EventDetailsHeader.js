@@ -184,7 +184,7 @@ function EventDetailsHeader({ event }) {
                   to={`/events/${eventId}/approve/attendees`}
                   className="edit-event-link"
                 >
-                  Edit Attendees
+                  Edit attendees
                 </Link>
               </div>
             )}
