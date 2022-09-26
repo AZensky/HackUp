@@ -34,13 +34,13 @@ function UserProfile() {
 
         <div className="group-count-container">
           <div className="group-count">
-            <span>{groupsJoined.length}</span> Groups
+            <span>{groupsJoined.length}</span> Groups created
           </div>
         </div>
 
         <div className="joined-groups-container">
           <div className="joined-groups">
-            <h2>Groups</h2>
+            <h2>Groups Created</h2>
             <div className="all-joined-groups">
               {groupsJoined.length > 0 &&
                 groupsJoined.map((group) => (
